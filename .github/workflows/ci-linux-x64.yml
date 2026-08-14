@@ -13,7 +13,7 @@ jobs:
   verify-policy:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Verify repository policy
@@ -23,7 +23,7 @@ jobs:
     needs: verify-policy
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Bootstrap
@@ -48,7 +48,7 @@ jobs:
     needs: verify-policy
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Bootstrap
         run: ./scripts/bootstrap-ubuntu.sh --noninteractive
       - name: Configure and build (Clang)
@@ -60,7 +60,7 @@ jobs:
     needs: verify-policy
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v4
         with:
           version: "0.5.14"
@@ -77,7 +77,7 @@ jobs:
     needs: verify-policy
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
@@ -95,7 +95,7 @@ jobs:
     needs: verify-policy
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Bootstrap with ROS
         run: ./scripts/bootstrap-ubuntu.sh --noninteractive --with-ros
       - name: Build ROS workspace
@@ -113,7 +113,7 @@ jobs:
     needs: [cpp-gcc, python, web]
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: E2E and docs check
         run: |
           ./scripts/run-e2e.sh

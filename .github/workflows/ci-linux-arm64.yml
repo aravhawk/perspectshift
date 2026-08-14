@@ -11,7 +11,7 @@ jobs:
     # Requires a native Linux Arm64 runner. Do not label QEMU jobs as native.
     runs-on: [self-hosted, linux, arm64]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Assert native AArch64
