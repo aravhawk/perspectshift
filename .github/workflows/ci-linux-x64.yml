@@ -112,10 +112,13 @@ jobs:
       - name: Pyright
         run: uv run pyright
       - name: Pytest
+        env:
+          PERCEPTSHIFT_ROOT: ${{ github.workspace }}
         run: |
           set -euo pipefail
           export PATH="${GITHUB_WORKSPACE}/build/release-x64/cpp:${PATH}"
-          export PERCEPTSHIFT_ROOT="${GITHUB_WORKSPACE}"
+          test -x "${GITHUB_WORKSPACE}/build/release-x64/cpp/perceptshift-bench-worker"
+          test -x "${GITHUB_WORKSPACE}/build/release-x64/cpp/perceptshift-preprocess-worker"
           uv run pytest
 
   web:

@@ -930,6 +930,18 @@ def launch_bench_worker(
         "LANG": os.environ.get("LANG", "C.UTF-8"),
         "PERCEPTSHIFT_GIT_COMMIT": os.environ.get("PERCEPTSHIFT_GIT_COMMIT", ""),
     }
+    # Library/root paths are required to load the ORT-linked native worker.
+    # Do not copy the full process environment (secrets, extra tokens).
+    for key in (
+        "LD_LIBRARY_PATH",
+        "DYLD_LIBRARY_PATH",
+        "PERCEPTSHIFT_ORT_ROOT",
+        "ORT_PREFIX",
+        "PERCEPTSHIFT_ROOT",
+    ):
+        value = os.environ.get(key)
+        if value:
+            clean_env[key] = value
     if env:
         clean_env.update(env)
 

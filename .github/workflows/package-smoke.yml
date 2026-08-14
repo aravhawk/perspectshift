@@ -13,17 +13,21 @@ jobs:
   package-x64-core-dev:
     runs-on: ubuntu-24.04
     container: ubuntu:24.04
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v7
       - name: Install build deps
+        shell: bash
         run: |
-          set -euo pipefail
           export DEBIAN_FRONTEND=noninteractive
           apt-get update
           apt-get install -y --no-install-recommends \
             build-essential cmake ninja-build git curl ca-certificates python3 \
             pkg-config libssl-dev zlib1g-dev dpkg-dev file
       - name: Ensure CMake >= 3.28
+        shell: bash
         run: ./scripts/ci/ensure-cmake.sh
       - name: Build non-release core-dev package
         run: |
