@@ -29,7 +29,7 @@ jobs:
           V=$(tr -d '[:space:]' < VERSION)
           echo "version=$V" >> "$GITHUB_OUTPUT"
       - uses: docker/setup-qemu-action@v3
-      - uses: docker/setup-buildx-action@v3
+      - uses: docker/setup-buildx-action@v4
       - name: Canonical release verification
         run: |
           set -euo pipefail
