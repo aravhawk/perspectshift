@@ -1,0 +1,542 @@
+debconf: delaying package configuration, since apt-utils is not installed
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.13")  
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Using the multi-header code from /work/build/warnings-fresh/_deps/nlohmann_json-src/include/
+-- Build spdlog: 1.14.1
+-- Build type: Release
+CMake Deprecation Warning at build/warnings-fresh/_deps/yaml-cpp-src/CMakeLists.txt:2 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- The C compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- ONNX Runtime found: /work/.cache/onnxruntime-linux-aarch64-1.28.0/lib/libonnxruntime.so
+-- ONNX Runtime version: 1.28.0 (pinned 1.28.0)
+-- PerceptShift linked ONNX Runtime version record: 1.28.0
+-- Fuzz targets: standalone driver (libFuzzer unavailable)
+-- Configuring done (4.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /work/build/warnings-fresh
+[0/2] Re-checking globbed directories...
+[1/117] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o
+[2/117] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/color_sinks.cpp.o
+[3/117] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/spdlog.cpp.o
+[4/117] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/file_sinks.cpp.o
+[5/117] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/async.cpp.o
+[6/117] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/cfg.cpp.o
+[7/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/contrib/graphbuilder.cpp.o
+[8/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/contrib/graphbuilderadapter.cpp.o
+[9/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/binary.cpp.o
+[10/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/convert.cpp.o
+[11/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/depthguard.cpp.o
+[12/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/directives.cpp.o
+[13/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emit.cpp.o
+[14/117] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/bundled_fmtlib_format.cpp.o
+[15/117] Linking CXX static library _deps/spdlog-build/libspdlog.a
+[16/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitfromevents.cpp.o
+[17/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitter.cpp.o
+[18/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitterstate.cpp.o
+[19/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/exceptions.cpp.o
+[20/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/exp.cpp.o
+[21/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/memory.cpp.o
+[22/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/node.cpp.o
+[23/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitterutils.cpp.o
+[24/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/node_data.cpp.o
+[25/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/nodebuilder.cpp.o
+[26/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/nodeevents.cpp.o
+[27/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/null.cpp.o
+[28/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/ostream_wrapper.cpp.o
+[29/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/parse.cpp.o
+[30/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/parser.cpp.o
+[31/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/regex_yaml.cpp.o
+[32/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scanscalar.cpp.o
+[33/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scanner.cpp.o
+[34/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scantag.cpp.o
+[35/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/simplekey.cpp.o
+[36/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/singledocparser.cpp.o
+[37/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scantoken.cpp.o
+[38/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/stream.cpp.o
+[39/117] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/tag.cpp.o
+[40/117] Linking CXX static library _deps/yaml-cpp-build/libyaml-cpp.a
+[41/117] Building CXX object _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
+[42/117] Building CXX object _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o
+[43/117] Building CXX object _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+[44/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/build_info.cpp.o
+[45/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/crypto/digest.cpp.o
+[46/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/crypto/signature.cpp.o
+[47/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/crypto/verified_file.cpp.o
+[48/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/util/file_security.cpp.o
+[49/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/util/thread_affinity.cpp.o
+[50/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/cpu_features.cpp.o
+[51/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/cpu_topology.cpp.o
+[52/117] Building CXX object _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+[53/117] Linking CXX static library lib/libgtest.a
+[54/117] Linking CXX static library lib/libgmock.a
+[55/117] Linking CXX static library lib/libgmock_main.a
+[56/117] Linking CXX static library lib/libgtest_main.a
+[57/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/memory_provider.cpp.o
+[58/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/frequency_provider.cpp.o
+[59/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/thermal_provider.cpp.o
+[60/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/raspberry_pi_telemetry.cpp.o
+In file included from /usr/include/c++/13/ios:45,
+                 from /usr/include/c++/13/istream:40,
+                 from /usr/include/c++/13/fstream:40,
+                 from /work/cpp/src/host/raspberry_pi_telemetry.cpp:7:
+In member function ‘std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::egptr() const [with _CharT = char; _Traits = std::char_traits<char>]’,
+    inlined from ‘std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sbumpc() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/streambuf:326:49,
+    inlined from ‘std::istreambuf_iterator<_CharT, _Traits>& std::istreambuf_iterator<_CharT, _Traits>::operator++() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/bits/streambuf_iterator.h:173:17,
+    inlined from ‘constexpr void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::input_iterator_tag) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.tcc:182:6,
+    inlined from ‘constexpr std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&) [with _InputIterator = std::istreambuf_iterator<char, std::char_traits<char> >; <template-parameter-2-2> = void; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.h:765:16,
+    inlined from ‘perceptshift::Result<perceptshift::host::RaspberryPiTelemetry> perceptshift::host::read_raspberry_pi_telemetry()’ at /work/cpp/src/host/raspberry_pi_telemetry.cpp:70:92:
+/usr/include/c++/13/streambuf:495:30: warning: potential null pointer dereference [-Wnull-dereference]
+  495 |       egptr() const { return _M_in_end; }
+      |                              ^~~~~~~~~
+In member function ‘std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::gptr() const [with _CharT = char; _Traits = std::char_traits<char>]’,
+    inlined from ‘std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sbumpc() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/streambuf:326:33,
+    inlined from ‘std::istreambuf_iterator<_CharT, _Traits>& std::istreambuf_iterator<_CharT, _Traits>::operator++() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/bits/streambuf_iterator.h:173:17,
+    inlined from ‘constexpr void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::input_iterator_tag) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.tcc:182:6,
+    inlined from ‘constexpr std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&) [with _InputIterator = std::istreambuf_iterator<char, std::char_traits<char> >; <template-parameter-2-2> = void; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.h:765:16,
+    inlined from ‘perceptshift::Result<perceptshift::host::RaspberryPiTelemetry> perceptshift::host::read_raspberry_pi_telemetry()’ at /work/cpp/src/host/raspberry_pi_telemetry.cpp:70:92:
+/usr/include/c++/13/streambuf:492:30: warning: potential null pointer dereference [-Wnull-dereference]
+  492 |       gptr()  const { return _M_in_cur;  }
+      |                              ^~~~~~~~~
+In member function ‘std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::egptr() const [with _CharT = char; _Traits = std::char_traits<char>]’,
+    inlined from ‘std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sbumpc() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/streambuf:326:49,
+    inlined from ‘std::istreambuf_iterator<_CharT, _Traits>& std::istreambuf_iterator<_CharT, _Traits>::operator++() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/bits/streambuf_iterator.h:173:17,
+    inlined from ‘constexpr void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::input_iterator_tag) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.tcc:209:6,
+    inlined from ‘constexpr std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&) [with _InputIterator = std::istreambuf_iterator<char, std::char_traits<char> >; <template-parameter-2-2> = void; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.h:765:16,
+    inlined from ‘perceptshift::Result<perceptshift::host::RaspberryPiTelemetry> perceptshift::host::read_raspberry_pi_telemetry()’ at /work/cpp/src/host/raspberry_pi_telemetry.cpp:70:92:
+/usr/include/c++/13/streambuf:495:30: warning: potential null pointer dereference [-Wnull-dereference]
+  495 |       egptr() const { return _M_in_end; }
+      |                              ^~~~~~~~~
+In member function ‘std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::gptr() const [with _CharT = char; _Traits = std::char_traits<char>]’,
+    inlined from ‘std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sbumpc() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/streambuf:326:33,
+    inlined from ‘std::istreambuf_iterator<_CharT, _Traits>& std::istreambuf_iterator<_CharT, _Traits>::operator++() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/bits/streambuf_iterator.h:173:17,
+    inlined from ‘constexpr void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::input_iterator_tag) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.tcc:209:6,
+    inlined from ‘constexpr std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&) [with _InputIterator = std::istreambuf_iterator<char, std::char_traits<char> >; <template-parameter-2-2> = void; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.h:765:16,
+    inlined from ‘perceptshift::Result<perceptshift::host::RaspberryPiTelemetry> perceptshift::host::read_raspberry_pi_telemetry()’ at /work/cpp/src/host/raspberry_pi_telemetry.cpp:70:92:
+/usr/include/c++/13/streambuf:492:30: warning: potential null pointer dereference [-Wnull-dereference]
+  492 |       gptr()  const { return _M_in_cur;  }
+      |                              ^~~~~~~~~
+[61/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/power_provider.cpp.o
+[62/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/telemetry_snapshot.cpp.o
+[63/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/image/image_view.cpp.o
+[64/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/image/tensor_buffer.cpp.o
+[65/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/host_fingerprint.cpp.o
+[66/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/image/preprocessor_scalar.cpp.o
+[67/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/image/preprocess_config.cpp.o
+[68/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/image/preprocessor_neon.cpp.o
+[69/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/image/preprocessor_dispatch.cpp.o
+[70/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/inference/session_pool.cpp.o
+[71/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/adapters/raw_tensor_adapter.cpp.o
+[72/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/adapters/classification_adapter.cpp.o
+[73/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/inference/onnx_session.cpp.o
+[74/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/adapters/yolo_v8_adapter.cpp.o
+[75/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/profiles/profile_registry.cpp.o
+[76/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/adapters/adapter_factory.cpp.o
+[77/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/latest_frame_queue.cpp.o
+[78/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/latency_estimator.cpp.o
+[79/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/eligibility.cpp.o
+[80/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/health_machine.cpp.o
+[81/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/controller.cpp.o
+[82/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/bundle/bundle_loader.cpp.o
+[83/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/profile_executor.cpp.o
+[84/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/policy_loader.cpp.o
+[85/117] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/runtime_engine.cpp.o
+[86/117] Linking CXX static library cpp/libperceptshift_core.a
+[87/117] Building CXX object cpp/CMakeFiles/perceptshift-runtime.dir/apps/runtime_main.cpp.o
+[88/117] Linking CXX executable cpp/perceptshift-runtime
+[89/117] Building CXX object cpp/CMakeFiles/perceptshift-inspect-worker.dir/apps/inspect_worker_main.cpp.o
+[90/117] Linking CXX executable cpp/perceptshift-inspect-worker
+[91/117] Building CXX object cpp/CMakeFiles/perceptshift-bench-worker.dir/apps/bench_worker_main.cpp.o
+[92/117] Linking CXX executable cpp/perceptshift-bench-worker
+[93/117] Building CXX object cpp/tests/CMakeFiles/perceptshift_core_tests.dir/unit/test_result.cpp.o
+[94/117] Building CXX object cpp/tests/CMakeFiles/perceptshift_core_tests.dir/unit/test_digest.cpp.o
+[95/117] Building CXX object cpp/tests/CMakeFiles/perceptshift_core_tests.dir/unit/test_preprocessor.cpp.o
+[96/117] Building CXX object cpp/tests/CMakeFiles/perceptshift_core_tests.dir/unit/test_adapters.cpp.o
+[97/117] Building CXX object cpp/tests/CMakeFiles/perceptshift_core_tests.dir/unit/test_controller.cpp.o
+[98/117] Building CXX object cpp/tests/CMakeFiles/perceptshift_core_tests.dir/unit/test_latest_frame_queue.cpp.o
+[99/117] Building CXX object cpp/CMakeFiles/perceptshift-preprocess-worker.dir/apps/preprocess_worker_main.cpp.o
+[100/117] Linking CXX executable cpp/perceptshift-preprocess-worker
+[101/117] Building CXX object cpp/tests/CMakeFiles/perceptshift_core_tests.dir/unit/test_runtime_engine.cpp.o
+[102/117] Building CXX object cpp/tests/CMakeFiles/perceptshift_core_tests.dir/unit/test_bundle_loader.cpp.o
+In file included from /usr/include/c++/13/bits/locale_facets.h:44,
+                 from /usr/include/c++/13/locale:42,
+                 from /usr/include/c++/13/bits/fs_path.h:36,
+                 from /usr/include/c++/13/filesystem:49,
+                 from /work/cpp/include/perceptshift/util/file_security.hpp:5,
+                 from /work/cpp/include/perceptshift/bundle/bundle_loader.hpp:5,
+                 from /work/cpp/tests/unit/test_bundle_loader.cpp:1:
+In member function ‘std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::egptr() const [with _CharT = char; _Traits = std::char_traits<char>]’,
+    inlined from ‘std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sbumpc() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/streambuf:326:49,
+    inlined from ‘std::istreambuf_iterator<_CharT, _Traits>& std::istreambuf_iterator<_CharT, _Traits>::operator++() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/bits/streambuf_iterator.h:173:17,
+    inlined from ‘constexpr void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::input_iterator_tag) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.tcc:182:6,
+    inlined from ‘constexpr std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&) [with _InputIterator = std::istreambuf_iterator<char, std::char_traits<char> >; <template-parameter-2-2> = void; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.h:765:16,
+    inlined from ‘virtual void BundleLoaderTest_Ed25519RoundTrip_Test::TestBody()’ at /work/cpp/tests/unit/test_bundle_loader.cpp:132:94:
+/usr/include/c++/13/streambuf:495:30: warning: potential null pointer dereference [-Wnull-dereference]
+  495 |       egptr() const { return _M_in_end; }
+      |                              ^~~~~~~~~
+In member function ‘std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::gptr() const [with _CharT = char; _Traits = std::char_traits<char>]’,
+    inlined from ‘std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sbumpc() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/streambuf:326:33,
+    inlined from ‘std::istreambuf_iterator<_CharT, _Traits>& std::istreambuf_iterator<_CharT, _Traits>::operator++() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/bits/streambuf_iterator.h:173:17,
+    inlined from ‘constexpr void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::input_iterator_tag) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.tcc:182:6,
+    inlined from ‘constexpr std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&) [with _InputIterator = std::istreambuf_iterator<char, std::char_traits<char> >; <template-parameter-2-2> = void; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.h:765:16,
+    inlined from ‘virtual void BundleLoaderTest_Ed25519RoundTrip_Test::TestBody()’ at /work/cpp/tests/unit/test_bundle_loader.cpp:132:94:
+/usr/include/c++/13/streambuf:492:30: warning: potential null pointer dereference [-Wnull-dereference]
+  492 |       gptr()  const { return _M_in_cur;  }
+      |                              ^~~~~~~~~
+In member function ‘std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::egptr() const [with _CharT = char; _Traits = std::char_traits<char>]’,
+    inlined from ‘std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sbumpc() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/streambuf:326:49,
+    inlined from ‘std::istreambuf_iterator<_CharT, _Traits>& std::istreambuf_iterator<_CharT, _Traits>::operator++() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/bits/streambuf_iterator.h:173:17,
+    inlined from ‘constexpr void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::input_iterator_tag) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.tcc:209:6,
+    inlined from ‘constexpr std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&) [with _InputIterator = std::istreambuf_iterator<char, std::char_traits<char> >; <template-parameter-2-2> = void; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.h:765:16,
+    inlined from ‘virtual void BundleLoaderTest_Ed25519RoundTrip_Test::TestBody()’ at /work/cpp/tests/unit/test_bundle_loader.cpp:132:94:
+/usr/include/c++/13/streambuf:495:30: warning: potential null pointer dereference [-Wnull-dereference]
+  495 |       egptr() const { return _M_in_end; }
+      |                              ^~~~~~~~~
+In member function ‘std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::gptr() const [with _CharT = char; _Traits = std::char_traits<char>]’,
+    inlined from ‘std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sbumpc() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/streambuf:326:33,
+    inlined from ‘std::istreambuf_iterator<_CharT, _Traits>& std::istreambuf_iterator<_CharT, _Traits>::operator++() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/bits/streambuf_iterator.h:173:17,
+    inlined from ‘constexpr void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::input_iterator_tag) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.tcc:209:6,
+    inlined from ‘constexpr std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&) [with _InputIterator = std::istreambuf_iterator<char, std::char_traits<char> >; <template-parameter-2-2> = void; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.h:765:16,
+    inlined from ‘virtual void BundleLoaderTest_Ed25519RoundTrip_Test::TestBody()’ at /work/cpp/tests/unit/test_bundle_loader.cpp:132:94:
+/usr/include/c++/13/streambuf:492:30: warning: potential null pointer dereference [-Wnull-dereference]
+  492 |       gptr()  const { return _M_in_cur;  }
+      |                              ^~~~~~~~~
+[103/117] Building CXX object cpp/tests/CMakeFiles/perceptshift_core_tests.dir/unit/test_policy_loader.cpp.o
+[104/117] Building CXX object cpp/tests/CMakeFiles/fuzz_signature_policy.dir/fuzz/fuzz_signature_policy.cpp.o
+[105/117] Building CXX object cpp/tests/CMakeFiles/perceptshift_core_tests.dir/unit/test_profile_executor_image.cpp.o
+[106/117] Linking CXX executable cpp/tests/perceptshift_core_tests
+onnxruntime cpuid_info warning: Unknown CPU vendor. cpuinfo_vendor value: 0
+[107/117] Building CXX object cpp/tests/CMakeFiles/fuzz_signature_policy.dir/fuzz/fuzz_standalone_main.cpp.o
+[108/117] Linking CXX executable cpp/tests/fuzz_signature_policy
+[109/117] Building CXX object cpp/tests/CMakeFiles/fuzz_digest_hex.dir/fuzz/fuzz_digest_hex.cpp.o
+[110/117] Building CXX object cpp/tests/CMakeFiles/fuzz_digest_hex.dir/fuzz/fuzz_standalone_main.cpp.o
+[111/117] Linking CXX executable cpp/tests/fuzz_digest_hex
+[112/117] Building CXX object cpp/tests/CMakeFiles/fuzz_runtime_policy_json.dir/fuzz/fuzz_standalone_main.cpp.o
+[113/117] Building CXX object cpp/tests/CMakeFiles/fuzz_path_security.dir/fuzz/fuzz_path_security.cpp.o
+[114/117] Building CXX object cpp/tests/CMakeFiles/fuzz_runtime_policy_json.dir/fuzz/fuzz_runtime_policy_json.cpp.o
+[115/117] Linking CXX executable cpp/tests/fuzz_runtime_policy_json
+[116/117] Building CXX object cpp/tests/CMakeFiles/fuzz_path_security.dir/fuzz/fuzz_standalone_main.cpp.o
+[117/117] Linking CXX executable cpp/tests/fuzz_path_security
+-- Install configuration: "Release"
+-- Installing: /opt/perceptshift/lib/libperceptshift_core.a
+-- Installing: /opt/perceptshift/bin/perceptshift-runtime
+-- Set non-toolchain portion of runtime path of "/opt/perceptshift/bin/perceptshift-runtime" to "$ORIGIN/../lib/perceptshift"
+-- Installing: /opt/perceptshift/bin/perceptshift-bench-worker
+-- Set non-toolchain portion of runtime path of "/opt/perceptshift/bin/perceptshift-bench-worker" to "$ORIGIN/../lib/perceptshift"
+-- Installing: /opt/perceptshift/bin/perceptshift-inspect-worker
+-- Set non-toolchain portion of runtime path of "/opt/perceptshift/bin/perceptshift-inspect-worker" to "$ORIGIN/../lib/perceptshift"
+-- Installing: /opt/perceptshift/bin/perceptshift-preprocess-worker
+-- Set non-toolchain portion of runtime path of "/opt/perceptshift/bin/perceptshift-preprocess-worker" to "$ORIGIN/../lib/perceptshift"
+-- Installing: /opt/perceptshift/include/perceptshift
+-- Installing: /opt/perceptshift/include/perceptshift/bundle
+-- Installing: /opt/perceptshift/include/perceptshift/bundle/bundle_loader.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/image
+-- Installing: /opt/perceptshift/include/perceptshift/image/preprocess_config.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/image/preprocessor.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/image/tensor_buffer.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/image/pixel_format.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/image/image_view.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/image/raw_image_validation.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/version.hpp.in
+-- Installing: /opt/perceptshift/include/perceptshift/inference
+-- Installing: /opt/perceptshift/include/perceptshift/inference/model_metadata.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/inference/onnx_session.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/inference/execution_provider_report.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/inference/inference_request.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/inference/tensor_spec.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/inference/session_factory.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/inference/inference_result.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/inference/session_pool.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/config
+-- Installing: /opt/perceptshift/include/perceptshift/error.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/util
+-- Installing: /opt/perceptshift/include/perceptshift/util/scope_exit.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/util/checked_math.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/util/bounded_ring.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/util/file_security.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/util/thread_affinity.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/util/steady_clock.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/crypto
+-- Installing: /opt/perceptshift/include/perceptshift/crypto/digest.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/crypto/verified_file.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/crypto/signature.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/profiles
+-- Installing: /opt/perceptshift/include/perceptshift/profiles/profile.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/profiles/profile_registry.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/telemetry
+-- Installing: /opt/perceptshift/include/perceptshift/host
+-- Installing: /opt/perceptshift/include/perceptshift/host/host_fingerprint.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/cpu_features.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/cpu_topology.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/raspberry_pi_telemetry.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/memory_provider.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/thermal_provider.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/power_provider.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/frequency_provider.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/telemetry_snapshot.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/adapters
+-- Installing: /opt/perceptshift/include/perceptshift/adapters/raw_tensor_adapter.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/adapters/adapter_factory.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/adapters/yolo_v8_adapter.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/adapters/classification_adapter.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/adapters/adapter.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/policy_loader.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/runtime_engine.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/runtime_state.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/frame_request.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/eligibility.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/policy.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/switch_decision.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/health_machine.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/profile_executor.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/latest_frame_queue.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/latency_estimator.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/frame_result.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/controller.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/build_info.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/result.hpp
+-- Installing: /opt/perceptshift/lib/perceptshift/libonnxruntime.so
+-- Installing: /opt/perceptshift/lib/perceptshift/libonnxruntime.so.1
+-- Installing: /opt/perceptshift/lib/perceptshift/libonnxruntime.so.1.28.0
+-- Installing: /opt/perceptshift/lib/perceptshift/libonnxruntime_providers_shared.so
+-- Installing: /opt/perceptshift/share/doc/perceptshift
+-- Installing: /opt/perceptshift/share/doc/perceptshift/model-adapters.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/performance-tuning.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/decisions
+-- Installing: /opt/perceptshift/share/doc/perceptshift/decisions/0001-development-host-vs-runtime-platform.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/decisions/0001-split-debian-packages.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/decisions/0002-onnxruntime-sole-backend-v1.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/index.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/architecture.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/deployment.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/runtime-policy.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/release-process.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/configuration-reference.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/testing.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/profile-bundle-format.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/security.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/api-reference.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/ros2-integration.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/threat-model.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/supported-platforms.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/dataset-formats.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/troubleshooting.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/development.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/cli-reference.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/privacy.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/limitations.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/installation.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/console.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/quantization.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/quality-certification.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/quickstart.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/benchmarking-methodology.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/operations.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/operator-workflow.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/README.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/LICENSE
+-- Installing: /opt/perceptshift/share/doc/perceptshift/NOTICE
+-- Installing: /opt/perceptshift/share/doc/perceptshift/CHANGELOG.md
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/preprocess-contract-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/quality-attestation-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/dataset-manifest-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/runtime-config-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/profile-bundle-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/telemetry-event-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/candidate-manifest-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/forge-config-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/benchmark-sample-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/host-fingerprint-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/benchmark-summary-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/templates
+-- Installing: /opt/perceptshift/share/perceptshift/config/templates/runtime.template.yaml
+-- Installing: /opt/perceptshift/share/perceptshift/config/templates/forge.template.yaml
+-- Installing: /opt/perceptshift/share/perceptshift/config/templates/classification-dataset.template.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/templates/coco-dataset.template.json
+-- Installing: /opt/perceptshift/lib/systemd/system/perceptshift-runtime.service
+-- Installing: /opt/perceptshift/lib/systemd/system/perceptshift-api.service
+-- Installing: /opt/perceptshift/lib/sysusers.d/perceptshift.conf
+-- Installing: /opt/perceptshift/lib/tmpfiles.d/perceptshift.conf
+-- Installing: /opt/perceptshift/lib/perceptshift/bin/perceptshift-ros-runtime
+-- Installing: /opt/perceptshift/lib/perceptshift/bin/perceptshift-api-service
+-- Installing: /opt/perceptshift/bin/perceptshift-api
+-- Installing: /opt/perceptshift/bin/perceptshift
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/README.md
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/errors.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/producer.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/reason_codes.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/hashing.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/path_security.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/version.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/schema.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/paths.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/tests
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/tests/test_common.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/pyproject.toml
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/README.md
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/__main__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/app.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/inspect.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/candidate.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/run_cmd.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/runtime.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/forge.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/model.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/evaluate.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/dataset.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/bundle.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/certify.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/report.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/system.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/benchmark.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/output.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/tests
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/tests/test_cli.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/pyproject.toml
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/README.md
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/errors.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/config.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/telemetry.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/schemas.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/auth.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/telemetry.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/bundles.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/runtime.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/runs.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/profiles.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/system.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/database.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/__main__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/app.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/audit.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/dependencies.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/paths.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/ros_bridge.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/models.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/middleware.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/migrations
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/migrations/script.py.mako
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/migrations/env.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/migrations/versions
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/migrations/versions/001_initial.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/alembic.ini
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/pyproject.toml
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/README.md
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/certification
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/certification/context.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/certification/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/orchestration
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/orchestration/quantize_step.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/orchestration/evaluate.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/orchestration/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/orchestration/environment.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/calibration
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/calibration/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/storage
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/storage/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/runs
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/runs/storage.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/runs/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/models
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/models/inspect.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/models/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/candidates
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/candidates/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/stream.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/raw_tensor.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/yolo_v8.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/coco.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/validate.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/image_classification_manifest.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/bundle.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/statistics
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/statistics/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/inspection
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/inspection/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/preprocess.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/reporting
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/reporting/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/quantization
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/quantization/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/evaluation
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/evaluation/types.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/evaluation/equivalence.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/evaluation/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/pyproject.toml
+Starting >>> perceptshift_msgs
+--- stderr: perceptshift_msgs
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    PERCEPTSHIFT_WARNINGS_AS_ERRORS
+
+
+---
+Finished <<< perceptshift_msgs [19.2s]
+Starting >>> perceptshift_ros
+[Processing: perceptshift_ros]
+Finished <<< perceptshift_ros [31.4s]
+Starting >>> perceptshift_bringup
+Finished <<< perceptshift_bringup [0.70s]
+--- stderr: perceptshift_bringup
+CMake Warning at /opt/ros/jazzy/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:82 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:12 (ament_add_pytest_test)
+
+
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    PERCEPTSHIFT_WARNINGS_AS_ERRORS
+
+
+---
+
+Summary: 3 packages finished [51.4s]
+  2 packages had stderr output: perceptshift_bringup perceptshift_msgs
+cpp_build_warnings fresh build OK

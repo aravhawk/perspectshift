@@ -1,0 +1,41 @@
+Source: perceptshift
+Section: science
+Priority: optional
+Maintainer: PerceptShift Maintainers <maintainers@perceptshift.local>
+Build-Depends: debhelper-compat (= 13), cmake, ninja-build, g++, libssl-dev, pkg-config, python3, dh-python
+Standards-Version: 4.7.0
+Homepage: https://github.com/perceptshift/perceptshift
+Rules-Requires-Root: no
+
+Package: perceptshift-core
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: PerceptShift core inference library and workers
+ Shared library and worker binaries for deadline-aware ONNX Runtime
+ inference. Does not bundle models or datasets.
+
+Package: perceptshift-cli
+Architecture: all
+Depends: ${misc:Depends}, ${python3:Depends}, perceptshift-core (>= ${source:Version})
+Description: PerceptShift operator CLI
+ Command-line interface for host inspection, forge orchestration,
+ bundle verification, and doctor diagnostics.
+
+Package: perceptshift-ros
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, perceptshift-core (>= ${source:Version}), ros-jazzy-rclcpp
+Description: PerceptShift ROS 2 Jazzy packages
+ Message interfaces, lifecycle component, and bringup launch files.
+ Requires a user-supplied profile bundle at runtime.
+
+Package: perceptshift-api
+Architecture: all
+Depends: ${misc:Depends}, ${python3:Depends}, perceptshift-core (>= ${source:Version})
+Description: PerceptShift local operational API
+ Loopback-default HTTP API for artifacts, health, and authenticated mutations.
+
+Package: perceptshift-console
+Architecture: all
+Depends: ${misc:Depends}
+Description: PerceptShift operational console static assets
+ Web console presentation assets served locally. No models or datasets included.

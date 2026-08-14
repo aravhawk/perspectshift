@@ -1,0 +1,14 @@
+/**:
+  ros__parameters:
+    bundle_path: ""  # REQUIRED: absolute path to a user-supplied profile bundle
+    image_topic: /camera/image_raw
+    task: yolo_v8_detection
+    deadline_ms: 75.0
+    enable_mutation_services: false
+    require_signature: false
+    allow_symlinked_model_files: false
+    queue_capacity: 1
+    queue_policy: latest_only
+    maximum_source_age_ms: 150.0
+    telemetry_period_ms: 500
+    enable_tracing: false

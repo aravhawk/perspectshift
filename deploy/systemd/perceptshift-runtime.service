@@ -1,0 +1,49 @@
+[Unit]
+Description=PerceptShift deadline-aware ROS lifecycle runtime
+Documentation=file:///usr/share/doc/perceptshift/README.md
+After=network-online.target
+Wants=network-online.target
+StartLimitBurst=5
+StartLimitIntervalSec=60
+
+[Service]
+Type=simple
+User=perceptshift
+Group=perceptshift
+# ROS lifecycle runtime is the operational long-running service.
+ExecStart=/usr/lib/perceptshift/bin/perceptshift-ros-runtime \
+  --bundle /var/lib/perceptshift/bundle \
+  --config /etc/perceptshift/runtime.yaml
+WorkingDirectory=/var/lib/perceptshift/runtime
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+EnvironmentFile=-/etc/perceptshift/runtime.env
+Environment=HOME=/var/lib/perceptshift/runtime
+Environment=ROS_HOME=/var/lib/perceptshift/ros
+Environment=XDG_RUNTIME_DIR=/run/perceptshift/dds
+# Runtime (perceptshift) and API (perceptshift-api) cannot share Fast DDS SHM.
+Environment=ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
+Environment=FASTDDS_BUILTIN_TRANSPORTS=UDPv4
+Environment=RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
+RestrictNamespaces=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallArchitectures=native
+LimitNOFILE=4096
+ReadWritePaths=/var/lib/perceptshift/runtime /var/lib/perceptshift/ros /var/lib/perceptshift/bundle /var/log/perceptshift/runtime /run/perceptshift/dds /dev/shm
+ReadOnlyPaths=/etc/perceptshift /usr/share/perceptshift /opt/ros /usr/lib/perceptshift
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+[Install]
+WantedBy=multi-user.target

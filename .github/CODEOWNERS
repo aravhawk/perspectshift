@@ -1,0 +1,12 @@
+* @perceptshift/maintainers
+
+/cpp/ @perceptshift/core
+/python/ @perceptshift/forge
+/ros2_ws/ @perceptshift/ros
+/web/ @perceptshift/console
+/config/schemas/ @perceptshift/maintainers
+/.github/ @perceptshift/maintainers
+/docs/ @perceptshift/maintainers
+/deploy/ @perceptshift/maintainers
+/packaging/ @perceptshift/maintainers
+/scripts/ @perceptshift/maintainers

@@ -1,0 +1,21 @@
+............ss.............................                              [100%]
+=============================== warnings summary ===============================
+python/perceptshift_api/tests/test_websocket.py:7
+  /Users/aravhawk/Code/perceptshift/python/perceptshift_api/tests/test_websocket.py:7: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+41 passed, 2 skipped, 1 warning in 0.83s
+-- deploy/systemd/perceptshift-api.service
+ExecStart=/usr/lib/perceptshift/bin/perceptshift-api-service --host 127.0.0.1 --port 8080
+-- deploy/systemd/perceptshift-runtime.service
+ExecStart=/usr/lib/perceptshift/bin/perceptshift-ros-runtime \
+OK: perceptshift-ros-runtime wrapper present
+OK: perceptshift-api-service wrapper present
+OK: StartLimitIntervalSec is in [Unit]
+OK: deploy/systemd/perceptshift-ros-runtime sets FASTDDS_BUILTIN_TRANSPORTS
+OK: deploy/systemd/perceptshift-ros-runtime sets RMW_IMPLEMENTATION
+OK: deploy/systemd/perceptshift-api-service sets FASTDDS_BUILTIN_TRANSPORTS
+OK: deploy/systemd/perceptshift-api-service sets RMW_IMPLEMENTATION
+WARN: systemd-analyze unavailable on this host; Debian acceptance requires it
+systemd unit validation PASSED

@@ -1,0 +1,515 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://perceptshift.dev/schemas/forge-config-v1.schema.json",
+  "title": "PerceptShift Forge Config v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "document_type",
+    "project",
+    "model",
+    "datasets",
+    "quantization",
+    "candidates",
+    "benchmark",
+    "quality",
+    "certification",
+    "report"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "document_type": {
+      "const": "perceptshift.forge_config"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producer": {
+      "$ref": "#/$defs/Producer"
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "output_root",
+        "random_seed"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "output_root": {
+          "type": "string",
+          "minLength": 1
+        },
+        "random_seed": {
+          "type": "integer"
+        }
+      }
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseline_path",
+        "adapter",
+        "adapter_config",
+        "expected_input",
+        "allowed_model_roots"
+      ],
+      "properties": {
+        "baseline_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "adapter": {
+          "enum": [
+            "raw_tensor",
+            "image_classification",
+            "yolo_v8_detection"
+          ]
+        },
+        "adapter_config": {
+          "type": "object"
+        },
+        "expected_input": {
+          "type": "object"
+        },
+        "preprocess": {
+          "$ref": "preprocess-contract-v1.schema.json"
+        },
+        "preprocess_contract": {
+          "$ref": "preprocess-contract-v1.schema.json"
+        },
+        "allowed_model_roots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "datasets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calibration_manifest",
+        "evaluation_manifest",
+        "prohibit_cross_split_duplicates"
+      ],
+      "properties": {
+        "calibration_manifest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evaluation_manifest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prohibit_cross_split_duplicates": {
+          "type": "boolean"
+        }
+      }
+    },
+    "quantization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "methods",
+        "format",
+        "activation_type",
+        "weight_type",
+        "per_channel_options",
+        "nodes_to_exclude"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "methods": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "minmax",
+              "entropy",
+              "percentile"
+            ]
+          },
+          "minItems": 1
+        },
+        "format": {
+          "const": "qdq"
+        },
+        "activation_type": {
+          "enum": [
+            "qint8"
+          ]
+        },
+        "weight_type": {
+          "enum": [
+            "qint8"
+          ]
+        },
+        "per_channel_options": {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          },
+          "minItems": 1
+        },
+        "nodes_to_exclude": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "calibration_sample_limit": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        }
+      }
+    },
+    "candidates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "include_baseline",
+        "user_model_variants",
+        "execution_providers",
+        "xnnpack_thread_counts",
+        "ort_intra_op_thread_counts",
+        "ort_inter_op_thread_counts",
+        "allow_intra_op_spinning",
+        "graph_optimization_levels",
+        "preprocess_backends",
+        "input_variants"
+      ],
+      "properties": {
+        "include_baseline": {
+          "type": "boolean"
+        },
+        "user_model_variants": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "execution_providers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "provider_order"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "provider_order": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "XNNPACKExecutionProvider",
+                    "CPUExecutionProvider"
+                  ]
+                },
+                "minItems": 1
+              }
+            }
+          }
+        },
+        "xnnpack_thread_counts": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "minItems": 1
+        },
+        "ort_intra_op_thread_counts": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "minItems": 1
+        },
+        "ort_inter_op_thread_counts": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "minItems": 1
+        },
+        "allow_intra_op_spinning": {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          },
+          "minItems": 1
+        },
+        "graph_optimization_levels": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "disable",
+              "basic",
+              "extended",
+              "all"
+            ]
+          },
+          "minItems": 1
+        },
+        "preprocess_backends": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "scalar",
+              "neon_auto"
+            ]
+          },
+          "minItems": 1
+        },
+        "input_variants": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "benchmark": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "warmup_iterations",
+        "measured_iterations",
+        "independent_trials",
+        "randomize_candidate_order",
+        "cold_start_trials",
+        "per_candidate_timeout_seconds",
+        "maximum_worker_rss_mb",
+        "minimum_stabilization_seconds",
+        "maximum_start_temperature_c",
+        "maximum_temperature_drift_c",
+        "require_no_throttling",
+        "collect_perf",
+        "collect_ros_trace",
+        "bootstrap_resamples"
+      ],
+      "properties": {
+        "warmup_iterations": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "measured_iterations": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "independent_trials": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "randomize_candidate_order": {
+          "type": "boolean"
+        },
+        "cold_start_trials": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "per_candidate_timeout_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maximum_worker_rss_mb": {
+          "type": "integer",
+          "minimum": 64
+        },
+        "minimum_stabilization_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maximum_start_temperature_c": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "maximum_temperature_drift_c": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "require_no_throttling": {
+          "type": "boolean"
+        },
+        "collect_perf": {
+          "type": "boolean"
+        },
+        "collect_ros_trace": {
+          "type": "boolean"
+        },
+        "bootstrap_resamples": {
+          "type": "integer",
+          "minimum": 100
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metric_name",
+        "direction",
+        "minimum_absolute_value",
+        "maximum_degradation_from_baseline",
+        "confidence_level"
+      ],
+      "properties": {
+        "metric_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "direction": {
+          "enum": [
+            "higher_is_better",
+            "lower_is_better"
+          ]
+        },
+        "minimum_absolute_value": {
+          "type": "number"
+        },
+        "maximum_degradation_from_baseline": {
+          "type": "number",
+          "minimum": 0
+        },
+        "confidence_level": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 1
+        }
+      }
+    },
+    "certification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "deadline_ms",
+        "maximum_peak_rss_mb",
+        "maximum_model_size_mb",
+        "require_xnnpack_assignment",
+        "require_valid_environment",
+        "require_output_equivalence",
+        "sign_bundle"
+      ],
+      "properties": {
+        "deadline_ms": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "maximum_peak_rss_mb": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maximum_model_size_mb": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "require_xnnpack_assignment": {
+          "type": "boolean"
+        },
+        "maximum_cpu_fallback_fraction": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "require_valid_environment": {
+          "type": "boolean"
+        },
+        "require_output_equivalence": {
+          "type": "boolean"
+        },
+        "sign_bundle": {
+          "type": "boolean"
+        },
+        "signing_key_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "report": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "formats",
+        "include_raw_sample_links",
+        "include_environment"
+      ],
+      "properties": {
+        "formats": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "json",
+              "html",
+              "markdown"
+            ]
+          },
+          "minItems": 1
+        },
+        "include_raw_sample_links": {
+          "type": "boolean"
+        },
+        "include_environment": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product",
+        "version",
+        "git_commit"
+      ],
+      "properties": {
+        "product": {
+          "const": "perceptshift"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+"
+        },
+        "git_commit": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

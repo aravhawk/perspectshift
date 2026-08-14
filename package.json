@@ -1,0 +1,10 @@
+{
+  "name": "perceptshift",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "build:web": "pnpm --filter perceptshift-console build",
+    "lint:web": "pnpm --filter perceptshift-console lint",
+    "test:web": "pnpm --filter perceptshift-console test"
+  }
+}

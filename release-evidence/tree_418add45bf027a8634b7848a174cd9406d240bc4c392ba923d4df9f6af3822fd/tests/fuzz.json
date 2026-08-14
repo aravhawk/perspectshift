@@ -1,0 +1,21 @@
+{
+  "tier": "fuzz",
+  "classification": "required",
+  "status": "PASS",
+  "command": "./scripts/run-fuzz.sh",
+  "exit_code": 0,
+  "start": "2026-08-14T01:05:24Z",
+  "end": "2026-08-14T01:05:46Z",
+  "duration_seconds": 22.0,
+  "host": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "context": "release-verify"
+  },
+  "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "log_path": "/Users/aravhawk/Code/perceptshift/build/verification/logs/fuzz.log",
+  "log_sha256": "672ce77cf3a77ad63c228bd977b0ff6b25cf50d1aa49933cc359d7412295b2cc",
+  "artifact_paths": [],
+  "test_count": null,
+  "reason": null
+}

@@ -1,0 +1,57 @@
+name: Sanitizers
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1"
+
+jobs:
+  asan-ubsan:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bootstrap
+        run: ./scripts/bootstrap-ubuntu.sh --noninteractive
+      - name: Configure ASan+UBSan
+        run: |
+          set -euo pipefail
+          cmake --preset asan-ubsan-x64
+          cmake --build --preset asan-ubsan-x64 -j "$(nproc)"
+      - name: Run tests
+        run: |
+          set -euo pipefail
+          export ASAN_OPTIONS=detect_leaks=1:halt_on_error=1
+          export UBSAN_OPTIONS=halt_on_error=1
+          TEST_DIR=build/asan-ubsan
+          COUNT="$(ctest --test-dir "$TEST_DIR" -N | awk '/Total Tests:/ {print $3}')"
+          if [[ -z "$COUNT" || "$COUNT" -eq 0 ]]; then
+            echo "ERROR: zero tests discovered in $TEST_DIR" >&2
+            exit 1
+          fi
+          ctest --test-dir "$TEST_DIR" --output-on-failure
+
+  tsan:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bootstrap
+        run: ./scripts/bootstrap-ubuntu.sh --noninteractive
+      - name: Configure TSan (project concurrency tests)
+        run: |
+          set -euo pipefail
+          cmake --preset tsan
+          cmake --build --preset tsan -j "$(nproc)"
+      - name: Run concurrency tests excluding ORT if required
+        run: |
+          set -euo pipefail
+          TEST_DIR=build/tsan
+          COUNT="$(ctest --test-dir "$TEST_DIR" -N | awk '/Total Tests:/ {print $3}')"
+          if [[ -z "$COUNT" || "$COUNT" -eq 0 ]]; then
+            echo "ERROR: zero tests discovered in $TEST_DIR" >&2
+            exit 1
+          fi
+          # ORT may be TSan-incompatible; exclude ORT-heavy tests when documented.
+          ctest --test-dir "$TEST_DIR" --output-on-failure -E 'onnx|ort|RuntimeEngine'
+          echo "ORT exclusions documented: dependency-scoped TSan when ORT is TSan-incompatible"

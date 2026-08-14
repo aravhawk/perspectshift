@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://perceptshift.dev/schemas/host-fingerprint-v1.schema.json",
+  "title": "PerceptShift Host Fingerprint v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "document_type",
+    "created_at",
+    "architecture",
+    "os"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "document_type": {
+      "const": "perceptshift.host_fingerprint"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producer": {
+      "$ref": "#/$defs/Producer"
+    },
+    "architecture": {
+      "type": "string"
+    },
+    "os": {
+      "type": "object"
+    },
+    "hostname_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "machine_id_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "container": {
+      "type": "object"
+    },
+    "cpu": {
+      "type": "object"
+    },
+    "memory": {
+      "type": "object"
+    },
+    "frequency": {
+      "type": "object"
+    },
+    "thermal": {
+      "type": "object"
+    },
+    "onnxruntime": {
+      "type": "object"
+    },
+    "ros": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "build": {
+      "type": "object"
+    },
+    "unavailable": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/UnavailableReason"
+      }
+    }
+  },
+  "$defs": {
+    "UnavailableReason": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reason_code",
+        "message"
+      ],
+      "properties": {
+        "reason_code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product",
+        "version",
+        "git_commit"
+      ],
+      "properties": {
+        "product": {
+          "const": "perceptshift"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+"
+        },
+        "git_commit": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

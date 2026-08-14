@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://perceptshift.dev/schemas/candidate-manifest-v1.schema.json",
+  "title": "PerceptShift Candidate Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "document_type",
+    "candidate_id",
+    "model_path",
+    "model_sha256",
+    "adapter",
+    "preprocess",
+    "session",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "document_type": {
+      "const": "perceptshift.candidate_manifest"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producer": {
+      "$ref": "#/$defs/Producer"
+    },
+    "candidate_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "label": {
+      "type": "string"
+    },
+    "model_path": {
+      "type": "string"
+    },
+    "model_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "adapter": {
+      "type": "object"
+    },
+    "preprocess": {
+      "$ref": "preprocess-contract-v1.schema.json"
+    },
+    "session": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider_order",
+        "intra_op_threads",
+        "inter_op_threads",
+        "graph_optimization_level"
+      ],
+      "properties": {
+        "provider_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "intra_op_threads": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "inter_op_threads": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "allow_intra_op_spinning": {
+          "type": "boolean"
+        },
+        "graph_optimization_level": {
+          "enum": [
+            "disable",
+            "basic",
+            "extended",
+            "all"
+          ]
+        },
+        "xnnpack_threads": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        }
+      }
+    },
+    "provenance": {
+      "type": "object"
+    }
+  },
+  "$defs": {
+    "Producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product",
+        "version",
+        "git_commit"
+      ],
+      "properties": {
+        "product": {
+          "const": "perceptshift"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+"
+        },
+        "git_commit": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

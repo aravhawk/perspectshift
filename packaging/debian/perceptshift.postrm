@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+  purge)
+    # Remove package-owned application paths; leave operator data unless empty.
+    rm -rf /usr/lib/perceptshift /usr/share/perceptshift 2>/dev/null || true
+    if command -v systemctl >/dev/null 2>&1; then
+      systemctl daemon-reload >/dev/null 2>&1 || true
+    fi
+    ;;
+esac
+
+#DEBHELPER#
+exit 0

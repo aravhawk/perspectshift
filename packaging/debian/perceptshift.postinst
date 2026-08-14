@@ -1,0 +1,75 @@
+#!/bin/sh
+set -e
+
+ensure_accounts() {
+  if ! getent group perceptshift >/dev/null 2>&1; then
+    groupadd --system perceptshift
+  fi
+  if ! getent passwd perceptshift >/dev/null 2>&1; then
+    useradd --system --gid perceptshift --home-dir /var/lib/perceptshift/runtime \
+      --shell /usr/sbin/nologin --comment "PerceptShift runtime" perceptshift
+  fi
+  if ! getent passwd perceptshift-api >/dev/null 2>&1; then
+    useradd --system --gid perceptshift --home-dir /var/lib/perceptshift/api \
+      --shell /usr/sbin/nologin --comment "PerceptShift API" perceptshift-api
+  fi
+  if ! id -nG perceptshift-api | grep -qw perceptshift; then
+    usermod -a -G perceptshift perceptshift-api
+  fi
+}
+
+ensure_dirs() {
+  mkdir -p /var/lib/perceptshift/runtime \
+    /var/lib/perceptshift/ros \
+    /var/lib/perceptshift/bundle \
+    /var/lib/perceptshift/api/state \
+    /var/lib/perceptshift/api/data \
+    /var/lib/perceptshift/api/ros \
+    /var/log/perceptshift/runtime \
+    /var/log/perceptshift/api \
+    /etc/perceptshift/credentials
+  chown root:perceptshift /var/lib/perceptshift /var/log/perceptshift /etc/perceptshift
+  chmod 0750 /var/lib/perceptshift /var/log/perceptshift /etc/perceptshift
+  chown perceptshift:perceptshift \
+    /var/lib/perceptshift/runtime \
+    /var/lib/perceptshift/ros \
+    /var/lib/perceptshift/bundle \
+    /var/log/perceptshift/runtime
+  chmod 0750 /var/lib/perceptshift/runtime /var/lib/perceptshift/ros \
+    /var/lib/perceptshift/bundle /var/log/perceptshift/runtime
+  chown perceptshift-api:perceptshift \
+    /var/lib/perceptshift/api \
+    /var/lib/perceptshift/api/state \
+    /var/lib/perceptshift/api/data \
+    /var/lib/perceptshift/api/ros \
+    /var/log/perceptshift/api
+  chmod 0750 /var/lib/perceptshift/api /var/lib/perceptshift/api/state \
+    /var/lib/perceptshift/api/data /var/lib/perceptshift/api/ros \
+    /var/log/perceptshift/api
+  chmod 0700 /etc/perceptshift/credentials
+}
+
+case "$1" in
+  configure)
+    ensure_accounts
+    getent passwd perceptshift >/dev/null
+    getent passwd perceptshift-api >/dev/null
+    getent group perceptshift >/dev/null
+    ensure_dirs
+    if command -v systemd-sysusers >/dev/null 2>&1; then
+      systemd-sysusers perceptshift.conf
+    fi
+    if command -v systemd-tmpfiles >/dev/null 2>&1; then
+      systemd-tmpfiles --create /usr/lib/tmpfiles.d/perceptshift.conf
+    fi
+    if [ -z "${PERCEPTSHIFT_BUNDLE_PATH:-}" ] && [ ! -f /etc/perceptshift/runtime.yaml ]; then
+      echo "perceptshift: runtime config/bundle not present; services left stopped"
+    fi
+    if command -v systemctl >/dev/null 2>&1; then
+      systemctl daemon-reload >/dev/null 2>&1 || true
+    fi
+    ;;
+esac
+
+#DEBHELPER#
+exit 0

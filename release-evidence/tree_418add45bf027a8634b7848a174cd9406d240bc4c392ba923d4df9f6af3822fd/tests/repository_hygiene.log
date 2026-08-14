@@ -1,0 +1,46 @@
+=== PerceptShift repository verification ===
+root: /Users/aravhawk/Code/perceptshift
+
+-- prohibited binaries / oversized tracked files --
+OK: no prohibited result/data naming patterns
+
+-- incomplete-work markers --
+OK: no production TODO/FIXME/stub markers
+
+-- event-specific prohibited language --
+OK: no event-specific prohibited language
+
+-- secrets --
+OK: no obvious secrets
+
+-- executable bits --
+OK: scripts executable-bit check complete
+
+-- orchestration prompts / .DS_Store --
+
+-- release command contracts --
+release contract tests PASSED
+OK: release contract tests passed
+source fingerprint regressions PASSED (tree:3bcbe9bf49717289993458048178dd8b8e249ca77fece433275cb6438599a1f6)
+OK: source fingerprint regression tests passed
+deployment surface tests PASSED
+OK: deployment surface tests passed
+
+-- lock files --
+OK: pnpm lockfile present or workspace pending
+OK: uv.lock present
+
+-- schema validity --
+validated 11 schema files
+OK: schemas are valid JSON
+
+-- broken symlinks --
+OK: no broken symlinks
+
+-- source-tree run output --
+WARN: run output directory present (should not be committed): build/verification
+
+-- unsafe claim language in docs --
+OK: no imprecise safety-claim language detected in docs
+
+OK: verify-repository PASSED with 1 warning(s)

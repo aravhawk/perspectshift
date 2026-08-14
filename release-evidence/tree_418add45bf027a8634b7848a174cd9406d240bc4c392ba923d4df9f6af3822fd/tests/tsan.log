@@ -1,0 +1,68 @@
+TSan strategy: native host (ORT off; Controller|LatestFrame|Queue|RawImage)
+-- Using the multi-header code from /Users/aravhawk/Code/perceptshift/build/tsan-host/_deps/nlohmann_json-src/include/
+-- Build spdlog: 1.14.1
+-- Build type: Release
+CMake Warning (deprecated) at build/tsan-host/_deps/yaml-cpp-src/CMakeLists.txt:2 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+This warning is for project developers.  Use -Wno-author or -Wno-deprecated
+to suppress it.
+
+CMake Warning (deprecated) at build/tsan-host/_deps/cli11-src/CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+This warning is for project developers.  Use -Wno-author or -Wno-deprecated
+to suppress it.
+
+-- Building without ONNX Runtime (PERCEPTSHIFT_WITH_ONNXRUNTIME=OFF)
+-- Fuzz targets: standalone driver (libFuzzer unavailable)
+-- Configuring done (1.3s)
+-- Generating done (0.3s)
+-- Build files have been written to: /Users/aravhawk/Code/perceptshift/build/tsan-host
+[  0%] Built target CLI11
+[  2%] Built target gtest
+[  8%] Built target spdlog
+[ 10%] Built target gmock
+[ 10%] Built target gtest_main
+[ 12%] Built target gmock_main
+[ 40%] Built target yaml-cpp
+[ 72%] Built target perceptshift_core
+[ 74%] Built target perceptshift-preprocess-worker
+[ 75%] Built target perceptshift-inspect-worker
+[ 77%] Built target perceptshift-bench-worker
+[ 79%] Built target perceptshift-runtime
+[ 84%] Built target fuzz_path_security
+[ 84%] Built target fuzz_digest_hex
+[ 90%] Built target fuzz_runtime_policy_json
+[ 90%] Built target fuzz_signature_policy
+[100%] Built target perceptshift_core_tests
+Test project /Users/aravhawk/Code/perceptshift/build/tsan-host
+    Start 17: ControllerTest.SelectsOnStartupAndFailClosedWithoutProfiles
+1/8 Test #17: ControllerTest.SelectsOnStartupAndFailClosedWithoutProfiles ...   Passed    0.85 sec
+    Start 18: ControllerTest.SelectsHighestUtilityEligible
+2/8 Test #18: ControllerTest.SelectsHighestUtilityEligible ..................   Passed    0.22 sec
+    Start 19: ControllerTest.DemotesOnDeadlineRisk
+3/8 Test #19: ControllerTest.DemotesOnDeadlineRisk ..........................   Passed    0.21 sec
+    Start 20: ControllerTest.StaleInputFailClosed
+4/8 Test #20: ControllerTest.StaleInputFailClosed ...........................   Passed    0.19 sec
+    Start 21: LatestFrameQueueTest.OverwritesAndCountsDrops
+5/8 Test #21: LatestFrameQueueTest.OverwritesAndCountsDrops .................   Passed    0.19 sec
+    Start 28: RawImageValidation.AcceptsExactPackedRgb8
+6/8 Test #28: RawImageValidation.AcceptsExactPackedRgb8 .....................   Passed    0.19 sec
+    Start 29: RawImageValidation.RejectsPngBytesLabeledAsRgb8
+7/8 Test #29: RawImageValidation.RejectsPngBytesLabeledAsRgb8 ...............   Passed    0.19 sec
+    Start 30: RawImageValidation.RejectsTrailingPaddingBeyondStrideHeight
+8/8 Test #30: RawImageValidation.RejectsTrailingPaddingBeyondStrideHeight ...   Passed    0.19 sec
+
+100% tests passed out of 8
+
+Total Test time (real) =   2.23 sec
+STATUS=PASS gate=tsan_or_documented_dependency_scoped_tsan host=Darwin/arm64 note=ORT_excluded_dependency_scoped

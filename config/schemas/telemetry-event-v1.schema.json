@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://perceptshift.dev/schemas/telemetry-event-v1.schema.json",
+  "title": "PerceptShift Telemetry Event v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "document_type",
+    "event_type",
+    "sequence_number",
+    "server_timestamp",
+    "payload"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "document_type": {
+      "const": "perceptshift.telemetry_event"
+    },
+    "event_type": {
+      "enum": [
+        "runtime_health",
+        "profile_state",
+        "inference_trace_summary",
+        "switch_event",
+        "control_hold",
+        "connection_status"
+      ]
+    },
+    "sequence_number": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "server_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "trace_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "payload": {
+      "type": "object"
+    },
+    "dropped_event_count": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

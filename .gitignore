@@ -1,0 +1,104 @@
+# Build
+build/
+cmake-build-*/
+out/
+dist/
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.deb
+*.rpm
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+*.egg
+
+# Node
+node_modules/
+web/dist/
+web/coverage/
+web/apps/console/dist/
+*.tsbuildinfo
+web/test-results/
+web/playwright-report/
+
+# IDE / OS
+.DS_Store
+**/.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+.cursor/
+
+# Secrets / local
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+!packaging/licenses/**
+
+# Generated / local evidence
+.cache/
+*.onnx
+*.onnx.data
+*.bag
+*.db
+*.sqlite
+build/verification/
+.runs/
+/runs/
+reports/
+*.sbom.json
+coverage/
+asan/
+tsan/
+ubsan/
+*.gcov
+*.tgz
+
+# ROS
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+install/
+log/
+
+# Release artifacts (source archives) are not product source.
+release-artifacts/
+
+# Durable compact release evidence is tracked; regenerable build trees are not.
+!release-evidence/
+!release-evidence/**
+
+# Internal Cursor / orchestration prompts (never product source)
+PERCEPTSHIFT_*PROMPT*.md
+PERCEPTSHIFT_*GAUNTLET*.md
+PERCEPTSHIFT_*FINISHER*.md
+PERCEPTSHIFT_*FINAL*.md
+PERCEPTSHIFT_*PATCH*.md
+PERCEPTSHIFT_*REPAIR*.md
+PERCEPTSHIFT_*MULTITASK*.md
+PERCEPTSHIFT_*LOCK*.md
+.implementation-ledger.md
+
+# Local ORT cache / downloads
+.cache/
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/
+**/.venv/

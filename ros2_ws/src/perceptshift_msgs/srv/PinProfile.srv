@@ -1,0 +1,8 @@
+string profile_id
+uint32 duration_seconds
+string reason
+---
+bool accepted
+builtin_interfaces/Time expiry
+string error_code
+string error_message

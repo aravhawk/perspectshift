@@ -1,0 +1,35 @@
+name: Documentation
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  docs:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify repository policy
+        run: ./scripts/verify-repository.sh
+      - name: Markdown structure check
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          required = [
+            "docs/index.md","docs/architecture.md","docs/quickstart.md",
+            "docs/limitations.md","docs/threat-model.md","docs/security.md",
+            "docs/privacy.md","docs/ros2-integration.md",
+          ]
+          missing = [p for p in required if not Path(p).exists()]
+          if missing:
+              raise SystemExit(f"missing docs: {missing}")
+          print("required docs present")
+          PY
+      - name: Prohibited language scan
+        run: |
+          if command -v rg >/dev/null; then
+            ! rg -n -i '(competition[- ]specific|event[- ]specific|evaluator[- ]facing|submission[- ]portal|prize[- ]specific|pitch deck)' docs README.md
+          fi
+      - name: Docs check target
+        run: make docs-check

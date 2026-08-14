@@ -1,0 +1,173 @@
+{
+  "schema_version": "final-verification-v1",
+  "overall_status": "PASS",
+  "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "debian_package": "perceptshift_0.1.0_arm64.deb",
+  "debian_sha256": "c6a7eacd2e9328bc760100e5417f05bbfe2bfdcef90253c81e8c60858634a55c",
+  "oci_digest": "perceptshift-runtime@sha256:d74c0de986c1584816159c1ede9462f837c3dcfe923b39a09afe961bb2dcc49d",
+  "source_export": {
+    "archive": "perceptshift-source-tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd.tar.gz",
+    "path": "release-artifacts/perceptshift-source-tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd.tar.gz",
+    "bytes": 505434,
+    "sha256": "fad829440c683eda6c03082e412acb1ebc33097f0016e7624e75c9f682e56474",
+    "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd"
+  },
+  "release_evidence": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "required_pass_count": 26,
+  "required_total": 26,
+  "start": "2026-08-14T01:04:41Z",
+  "end": "2026-08-14T01:35:13Z",
+  "host": {
+    "os": "Darwin",
+    "arch": "arm64"
+  },
+  "tiers": {
+    "repository_hygiene": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/repository_hygiene.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/repository_hygiene.json"
+    },
+    "schema_contracts": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/schema_contracts.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/schema_contracts.json"
+    },
+    "python_format_lint_typecheck": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/python_format_lint_typecheck.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/python_format_lint_typecheck.json"
+    },
+    "python_unit_contract_tests": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/python_unit_contract_tests.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/python_unit_contract_tests.json"
+    },
+    "cpp_build_warnings": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/cpp_build_warnings.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/cpp_build_warnings.json"
+    },
+    "cpp_unit_property_tests": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/cpp_unit_property_tests.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/cpp_unit_property_tests.json"
+    },
+    "canonical_preprocessing_equivalence": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/canonical_preprocessing_equivalence.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/canonical_preprocessing_equivalence.json"
+    },
+    "onnx_runtime_executor_e2e": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/onnx_runtime_executor_e2e.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/onnx_runtime_executor_e2e.json"
+    },
+    "forge_real_path_e2e": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/forge_real_path_e2e.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/forge_real_path_e2e.json"
+    },
+    "quantization_calibration_equivalence": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/quantization_calibration_equivalence.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/quantization_calibration_equivalence.json"
+    },
+    "quality_baseline_degradation": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/quality_baseline_degradation.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/quality_baseline_degradation.json"
+    },
+    "adaptive_controller_behavior": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/adaptive_controller_behavior.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/adaptive_controller_behavior.json"
+    },
+    "bundle_integrity_signature": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/bundle_integrity_signature.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/bundle_integrity_signature.json"
+    },
+    "ros_jazzy_build_tests": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/ros_jazzy_build_tests.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/ros_jazzy_build_tests.json"
+    },
+    "ros_runtime_inference_e2e": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/ros_runtime_inference_e2e.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/ros_runtime_inference_e2e.json"
+    },
+    "api_contract_tests": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/api_contract_tests.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/api_contract_tests.json"
+    },
+    "api_ros_runtime_e2e": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/api_ros_runtime_e2e.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/api_ros_runtime_e2e.json"
+    },
+    "web_unit_tests": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/web_unit_tests.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/web_unit_tests.json"
+    },
+    "browser_real_stack_inference_e2e": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/browser_real_stack_inference_e2e.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/browser_real_stack_inference_e2e.json"
+    },
+    "debian_arm64_package_install_uninstall": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/debian_arm64_package_install_uninstall.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/debian_arm64_package_install_uninstall.json"
+    },
+    "oci_arm64_build_runtime": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/oci_arm64_build_runtime.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/oci_arm64_build_runtime.json"
+    },
+    "asan_ubsan": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/asan_ubsan.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/asan_ubsan.json"
+    },
+    "tsan": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/tsan.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/tsan.json"
+    },
+    "fuzz": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/fuzz.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/fuzz.json"
+    },
+    "coverage": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/coverage.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/coverage.json"
+    },
+    "clean_room_arm64_noble": {
+      "status": "PASS",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/clean_room_arm64_noble.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/clean_room_arm64_noble.json"
+    },
+    "external_model_certification": {
+      "status": "NOT_RUN_EXTERNAL_INPUT_REQUIRED",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/external_model_certification.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/external_model_certification.json"
+    },
+    "physical_arm_performance_certification": {
+      "status": "NOT_RUN_EXTERNAL_INPUT_REQUIRED",
+      "path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/physical_arm_performance_certification.json",
+      "evidence_path": "release-evidence/tree_418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd/tests/physical_arm_performance_certification.json"
+    }
+  },
+  "missing_tiers": [],
+  "stale_tiers": [],
+  "nonpassing_tiers": [],
+  "physical_performance_claimed": false,
+  "external_model_certification": "NOT_RUN_EXTERNAL_INPUT_REQUIRED",
+  "physical_arm_performance_certification": "NOT_RUN_EXTERNAL_INPUT_REQUIRED",
+  "notes": "Emulated/Colima AArch64 evidence is software correctness only."
+}

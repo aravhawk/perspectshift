@@ -1,0 +1,11 @@
+# Empty request.
+---
+perceptshift_msgs/RuntimeHealth health
+string active_profile_id
+perceptshift_msgs/ProfileState[] profiles
+string policy_summary
+string policy_hash
+string bundle_id
+bool success
+string error_code
+string error_message

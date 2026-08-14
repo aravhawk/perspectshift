@@ -1,0 +1,124 @@
+name: CI Linux x64
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+concurrency:
+  group: ci-x64-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify-policy:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify repository policy
+        run: ./scripts/verify-repository.sh
+
+  cpp-gcc:
+    needs: verify-policy
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Bootstrap
+        run: ./scripts/bootstrap-ubuntu.sh --noninteractive
+      - name: Configure and build (GCC)
+        run: |
+          cmake --preset release-x64 || cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+          cmake --build build -j "$(nproc)" || cmake --build --preset release-x64
+      - name: C++ tests
+        run: |
+          set -euo pipefail
+          TEST_DIR=build/release-x64
+          [[ -d build ]] && [[ ! -d "$TEST_DIR" ]] && TEST_DIR=build
+          COUNT="$(ctest --test-dir "$TEST_DIR" -N | awk '/Total Tests:/ {print $3}')"
+          if [[ -z "$COUNT" || "$COUNT" -eq 0 ]]; then
+            echo "ERROR: zero tests discovered in $TEST_DIR" >&2
+            exit 1
+          fi
+          ctest --test-dir "$TEST_DIR" --output-on-failure
+
+  cpp-clang:
+    needs: verify-policy
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bootstrap
+        run: ./scripts/bootstrap-ubuntu.sh --noninteractive
+      - name: Configure and build (Clang)
+        run: |
+          cmake -S . -B build-clang -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+          cmake --build build-clang -j "$(nproc)"
+
+  python:
+    needs: verify-policy
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v4
+        with:
+          version: "0.5.14"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Lint and test
+        run: |
+          uv sync --all-packages
+          uv run ruff check python
+          uv run pytest python -q
+
+  web:
+    needs: verify-policy
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Enable pnpm
+        run: corepack enable && corepack prepare pnpm@9.15.0 --activate
+      - name: Install and test
+        working-directory: web
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm lint
+          pnpm test
+          pnpm build
+
+  ros:
+    needs: verify-policy
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bootstrap with ROS
+        run: ./scripts/bootstrap-ubuntu.sh --noninteractive --with-ros
+      - name: Build ROS workspace
+        run: |
+          if ! command -v ros2 >/dev/null; then
+            echo "ROS Jazzy not available after bootstrap; failing closed" >&2
+            exit 1
+          fi
+          source /opt/ros/jazzy/setup.bash
+          cd ros2_ws && colcon build --symlink-install
+          colcon test --event-handlers console_direct+
+          colcon test-result --verbose
+
+  e2e-docs:
+    needs: [cpp-gcc, python, web]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: E2E and docs check
+        run: |
+          ./scripts/run-e2e.sh
+          make docs-check
+      - name: Summary
+        run: |
+          mkdir -p build/verification
+          echo '{"workflow":"ci-linux-x64","status":"completed"}' > build/verification/summary.json

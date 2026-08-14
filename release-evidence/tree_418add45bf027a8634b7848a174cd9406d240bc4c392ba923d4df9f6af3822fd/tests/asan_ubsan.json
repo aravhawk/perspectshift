@@ -1,0 +1,21 @@
+{
+  "tier": "asan_ubsan",
+  "classification": "required",
+  "status": "PASS",
+  "command": "docker run --rm --platform linux/arm64 -v \"/Users/aravhawk/Code/perceptshift:/src\" -v \"/Users/aravhawk/Code/perceptshift/.cache:/src/.cache\" ubuntu:24.04 bash -lc 'apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq build-essential cmake ninja-build git python3 libssl-dev zlib1g-dev >/dev/null && cd /src && cmake -S . -B build/asan -DPERCEPTSHIFT_ENABLE_ASAN=ON -DPERCEPTSHIFT_ENABLE_UBSAN=ON -DPERCEPTSHIFT_ORT_ROOT=/src/.cache/onnxruntime-linux-aarch64-1.28.0 && cmake --build build/asan -j2 && ctest --test-dir build/asan --output-on-failure'",
+  "exit_code": 0,
+  "start": "2026-08-14T01:21:20Z",
+  "end": "2026-08-14T01:21:49Z",
+  "duration_seconds": 29.0,
+  "host": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "context": "release-verify"
+  },
+  "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "log_path": "/Users/aravhawk/Code/perceptshift/build/verification/logs/asan_ubsan.log",
+  "log_sha256": "6b50ae58e0d54e0d1688e2763ccf0cf6dbfda99ec75a8fa8f53d84d03c84c282",
+  "artifact_paths": [],
+  "test_count": null,
+  "reason": null
+}

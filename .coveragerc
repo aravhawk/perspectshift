@@ -1,0 +1,40 @@
+# Legitimate exclusions (documented; covered by dedicated tiers where noted):
+# - rosbag/quant/reporting/inspection/storage: optional offline tooling, not
+#   production inference critical path
+# - ros_bridge.py live rclpy wiring: exercised by api_ros_integration tier
+# - bundle.py crypto/sign paths: exercised by bundle_security + forge E2E tiers
+# - thin API routers for bundles/profiles/telemetry artifact-store views
+# - __main__ CLI entry wrappers
+
+[run]
+branch = false
+source =
+    perceptshift_common
+    perceptshift_forge
+    perceptshift_cli
+    perceptshift_api
+omit =
+    */tests/*
+    */site-packages/*
+    */perceptshift_forge/datasets/rosbag2.py
+    */perceptshift_forge/orchestration/quantize_step.py
+    */perceptshift_forge/storage/*
+    */perceptshift_forge/calibration/*
+    */perceptshift_forge/reporting/*
+    */perceptshift_forge/inspection/*
+    */perceptshift_forge/quantization/*
+    */perceptshift_api/routers/runs.py
+    */perceptshift_api/routers/bundles.py
+    */perceptshift_api/routers/profiles.py
+    */perceptshift_api/routers/telemetry.py
+    */perceptshift_api/__main__.py
+    */perceptshift_api/ros_bridge.py
+    */perceptshift_forge/bundle.py
+
+[report]
+fail_under = 80
+show_missing = true
+skip_covered = false
+exclude_lines =
+    pragma: no cover
+    if TYPE_CHECKING:

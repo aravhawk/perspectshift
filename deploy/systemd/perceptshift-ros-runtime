@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+# Deterministic wrapper that sources ROS 2 and launches the PerceptShift lifecycle runtime.
+set -euo pipefail
+
+ROS_SETUP="${PERCEPTSHIFT_ROS_SETUP:-/opt/ros/jazzy/setup.bash}"
+# Prefer package-installed workspace overlay; fall back to legacy path.
+if [[ -z "${PERCEPTSHIFT_ROS_WS_SETUP:-}" ]]; then
+  if [[ -f /usr/share/perceptshift/ros/setup.bash ]]; then
+    WS_SETUP=/usr/share/perceptshift/ros/setup.bash
+  elif [[ -f /opt/perceptshift/ros/setup.bash ]]; then
+    WS_SETUP=/opt/perceptshift/ros/setup.bash
+  else
+    WS_SETUP=""
+  fi
+else
+  WS_SETUP="${PERCEPTSHIFT_ROS_WS_SETUP}"
+fi
+
+if [[ -f "$ROS_SETUP" ]]; then
+  # shellcheck disable=SC1090
+  set +u
+  source "$ROS_SETUP"
+  set -u
+fi
+if [[ -n "$WS_SETUP" && -f "$WS_SETUP" ]]; then
+  # shellcheck disable=SC1090
+  set +u
+  source "$WS_SETUP"
+  set -u
+elif ! command -v ros2 >/dev/null 2>&1; then
+  echo "perceptshift-ros-runtime: ROS 2 workspace setup not installed and ros2 not on PATH" >&2
+  echo "Install perceptshift ROS packages or set PERCEPTSHIFT_ROS_WS_SETUP" >&2
+  exit 2
+fi
+
+# Packaged ORT shared libraries live under /usr/lib/perceptshift.
+if [[ -d /usr/lib/perceptshift ]]; then
+  export LD_LIBRARY_PATH="/usr/lib/perceptshift${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
+fi
+if [[ -d /opt/perceptshift/lib/perceptshift ]]; then
+  export LD_LIBRARY_PATH="/opt/perceptshift/lib/perceptshift${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
+fi
+
+# Cross-UID DDS: runtime runs as perceptshift, API as perceptshift-api.
+# Fast DDS shared-memory segments are not usable across those users, so default
+# to localhost UDPv4 unless the operator overrides the variables.
+# Do not default ROS_LOCALHOST_ONLY; it is deprecated and overrides discovery
+# range, which breaks ChangeState when combined with FASTDDS_BUILTIN_TRANSPORTS.
+export ROS_AUTOMATIC_DISCOVERY_RANGE="${ROS_AUTOMATIC_DISCOVERY_RANGE:-LOCALHOST}"
+export FASTDDS_BUILTIN_TRANSPORTS="${FASTDDS_BUILTIN_TRANSPORTS:-UDPv4}"
+export RMW_IMPLEMENTATION="${RMW_IMPLEMENTATION:-rmw_cyclonedds_cpp}"
+if [[ -z "${XDG_RUNTIME_DIR:-}" && -d /run/perceptshift/dds ]]; then
+  export XDG_RUNTIME_DIR=/run/perceptshift/dds
+fi
+
+BUNDLE=""
+CONFIG=""
+TASK="${PERCEPTSHIFT_TASK:-}"
+EXTRA=()
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --bundle)
+      BUNDLE="${2:-}"
+      shift 2
+      ;;
+    --config)
+      CONFIG="${2:-}"
+      shift 2
+      ;;
+    --task)
+      TASK="${2:-}"
+      shift 2
+      ;;
+    *)
+      EXTRA+=("$1")
+      shift
+      ;;
+  esac
+done
+
+if [[ -z "$BUNDLE" ]]; then
+  echo "perceptshift-ros-runtime: --bundle is required" >&2
+  exit 2
+fi
+
+LAUNCH_ARGS=(
+  "bundle_path:=${BUNDLE}"
+  "enable_mutation_services:=true"
+  "require_signature:=false"
+)
+if [[ -n "$CONFIG" ]]; then
+  LAUNCH_ARGS+=("runtime_config:=${CONFIG}")
+fi
+if [[ -n "$TASK" ]]; then
+  LAUNCH_ARGS+=("task:=${TASK}")
+fi
+
+exec ros2 launch perceptshift_bringup runtime.launch.py "${LAUNCH_ARGS[@]}" "${EXTRA[@]}"

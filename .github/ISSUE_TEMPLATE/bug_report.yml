@@ -1,0 +1,59 @@
+name: Bug report
+description: Report a defect in PerceptShift
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please include reproduction steps and environment details.
+        Do not attach proprietary models or datasets.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What went wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction steps
+      description: Exact commands and configuration (redact secrets).
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version / commit
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Ubuntu 24.04 x86_64
+        - Ubuntu 24.04 AArch64
+        - Raspberry Pi OS / Arm64 SBC
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Scope acknowledgment
+      options:
+        - label: I understand PerceptShift is soft real-time / deadline-aware and not a safety-certified controller.
+          required: true

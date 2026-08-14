@@ -1,0 +1,524 @@
+Proving arm64...
+==> Phase 1: build release .deb inside ROS Jazzy arm64
+debconf: delaying package configuration, since apt-utils is not installed
+Using scripts/build-release-deb.sh (complete supported release package)
+==> Building native core into staging prefix
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.13")  
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Using the multi-header code from /work/build/deb-release/_deps/nlohmann_json-src/include/
+-- Build spdlog: 1.14.1
+-- Build type: Release
+CMake Deprecation Warning at build/deb-release/_deps/yaml-cpp-src/CMakeLists.txt:2 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- ONNX Runtime found: /work/.cache/onnxruntime-linux-aarch64-1.28.0/lib/libonnxruntime.so
+-- ONNX Runtime version: 1.28.0 (pinned 1.28.0)
+-- PerceptShift linked ONNX Runtime version record: 1.28.0
+-- Configuring done (4.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /work/build/deb-release
+[  3%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/spdlog.cpp.o
+[  3%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/contrib/graphbuilder.cpp.o
+[  3%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o
+[  3%] Built target CLI11
+[  4%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/contrib/graphbuilderadapter.cpp.o
+[  5%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/binary.cpp.o
+[  6%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/color_sinks.cpp.o
+[  8%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/convert.cpp.o
+[  9%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/depthguard.cpp.o
+[ 10%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/file_sinks.cpp.o
+[ 11%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/directives.cpp.o
+[ 12%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emit.cpp.o
+[ 13%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/async.cpp.o
+[ 15%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitfromevents.cpp.o
+[ 16%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitter.cpp.o
+[ 17%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitterstate.cpp.o
+[ 18%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/emitterutils.cpp.o
+[ 19%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/exceptions.cpp.o
+[ 20%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/exp.cpp.o
+[ 22%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/memory.cpp.o
+[ 23%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/cfg.cpp.o
+[ 24%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/node.cpp.o
+[ 25%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/node_data.cpp.o
+[ 26%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/nodebuilder.cpp.o
+[ 27%] Building CXX object _deps/spdlog-build/CMakeFiles/spdlog.dir/src/bundled_fmtlib_format.cpp.o
+[ 29%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/nodeevents.cpp.o
+[ 30%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/null.cpp.o
+[ 31%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/ostream_wrapper.cpp.o
+[ 32%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/parse.cpp.o
+[ 33%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/parser.cpp.o
+[ 34%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/regex_yaml.cpp.o
+[ 36%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scanner.cpp.o
+[ 37%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scanscalar.cpp.o
+[ 38%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scantag.cpp.o
+[ 39%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/scantoken.cpp.o
+[ 40%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/simplekey.cpp.o
+[ 41%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/singledocparser.cpp.o
+[ 43%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/stream.cpp.o
+[ 44%] Linking CXX static library libspdlog.a
+[ 44%] Built target spdlog
+[ 45%] Building CXX object _deps/yaml-cpp-build/CMakeFiles/yaml-cpp.dir/src/tag.cpp.o
+[ 46%] Linking CXX static library libyaml-cpp.a
+[ 46%] Built target yaml-cpp
+[ 48%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/crypto/signature.cpp.o
+[ 47%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/build_info.cpp.o
+[ 51%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/crypto/digest.cpp.o
+[ 51%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/crypto/verified_file.cpp.o
+[ 52%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/util/file_security.cpp.o
+[ 53%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/util/thread_affinity.cpp.o
+[ 54%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/cpu_features.cpp.o
+[ 55%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/cpu_topology.cpp.o
+[ 56%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/memory_provider.cpp.o
+[ 58%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/thermal_provider.cpp.o
+[ 59%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/frequency_provider.cpp.o
+[ 60%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/power_provider.cpp.o
+[ 61%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/raspberry_pi_telemetry.cpp.o
+[ 62%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/telemetry_snapshot.cpp.o
+[ 63%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/host/host_fingerprint.cpp.o
+In file included from /usr/include/c++/13/ios:45,
+                 from /usr/include/c++/13/istream:40,
+                 from /usr/include/c++/13/fstream:40,
+                 from /work/cpp/src/host/raspberry_pi_telemetry.cpp:7:
+In member function ‘std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::egptr() const [with _CharT = char; _Traits = std::char_traits<char>]’,
+    inlined from ‘std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sbumpc() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/streambuf:326:49,
+    inlined from ‘std::istreambuf_iterator<_CharT, _Traits>& std::istreambuf_iterator<_CharT, _Traits>::operator++() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/bits/streambuf_iterator.h:173:17,
+    inlined from ‘constexpr void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::input_iterator_tag) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.tcc:182:6,
+    inlined from ‘constexpr std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&) [with _InputIterator = std::istreambuf_iterator<char, std::char_traits<char> >; <template-parameter-2-2> = void; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.h:765:16,
+    inlined from ‘perceptshift::Result<perceptshift::host::RaspberryPiTelemetry> perceptshift::host::read_raspberry_pi_telemetry()’ at /work/cpp/src/host/raspberry_pi_telemetry.cpp:70:92:
+/usr/include/c++/13/streambuf:495:30: warning: potential null pointer dereference [-Wnull-dereference]
+  495 |       egptr() const { return _M_in_end; }
+      |                              ^~~~~~~~~
+In member function ‘std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::gptr() const [with _CharT = char; _Traits = std::char_traits<char>]’,
+    inlined from ‘std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sbumpc() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/streambuf:326:33,
+    inlined from ‘std::istreambuf_iterator<_CharT, _Traits>& std::istreambuf_iterator<_CharT, _Traits>::operator++() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/bits/streambuf_iterator.h:173:17,
+    inlined from ‘constexpr void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::input_iterator_tag) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.tcc:182:6,
+    inlined from ‘constexpr std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&) [with _InputIterator = std::istreambuf_iterator<char, std::char_traits<char> >; <template-parameter-2-2> = void; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.h:765:16,
+    inlined from ‘perceptshift::Result<perceptshift::host::RaspberryPiTelemetry> perceptshift::host::read_raspberry_pi_telemetry()’ at /work/cpp/src/host/raspberry_pi_telemetry.cpp:70:92:
+/usr/include/c++/13/streambuf:492:30: warning: potential null pointer dereference [-Wnull-dereference]
+  492 |       gptr()  const { return _M_in_cur;  }
+      |                              ^~~~~~~~~
+In member function ‘std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::egptr() const [with _CharT = char; _Traits = std::char_traits<char>]’,
+    inlined from ‘std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sbumpc() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/streambuf:326:49,
+    inlined from ‘std::istreambuf_iterator<_CharT, _Traits>& std::istreambuf_iterator<_CharT, _Traits>::operator++() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/bits/streambuf_iterator.h:173:17,
+    inlined from ‘constexpr void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::input_iterator_tag) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.tcc:209:6,
+    inlined from ‘constexpr std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&) [with _InputIterator = std::istreambuf_iterator<char, std::char_traits<char> >; <template-parameter-2-2> = void; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.h:765:16,
+    inlined from ‘perceptshift::Result<perceptshift::host::RaspberryPiTelemetry> perceptshift::host::read_raspberry_pi_telemetry()’ at /work/cpp/src/host/raspberry_pi_telemetry.cpp:70:92:
+/usr/include/c++/13/streambuf:495:30: warning: potential null pointer dereference [-Wnull-dereference]
+  495 |       egptr() const { return _M_in_end; }
+      |                              ^~~~~~~~~
+In member function ‘std::basic_streambuf<_CharT, _Traits>::char_type* std::basic_streambuf<_CharT, _Traits>::gptr() const [with _CharT = char; _Traits = std::char_traits<char>]’,
+    inlined from ‘std::basic_streambuf<_CharT, _Traits>::int_type std::basic_streambuf<_CharT, _Traits>::sbumpc() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/streambuf:326:33,
+    inlined from ‘std::istreambuf_iterator<_CharT, _Traits>& std::istreambuf_iterator<_CharT, _Traits>::operator++() [with _CharT = char; _Traits = std::char_traits<char>]’ at /usr/include/c++/13/bits/streambuf_iterator.h:173:17,
+    inlined from ‘constexpr void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::input_iterator_tag) [with _InIterator = std::istreambuf_iterator<char, std::char_traits<char> >; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.tcc:209:6,
+    inlined from ‘constexpr std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&) [with _InputIterator = std::istreambuf_iterator<char, std::char_traits<char> >; <template-parameter-2-2> = void; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’ at /usr/include/c++/13/bits/basic_string.h:765:16,
+    inlined from ‘perceptshift::Result<perceptshift::host::RaspberryPiTelemetry> perceptshift::host::read_raspberry_pi_telemetry()’ at /work/cpp/src/host/raspberry_pi_telemetry.cpp:70:92:
+/usr/include/c++/13/streambuf:492:30: warning: potential null pointer dereference [-Wnull-dereference]
+  492 |       gptr()  const { return _M_in_cur;  }
+      |                              ^~~~~~~~~
+[ 65%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/image/image_view.cpp.o
+[ 66%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/image/tensor_buffer.cpp.o
+[ 67%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/image/preprocess_config.cpp.o
+[ 68%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/image/preprocessor_scalar.cpp.o
+[ 69%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/image/preprocessor_neon.cpp.o
+[ 70%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/image/preprocessor_dispatch.cpp.o
+[ 72%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/inference/onnx_session.cpp.o
+[ 73%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/inference/session_pool.cpp.o
+[ 74%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/adapters/raw_tensor_adapter.cpp.o
+[ 75%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/adapters/classification_adapter.cpp.o
+[ 76%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/adapters/yolo_v8_adapter.cpp.o
+[ 77%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/adapters/adapter_factory.cpp.o
+[ 79%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/profiles/profile_registry.cpp.o
+[ 80%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/bundle/bundle_loader.cpp.o
+[ 81%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/latest_frame_queue.cpp.o
+[ 82%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/latency_estimator.cpp.o
+[ 83%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/eligibility.cpp.o
+[ 84%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/health_machine.cpp.o
+[ 86%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/controller.cpp.o
+[ 87%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/policy_loader.cpp.o
+[ 88%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/profile_executor.cpp.o
+[ 89%] Building CXX object cpp/CMakeFiles/perceptshift_core.dir/src/runtime/runtime_engine.cpp.o
+[ 90%] Linking CXX static library libperceptshift_core.a
+[ 90%] Built target perceptshift_core
+[ 91%] Building CXX object cpp/CMakeFiles/perceptshift-runtime.dir/apps/runtime_main.cpp.o
+[ 93%] Building CXX object cpp/CMakeFiles/perceptshift-inspect-worker.dir/apps/inspect_worker_main.cpp.o
+[ 94%] Building CXX object cpp/CMakeFiles/perceptshift-bench-worker.dir/apps/bench_worker_main.cpp.o
+[ 95%] Building CXX object cpp/CMakeFiles/perceptshift-preprocess-worker.dir/apps/preprocess_worker_main.cpp.o
+[ 96%] Linking CXX executable perceptshift-runtime
+[ 96%] Built target perceptshift-runtime
+[ 97%] Linking CXX executable perceptshift-inspect-worker
+[ 97%] Built target perceptshift-inspect-worker
+[ 98%] Linking CXX executable perceptshift-preprocess-worker
+[ 98%] Built target perceptshift-preprocess-worker
+[100%] Linking CXX executable perceptshift-bench-worker
+[100%] Built target perceptshift-bench-worker
+-- Install configuration: "Release"
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/lib/libperceptshift_core.a
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/bin/perceptshift-runtime
+-- Set non-toolchain portion of runtime path of "/tmp/ps-deb-stage.wFRBZi/root/usr/bin/perceptshift-runtime" to "$ORIGIN/../lib/perceptshift"
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/bin/perceptshift-bench-worker
+-- Set non-toolchain portion of runtime path of "/tmp/ps-deb-stage.wFRBZi/root/usr/bin/perceptshift-bench-worker" to "$ORIGIN/../lib/perceptshift"
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/bin/perceptshift-inspect-worker
+-- Set non-toolchain portion of runtime path of "/tmp/ps-deb-stage.wFRBZi/root/usr/bin/perceptshift-inspect-worker" to "$ORIGIN/../lib/perceptshift"
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/bin/perceptshift-preprocess-worker
+-- Set non-toolchain portion of runtime path of "/tmp/ps-deb-stage.wFRBZi/root/usr/bin/perceptshift-preprocess-worker" to "$ORIGIN/../lib/perceptshift"
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/bundle
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/bundle/bundle_loader.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/image
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/image/preprocess_config.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/image/preprocessor.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/image/tensor_buffer.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/image/pixel_format.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/image/image_view.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/image/raw_image_validation.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/version.hpp.in
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/inference
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/inference/model_metadata.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/inference/onnx_session.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/inference/execution_provider_report.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/inference/inference_request.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/inference/tensor_spec.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/inference/session_factory.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/inference/inference_result.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/inference/session_pool.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/config
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/error.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/util
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/util/scope_exit.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/util/checked_math.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/util/bounded_ring.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/util/file_security.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/util/thread_affinity.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/util/steady_clock.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/crypto
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/crypto/digest.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/crypto/verified_file.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/crypto/signature.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/profiles
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/profiles/profile.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/profiles/profile_registry.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/telemetry
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/host
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/host/host_fingerprint.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/host/cpu_features.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/host/cpu_topology.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/host/raspberry_pi_telemetry.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/host/memory_provider.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/host/thermal_provider.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/host/power_provider.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/host/frequency_provider.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/host/telemetry_snapshot.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/adapters
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/adapters/raw_tensor_adapter.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/adapters/adapter_factory.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/adapters/yolo_v8_adapter.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/adapters/classification_adapter.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/adapters/adapter.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/runtime
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/runtime/policy_loader.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/runtime/runtime_engine.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/runtime/runtime_state.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/runtime/frame_request.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/runtime/eligibility.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/runtime/policy.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/runtime/switch_decision.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/runtime/health_machine.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/runtime/profile_executor.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/runtime/latest_frame_queue.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/runtime/latency_estimator.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/runtime/frame_result.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/runtime/controller.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/build_info.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/include/perceptshift/result.hpp
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/lib/perceptshift/libonnxruntime.so
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/lib/perceptshift/libonnxruntime.so.1
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/lib/perceptshift/libonnxruntime.so.1.28.0
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/lib/perceptshift/libonnxruntime_providers_shared.so
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/model-adapters.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/performance-tuning.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/decisions
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/decisions/0001-development-host-vs-runtime-platform.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/decisions/0001-split-debian-packages.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/decisions/0002-onnxruntime-sole-backend-v1.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/index.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/architecture.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/deployment.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/runtime-policy.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/release-process.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/configuration-reference.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/testing.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/profile-bundle-format.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/security.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/api-reference.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/ros2-integration.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/threat-model.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/supported-platforms.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/dataset-formats.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/troubleshooting.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/development.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/cli-reference.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/privacy.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/limitations.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/installation.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/console.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/quantization.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/quality-certification.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/quickstart.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/benchmarking-methodology.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/operations.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/operator-workflow.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/README.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/LICENSE
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/NOTICE
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/doc/perceptshift/CHANGELOG.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/schemas
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/schemas/preprocess-contract-v1.schema.json
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/schemas/quality-attestation-v1.schema.json
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/schemas/dataset-manifest-v1.schema.json
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/schemas/runtime-config-v1.schema.json
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/schemas/profile-bundle-v1.schema.json
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/schemas/telemetry-event-v1.schema.json
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/schemas/candidate-manifest-v1.schema.json
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/schemas/forge-config-v1.schema.json
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/schemas/benchmark-sample-v1.schema.json
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/schemas/host-fingerprint-v1.schema.json
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/schemas/benchmark-summary-v1.schema.json
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/templates
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/templates/runtime.template.yaml
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/templates/forge.template.yaml
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/templates/classification-dataset.template.json
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/config/templates/coco-dataset.template.json
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/lib/systemd/system/perceptshift-runtime.service
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/lib/systemd/system/perceptshift-api.service
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/lib/sysusers.d/perceptshift.conf
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/lib/tmpfiles.d/perceptshift.conf
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/lib/perceptshift/bin/perceptshift-ros-runtime
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/lib/perceptshift/bin/perceptshift-api-service
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/bin/perceptshift-api
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/bin/perceptshift
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common/README.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common/src
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common/src/perceptshift_common
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common/src/perceptshift_common/errors.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common/src/perceptshift_common/producer.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common/src/perceptshift_common/reason_codes.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common/src/perceptshift_common/hashing.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common/src/perceptshift_common/path_security.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common/src/perceptshift_common/version.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common/src/perceptshift_common/schema.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common/src/perceptshift_common/paths.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common/src/perceptshift_common/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common/tests
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common/tests/test_common.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_common/pyproject.toml
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/README.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/__main__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/app.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/inspect.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/candidate.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/run_cmd.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/runtime.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/forge.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/model.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/evaluate.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/dataset.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/bundle.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/certify.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/report.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/system.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/benchmark.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/output.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/tests
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/tests/test_cli.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_cli/pyproject.toml
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/README.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/errors.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/config.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/telemetry.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/schemas.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/auth.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/telemetry.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/bundles.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/runtime.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/runs.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/profiles.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/system.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/database.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/__main__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/app.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/audit.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/dependencies.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/paths.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/ros_bridge.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/models.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/src/perceptshift_api/middleware.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/migrations
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/migrations/script.py.mako
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/migrations/env.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/migrations/versions
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/migrations/versions/001_initial.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/alembic.ini
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_api/pyproject.toml
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/README.md
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/certification
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/certification/context.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/certification/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/orchestration
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/orchestration/quantize_step.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/orchestration/evaluate.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/orchestration/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/orchestration/environment.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/calibration
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/calibration/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/storage
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/storage/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/runs
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/runs/storage.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/runs/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/models
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/models/inspect.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/models/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/candidates
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/candidates/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/stream.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/raw_tensor.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/yolo_v8.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/coco.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/validate.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/image_classification_manifest.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/bundle.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/statistics
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/statistics/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/inspection
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/inspection/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/preprocess.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/reporting
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/reporting/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/quantization
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/quantization/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/evaluation
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/evaluation/types.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/evaluation/equivalence.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/evaluation/__init__.py
+-- Installing: /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/python/perceptshift_forge/pyproject.toml
+==> Building managed Python site-packages (all transitive wheels)
+==> Building ROS Jazzy overlay into /usr/share/perceptshift/ros
+Starting >>> perceptshift_msgs
+Finished <<< perceptshift_msgs [20.1s]
+Starting >>> perceptshift_ros
+Finished <<< perceptshift_ros [29.8s]
+Starting >>> perceptshift_bringup
+Finished <<< perceptshift_bringup [0.90s]
+
+Summary: 3 packages finished [50.9s]
+sanitized /tmp/ps-deb-stage.wFRBZi/root/usr/share/perceptshift/ros/setup.bash
+==> Writing Debian control + maintainer scripts
+dpkg-deb: building package 'perceptshift' in '/dist/perceptshift_0.1.0_arm64.deb'.
+==> Package produced: /dist/perceptshift_0.1.0_arm64.deb
+ new Debian package, version 2.0.
+ size 135159310 bytes: control archive=1322 bytes.
+     720 bytes,    12 lines      control
+    2691 bytes,    75 lines   *  postinst             #!/bin/sh
+     340 bytes,    15 lines   *  postrm               #!/bin/sh
+     444 bytes,    16 lines   *  prerm                #!/bin/sh
+ Package: perceptshift
+ Version: 0.1.0
+ Architecture: arm64
+ Maintainer: PerceptShift Maintainers <maintainers@perceptshift.local>
+ Section: science
+ Priority: optional
+ Installed-Size: 407784
+ Depends: libc6, libstdc++6, libssl3 | libssl1.1, python3 (>= 3.12), adduser, ros-jazzy-rclcpp, ros-jazzy-rclcpp-lifecycle, ros-jazzy-sensor-msgs, ros-jazzy-launch-ros, ros-jazzy-rclpy, ros-jazzy-lifecycle-msgs, ros-jazzy-diagnostic-updater, ros-jazzy-rmw-cyclonedds-cpp
+ Description: Deadline-aware adaptive ONNX inference for Arm64 ROS 2
+  Monolithic v1 package: native runtime, managed Python CLI/API,
+  ROS Jazzy packages, and systemd units. Does not bundle models or datasets.
+  ROS 2 Jazzy is a prerequisite for the runtime service.
+c6a7eacd2e9328bc760100e5417f05bbfe2bfdcef90253c81e8c60858634a55c  /dist/perceptshift_0.1.0_arm64.deb
+-rw-r--r-- 1 root root 135159310 Aug 14 01:20 /dist/perceptshift_0.1.0_arm64.deb
+Built perceptshift_0.1.0_arm64.deb sha256=c6a7eacd2e9328bc760100e5417f05bbfe2bfdcef90253c81e8c60858634a55c
+/Users/aravhawk/Code/perceptshift/dist/perceptshift_0.1.0_arm64.deb -> /Users/aravhawk/Code/perceptshift/build/verification/artifacts/packaging/perceptshift_0.1.0_arm64.deb
+ new Debian package, version 2.0.
+ size 135159310 bytes: control archive=1322 bytes.
+     720 bytes,    12 lines      control
+    2691 bytes,    75 lines   *  postinst             #!/bin/sh
+     340 bytes,    15 lines   *  postrm               #!/bin/sh
+     444 bytes,    16 lines   *  prerm                #!/bin/sh
+ Package: perceptshift
+ Version: 0.1.0
+ Architecture: arm64
+ Maintainer: PerceptShift Maintainers <maintainers@perceptshift.local>
+ Section: science
+ Priority: optional
+ Installed-Size: 407784
+ Depends: libc6, libstdc++6, libssl3 | libssl1.1, python3 (>= 3.12), adduser, ros-jazzy-rclcpp, ros-jazzy-rclcpp-lifecycle, ros-jazzy-sensor-msgs, ros-jazzy-launch-ros, ros-jazzy-rclpy, ros-jazzy-lifecycle-msgs, ros-jazzy-diagnostic-updater, ros-jazzy-rmw-cyclonedds-cpp
+ Description: Deadline-aware adaptive ONNX inference for Arm64 ROS 2
+  Monolithic v1 package: native runtime, managed Python CLI/API,
+  ROS Jazzy packages, and systemd units. Does not bundle models or datasets.
+  ROS 2 Jazzy is a prerequisite for the runtime service.
+c6a7eacd2e9328bc760100e5417f05bbfe2bfdcef90253c81e8c60858634a55c  perceptshift_0.1.0_arm64.deb
+==> Phase 2: fresh install environment (ROS Jazzy prerequisite only)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package perceptshift.
+(Reading database ... 42333 files and directories currently installed.)
+Preparing to unpack .../perceptshift_0.1.0_arm64.deb ...
+Unpacking perceptshift (0.1.0) ...
+Setting up perceptshift (0.1.0) ...
+Creating group 'perceptshift-api' with GID 993.
+perceptshift: runtime config/bundle not present; services left stopped
+(Reading database ... 60362 files and directories currently installed.)
+Preparing to unpack .../perceptshift_0.1.0_arm64.deb ...
+Unpacking perceptshift (0.1.0) over (0.1.0) ...
+Setting up perceptshift (0.1.0) ...
+perceptshift: runtime config/bundle not present; services left stopped
+{
+  "product": "perceptshift",
+  "version": "0.1.0"
+}
+perceptshift:x:995:995:PerceptShift runtime:/var/lib/perceptshift/runtime:/usr/sbin/nologin
+perceptshift-api:x:994:995:PerceptShift API:/var/lib/perceptshift/api:/usr/sbin/nologin
+perceptshift:x:995:perceptshift-api
+/usr/share/perceptshift/ros
+/usr/share/perceptshift/ros
+bundle_ok
+installed_ros_inference_ok seq= 1
+api_db_paths ['/var/lib/perceptshift/api/state/api/index.sqlite']
+telemetry_recent_ok dict
+service_user_api_ros_ok
+(Reading database ... 60362 files and directories currently installed.)
+Removing perceptshift (0.1.0) ...
+Purging configuration files for perceptshift (0.1.0) ...
+debian acceptance OK
+STATUS=PASS gate=debian_arm64_package_install_uninstall deb=perceptshift_0.1.0_arm64.deb sha256=c6a7eacd2e9328bc760100e5417f05bbfe2bfdcef90253c81e8c60858634a55c

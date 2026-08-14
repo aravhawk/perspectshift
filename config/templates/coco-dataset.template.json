@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "document_type": "perceptshift.dataset_manifest",
+  "dataset_type": "coco_detection",
+  "dataset_name": "example-coco",
+  "root": "/absolute/path/to/images",
+  "license_reference": "user-supplied-license-reference",
+  "split_name": "evaluation",
+  "annotation_path": "/absolute/path/to/annotations.json",
+  "crowd_treatment": "exclude",
+  "preprocess_contract": {
+    "input_width": 640,
+    "input_height": 640,
+    "input_layout": "nchw",
+    "accepted_source_formats": ["rgb8", "bgr8", "rgba8", "bgra8", "mono8"],
+    "source_color_handling": "convert_to_rgb",
+    "resize_mode": "stretch",
+    "resize_interpolation": "bilinear",
+    "scale": 0.00392156862745098,
+    "mean": [0.0, 0.0, 0.0],
+    "std": [1.0, 1.0, 1.0],
+    "swap_rb": false,
+    "letterbox_pad_value": null,
+    "output_dtype": "float32",
+    "backend": "scalar"
+  }
+}

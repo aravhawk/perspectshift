@@ -1,0 +1,7 @@
+lifecycle_manager:
+  ros__parameters:
+    node_names: ['perceptshift_runtime']
+    autostart: false
+    bond_timeout: 4.0
+    attempt_respawn_reconnection: true
+    bond_respawn_max_duration: 10.0

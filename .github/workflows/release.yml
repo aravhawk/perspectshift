@@ -1,0 +1,81 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to release
+        required: true
+
+permissions:
+  contents: write
+  id-token: write
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 1440
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Read version
+        id: ver
+        run: |
+          V=$(tr -d '[:space:]' < VERSION)
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - name: Canonical release verification
+        run: |
+          set -euo pipefail
+          chmod +x scripts/*.sh tests/*.sh
+          ./scripts/release-verify.sh
+      - name: Assert matching-fingerprint artifacts
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, pathlib, hashlib, subprocess, sys
+          root = pathlib.Path(".").resolve()
+          final = json.loads((root / "build/verification/final-verification.json").read_text())
+          if final.get("overall_status") != "PASS":
+              print("overall_status is not PASS", file=sys.stderr)
+              sys.exit(1)
+          if final.get("required_pass_count") != 26 or final.get("required_total") != 26:
+              print("required tiers are not 26/26", file=sys.stderr)
+              sys.exit(1)
+          current = subprocess.check_output(["./scripts/source-fingerprint.sh"], text=True).strip()
+          if current != final.get("source_fingerprint"):
+              print(f"fingerprint mismatch current={current} recorded={final.get('source_fingerprint')}", file=sys.stderr)
+              sys.exit(1)
+          export = final.get("source_export") or {}
+          archive = root / "release-artifacts" / export.get("archive", "")
+          if not archive.is_file():
+              print("source archive missing", archive, file=sys.stderr)
+              sys.exit(1)
+          sha = hashlib.sha256(archive.read_bytes()).hexdigest()
+          if sha != export.get("sha256"):
+              print("source archive sha mismatch", file=sys.stderr)
+              sys.exit(1)
+          print("publication gate ok", current)
+          PY
+      - name: Checksums
+        run: |
+          set -euo pipefail
+          mkdir -p dist release-artifacts
+          (cd dist && ls -1 | grep -q . && sha256sum * > SHA256SUMS)
+          (cd release-artifacts && sha256sum perceptshift-source-*.tar.gz > SHA256SUMS)
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            dist/**
+            release-artifacts/**
+            build/sbom/**
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,21 @@
+{
+  "tier": "adaptive_controller_behavior",
+  "classification": "required",
+  "status": "PASS",
+  "command": "ctest --test-dir build/default -R Controller --output-on-failure",
+  "exit_code": 0,
+  "start": "2026-08-14T01:05:08Z",
+  "end": "2026-08-14T01:05:09Z",
+  "duration_seconds": 1.0,
+  "host": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "context": "release-verify"
+  },
+  "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "log_path": "/Users/aravhawk/Code/perceptshift/build/verification/logs/adaptive_controller_behavior.log",
+  "log_sha256": "8f5c9d0d59493db775b7a40d81248289f1f4ce543e35a836065a1da989d5f260",
+  "artifact_paths": [],
+  "test_count": null,
+  "reason": null
+}

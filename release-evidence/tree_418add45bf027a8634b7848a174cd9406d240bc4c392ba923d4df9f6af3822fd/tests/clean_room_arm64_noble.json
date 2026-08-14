@@ -1,0 +1,21 @@
+{
+  "tier": "clean_room_arm64_noble",
+  "classification": "required",
+  "status": "PASS",
+  "command": "bash \"/Users/aravhawk/Code/perceptshift/scripts/clean-room-acceptance.sh\" final",
+  "exit_code": 0,
+  "start": "2026-08-14T01:28:14Z",
+  "end": "2026-08-14T01:35:04Z",
+  "duration_seconds": 410.0,
+  "host": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "context": "release-verify"
+  },
+  "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "log_path": "/Users/aravhawk/Code/perceptshift/build/verification/logs/clean_room_arm64_noble.log",
+  "log_sha256": "3c72c496b2cac21e7809150f4462743e617a877a44a789a439dd85949022fc6b",
+  "artifact_paths": [],
+  "test_count": null,
+  "reason": null
+}

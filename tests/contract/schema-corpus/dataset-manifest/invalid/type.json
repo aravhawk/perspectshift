@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "document_type": "perceptshift.dataset_manifest",
+  "dataset_type": "nope",
+  "dataset_name": "t",
+  "root": "/tmp/data",
+  "license_reference": "user",
+  "split_name": "cal",
+  "preprocess_contract": {},
+  "items": [
+    {
+      "path": "a.jpg",
+      "class_id": 0
+    }
+  ]
+}

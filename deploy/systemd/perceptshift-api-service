@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+# Packaged systemd API wrapper. Never references a developer tree, virtualenv, or build dir.
+set -euo pipefail
+
+fail() {
+  echo "perceptshift-api-service: $*" >&2
+  exit 1
+}
+
+PREFIX="${PERCEPTSHIFT_PREFIX:-/usr}"
+PY_PREFIX="${PERCEPTSHIFT_PYTHON_PREFIX:-${PREFIX}/lib/perceptshift/py}"
+
+ros_enabled() {
+  local raw="${PERCEPTSHIFT_API_ENABLE_ROS:-true}"
+  case "${raw,,}" in
+    0|false|no|off) return 1 ;;
+    *) return 0 ;;
+  esac
+}
+
+# Wire systemd credentials without printing secret material.
+if [[ -z "${PERCEPTSHIFT_API_MUTATION_TOKEN:-}" && -z "${PERCEPTSHIFT_API_MUTATION_TOKEN_FILE:-}" ]]; then
+  if [[ -n "${CREDENTIALS_DIRECTORY:-}" && -f "${CREDENTIALS_DIRECTORY}/perceptshift-api-token" ]]; then
+    export PERCEPTSHIFT_API_MUTATION_TOKEN_FILE="${CREDENTIALS_DIRECTORY}/perceptshift-api-token"
+  fi
+fi
+
+if ros_enabled; then
+  if [[ -f /opt/ros/jazzy/setup.bash ]]; then
+    # shellcheck disable=SC1091
+    set +u
+    source /opt/ros/jazzy/setup.bash
+    set -u
+  else
+    fail "ROS mode enabled but /opt/ros/jazzy/setup.bash is missing"
+  fi
+  if [[ -f /usr/share/perceptshift/ros/setup.bash ]]; then
+    # shellcheck disable=SC1091
+    set +u
+    source /usr/share/perceptshift/ros/setup.bash
+    set -u
+  else
+    fail "ROS mode enabled but /usr/share/perceptshift/ros/setup.bash is not installed"
+  fi
+fi
+
+if [[ -d /usr/lib/perceptshift ]]; then
+  export LD_LIBRARY_PATH="/usr/lib/perceptshift${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
+fi
+
+# Match the runtime wrapper: API and runtime are different Unix users.
+export ROS_AUTOMATIC_DISCOVERY_RANGE="${ROS_AUTOMATIC_DISCOVERY_RANGE:-LOCALHOST}"
+export FASTDDS_BUILTIN_TRANSPORTS="${FASTDDS_BUILTIN_TRANSPORTS:-UDPv4}"
+export RMW_IMPLEMENTATION="${RMW_IMPLEMENTATION:-rmw_cyclonedds_cpp}"
+if [[ -z "${XDG_RUNTIME_DIR:-}" && -d /run/perceptshift/dds ]]; then
+  export XDG_RUNTIME_DIR=/run/perceptshift/dds
+fi
+
+SITE=""
+if [[ -d "${PY_PREFIX}/lib" ]]; then
+  SITE="$(find "${PY_PREFIX}/lib" -type d -path '*/site-packages' 2>/dev/null | head -1 || true)"
+  if [[ -n "${SITE}" ]]; then
+    export PYTHONPATH="${SITE}${PYTHONPATH:+:${PYTHONPATH}}"
+  fi
+fi
+if [[ -z "${SITE}" ]]; then
+  fail "packaged Python site-packages not found under ${PY_PREFIX}"
+fi
+
+API_BIN="${PREFIX}/bin/perceptshift-api"
+if [[ ! -x "$API_BIN" ]]; then
+  fail "installed API entrypoint missing: $API_BIN"
+fi
+
+exec "$API_BIN" "$@"

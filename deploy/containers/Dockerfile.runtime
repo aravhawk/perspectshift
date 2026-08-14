@@ -1,0 +1,59 @@
+# syntax=docker/dockerfile:1.7
+# Production runtime image. Bundle and config are mounted read-only at run time.
+FROM ubuntu:24.04 AS build
+ENV DEBIAN_FRONTEND=noninteractive
+ARG ORT_VERSION=1.28.0
+ARG TARGETARCH
+WORKDIR /src
+COPY . /src
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      build-essential cmake ninja-build libssl-dev curl ca-certificates \
+    && rm -rf /var/lib/apt/lists/* \
+    && ARCH="$TARGETARCH" \
+    && if [ -z "$ARCH" ]; then ARCH="$(dpkg --print-architecture)"; fi \
+    && case "$ARCH" in \
+         amd64|x86_64) ORT_ARCH=x64 ;; \
+         arm64|aarch64) ORT_ARCH=aarch64 ;; \
+         *) echo "unsupported arch: $ARCH" >&2; exit 1 ;; \
+       esac \
+    && ORT_TGZ="onnxruntime-linux-${ORT_ARCH}-${ORT_VERSION}.tgz" \
+    && curl -fsSL \
+         "https://github.com/microsoft/onnxruntime/releases/download/v${ORT_VERSION}/${ORT_TGZ}" \
+         -o "/tmp/${ORT_TGZ}" \
+    && mkdir -p /opt/onnxruntime \
+    && tar -xzf "/tmp/${ORT_TGZ}" -C /opt/onnxruntime --strip-components=1 \
+    && cmake -S . -B build -G Ninja \
+         -DCMAKE_BUILD_TYPE=Release \
+         -DPERCEPTSHIFT_WITH_ONNXRUNTIME=ON \
+         -DPERCEPTSHIFT_ORT_ROOT=/opt/onnxruntime \
+         -DPERCEPTSHIFT_BUILD_TESTS=OFF \
+    && cmake --build build -j \
+    && cmake --install build --prefix /opt/perceptshift \
+    && mkdir -p /opt/perceptshift/lib \
+    && cp -a /opt/onnxruntime/lib/. /opt/perceptshift/lib/
+
+FROM ubuntu:24.04
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      libssl3 ca-certificates \
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd --system --create-home --uid 10001 --shell /usr/sbin/nologin perceptshift \
+    && mkdir -p /etc/perceptshift /var/lib/perceptshift /var/log/perceptshift \
+    && chown -R perceptshift:perceptshift /var/lib/perceptshift /var/log/perceptshift
+
+COPY --from=build /opt/perceptshift /opt/perceptshift
+ENV PATH="/opt/perceptshift/bin:${PATH}" \
+    LD_LIBRARY_PATH="/opt/perceptshift/lib:${LD_LIBRARY_PATH}"
+
+USER perceptshift
+WORKDIR /var/lib/perceptshift
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+  CMD perceptshift-runtime --doctor --json >/dev/null 2>&1 || exit 1
+
+LABEL org.opencontainers.image.title="perceptshift-runtime" \
+      org.opencontainers.image.description="PerceptShift deadline-aware inference runtime" \
+      org.opencontainers.image.licenses="Apache-2.0"
+
+ENTRYPOINT ["perceptshift-runtime"]
+CMD ["--doctor", "--json"]

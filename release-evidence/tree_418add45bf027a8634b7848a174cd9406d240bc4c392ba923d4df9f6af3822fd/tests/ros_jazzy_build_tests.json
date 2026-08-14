@@ -1,0 +1,21 @@
+{
+  "tier": "ros_jazzy_build_tests",
+  "classification": "required",
+  "status": "PASS",
+  "command": "bash \"/Users/aravhawk/Code/perceptshift/scripts/ros-jazzy-acceptance.sh\" --build-test-only",
+  "exit_code": 0,
+  "start": "2026-08-14T01:21:56Z",
+  "end": "2026-08-14T01:23:59Z",
+  "duration_seconds": 123.0,
+  "host": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "context": "release-verify"
+  },
+  "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "log_path": "/Users/aravhawk/Code/perceptshift/build/verification/logs/ros_jazzy_build_tests.log",
+  "log_sha256": "5b6b3713727377c9efa6e1a72f0e6c256116e21268d47b3860a7e3f1b47efd39",
+  "artifact_paths": [],
+  "test_count": null,
+  "reason": null
+}

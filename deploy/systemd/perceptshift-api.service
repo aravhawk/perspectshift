@@ -1,0 +1,49 @@
+[Unit]
+Description=PerceptShift local operational API
+Documentation=file:///usr/share/doc/perceptshift/README.md
+After=network-online.target perceptshift-runtime.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=perceptshift-api
+Group=perceptshift
+ExecStart=/usr/lib/perceptshift/bin/perceptshift-api-service --host 127.0.0.1 --port 8080
+WorkingDirectory=/var/lib/perceptshift/api
+Restart=on-failure
+RestartSec=3
+EnvironmentFile=-/etc/perceptshift/api.env
+Environment=HOME=/var/lib/perceptshift/api
+Environment=XDG_RUNTIME_DIR=/run/perceptshift/dds
+Environment=XDG_STATE_HOME=/var/lib/perceptshift/api/state
+Environment=XDG_DATA_HOME=/var/lib/perceptshift/api/data
+Environment=PERCEPTSHIFT_API_STATE_DIR=/var/lib/perceptshift/api/state
+Environment=PERCEPTSHIFT_API_DATA_DIR=/var/lib/perceptshift/api/data
+Environment=ROS_HOME=/var/lib/perceptshift/api/ros
+Environment=ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
+Environment=FASTDDS_BUILTIN_TRANSPORTS=UDPv4
+Environment=RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+# Root-owned plaintext credential consumed via systemd LoadCredential.
+# systemd decrypts nothing here; operators place a protected file at the path below.
+LoadCredential=perceptshift-api-token:/etc/perceptshift/credentials/api-token
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
+RestrictNamespaces=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallArchitectures=native
+LimitNOFILE=2048
+ReadWritePaths=/var/lib/perceptshift/api /var/log/perceptshift/api /run/perceptshift/dds /dev/shm
+ReadOnlyPaths=/etc/perceptshift /usr/share/perceptshift /usr/lib/perceptshift /opt/ros
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+[Install]
+WantedBy=multi-user.target

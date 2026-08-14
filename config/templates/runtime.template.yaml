@@ -1,0 +1,65 @@
+schema_version: "1.0"
+document_type: perceptshift.runtime_config
+bundle_path: /absolute/path/to/bundle
+startup:
+  verify_integrity: true
+  require_signature: false
+  public_key_path: null
+  preload_all_eligible_profiles: true
+  warmup_iterations: 10
+  startup_timeout_ms: 120000
+  fail_on_unavailable_required_telemetry: false
+input:
+  task: yolo_v8_detection
+  queue_policy: latest_only
+  queue_capacity: 1
+  maximum_source_age_ms: 150
+  accepted_pixel_formats: [rgb8, bgr8]
+  reject_zero_timestamp: false
+policy:
+  deadline_ms: 75.0
+  minimum_dwell_ms: 2000
+  promotion_confirmation_frames: 30
+  demotion_confirmation_frames: 3
+  deadline_miss_window_frames: 20
+  deadline_miss_threshold: 2
+  latency_window_samples: 256
+  latency_quantile: 0.99
+  latency_margin_ms: 3.0
+  latency_mad_multiplier: 3.0
+  offline_envelope_weight: 1.0
+  minimum_quality_value: 0.0
+  quality_metric_name: coco_map_50_95
+  quality_direction: higher_is_better
+  confidence_escalation_enabled: true
+  confidence_escalation_threshold: 0.35
+  manual_pin_maximum_seconds: 900
+  fail_closed_on_stale_input: true
+  fail_closed_on_no_eligible_profile: true
+  recover_confirmation_frames: 30
+resources:
+  maximum_runtime_rss_mb: 4096
+  minimum_available_memory_mb: 256
+  thread_affinity_mode: none
+  allowed_cpu_ids: []
+  attempt_realtime_priority: false
+  realtime_priority: null
+telemetry:
+  sample_period_ms: 500
+  enable_linux_sysfs: true
+  enable_raspberry_pi_vcgencmd: true
+  enable_perf_counters: false
+  power_provider:
+    type: disabled
+  retain_recent_events: 10000
+  include_input_content: false
+logging:
+  level: info
+  format: json
+  destination: stderr
+security:
+  allow_world_writable_model_files: false
+  allow_symlinked_model_files: false
+  allowed_model_roots: []
+  maximum_model_size_mb: 4096
+  require_bundle_owner_match: true

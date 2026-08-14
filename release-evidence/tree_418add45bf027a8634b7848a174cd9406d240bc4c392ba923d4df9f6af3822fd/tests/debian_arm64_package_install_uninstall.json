@@ -1,0 +1,21 @@
+{
+  "tier": "debian_arm64_package_install_uninstall",
+  "classification": "required",
+  "status": "PASS",
+  "command": "bash \"/Users/aravhawk/Code/perceptshift/scripts/debian-acceptance.sh\"",
+  "exit_code": 0,
+  "start": "2026-08-14T01:17:05Z",
+  "end": "2026-08-14T01:21:20Z",
+  "duration_seconds": 255.0,
+  "host": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "context": "release-verify"
+  },
+  "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "log_path": "/Users/aravhawk/Code/perceptshift/build/verification/logs/debian_arm64_package_install_uninstall.log",
+  "log_sha256": "5199526efe541c9ee88ad6affe7df08a928632e997cd8259cbfdf3bf995b5ca4",
+  "artifact_paths": [],
+  "test_count": null,
+  "reason": null
+}

@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://perceptshift.dev/schemas/profile-bundle-v1.schema.json",
+  "title": "PerceptShift Profile Bundle Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "document_type",
+    "bundle_id",
+    "product_version",
+    "minimum_compatible_runtime_version",
+    "created_at",
+    "producer",
+    "adapter",
+    "quality_metric_name",
+    "quality_direction",
+    "profiles",
+    "files"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "document_type": {
+      "const": "perceptshift.profile_bundle"
+    },
+    "bundle_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product_version": {
+      "type": "string"
+    },
+    "minimum_compatible_runtime_version": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producer": {
+      "$ref": "#/$defs/Producer"
+    },
+    "source_git_commit": {
+      "type": "string"
+    },
+    "host_fingerprint_ref": {
+      "type": "string"
+    },
+    "calibration_dataset_hash": {
+      "type": "string"
+    },
+    "evaluation_dataset_hash": {
+      "type": "string"
+    },
+    "adapter": {
+      "type": "object"
+    },
+    "quality_metric_name": {
+      "type": "string"
+    },
+    "quality_direction": {
+      "enum": [
+        "higher_is_better",
+        "lower_is_better"
+      ]
+    },
+    "baseline_quality_value": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "profile_id",
+          "label",
+          "model_sha256",
+          "model_relative_path",
+          "status",
+          "session",
+          "adapter",
+          "preprocess"
+        ],
+        "properties": {
+          "profile_id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "model_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "model_relative_path": {
+            "type": "string"
+          },
+          "model_size_bytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "status": {
+            "enum": [
+              "certified",
+              "rejected",
+              "draft"
+            ]
+          },
+          "session": {
+            "type": "object"
+          },
+          "adapter": {
+            "type": "object"
+          },
+          "preprocess": {
+            "type": "object"
+          },
+          "expected_cpu_features": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tensor_contracts": {
+            "type": "object"
+          },
+          "quality_attestation_ref": {
+            "type": "string"
+          },
+          "equivalence_attestation_ref": {
+            "type": "string"
+          },
+          "latency_summary": {
+            "type": "object"
+          },
+          "peak_rss_summary": {
+            "type": "object"
+          },
+          "eligibility_constraints": {
+            "type": "object"
+          },
+          "utility": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256",
+          "size_bytes"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "signature": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "runtime_policy_defaults": {
+      "type": "object"
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/UnavailableReason"
+      }
+    }
+  },
+  "$defs": {
+    "UnavailableReason": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reason_code",
+        "message"
+      ],
+      "properties": {
+        "reason_code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product",
+        "version",
+        "git_commit"
+      ],
+      "properties": {
+        "product": {
+          "const": "perceptshift"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+"
+        },
+        "git_commit": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

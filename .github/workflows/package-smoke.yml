@@ -1,0 +1,40 @@
+name: Package Smoke
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  package-x64-core-dev:
+    runs-on: ubuntu-24.04
+    container: ubuntu:24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install build deps
+        run: |
+          apt-get update
+          apt-get install -y build-essential cmake ninja-build git curl ca-certificates python3
+      - name: Build non-release core-dev package
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DPERCEPTSHIFT_BUILD_TESTS=OFF -DPERCEPTSHIFT_WITH_ONNXRUNTIME=OFF
+          cmake --build build -j "$(nproc)"
+          ./scripts/package-core-dev.sh
+      - name: Name check
+        run: |
+          ls dist/*core-dev*.deb
+          echo "This artifact is a core developer package, not the supported release .deb"
+
+  package-arm64:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - name: Arm64 functional package acceptance
+        run: |
+          set -euo pipefail
+          chmod +x scripts/*.sh
+          ./scripts/debian-acceptance.sh

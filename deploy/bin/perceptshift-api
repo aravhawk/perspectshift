@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# /usr/bin/perceptshift-api — installed entrypoint (no source checkout required).
+set -euo pipefail
+PREFIX="${PERCEPTSHIFT_PREFIX:-/usr}"
+PY_PREFIX="${PERCEPTSHIFT_PYTHON_PREFIX:-${PREFIX}/lib/perceptshift/py}"
+SITE=""
+if [[ -d "${PY_PREFIX}/lib" ]]; then
+  SITE="$(find "${PY_PREFIX}/lib" -type d -path '*/site-packages' 2>/dev/null | head -1 || true)"
+  if [[ -n "${SITE}" ]]; then
+    export PYTHONPATH="${SITE}${PYTHONPATH:+:${PYTHONPATH}}"
+  fi
+fi
+if [[ -z "${SITE}" ]]; then
+  export PYTHONPATH="${PREFIX}/share/perceptshift/python/perceptshift_common/src:${PREFIX}/share/perceptshift/python/perceptshift_forge/src:${PREFIX}/share/perceptshift/python/perceptshift_cli/src:${PREFIX}/share/perceptshift/python/perceptshift_api/src:${PYTHONPATH:-}"
+fi
+exec python3 -m perceptshift_api "$@"

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# /usr/bin/perceptshift — installed CLI entrypoint (package-owned Python prefix).
+set -euo pipefail
+PREFIX="${PERCEPTSHIFT_PREFIX:-/usr}"
+PY_PREFIX="${PERCEPTSHIFT_PYTHON_PREFIX:-${PREFIX}/lib/perceptshift/py}"
+# Prefer managed site-packages shipped by the Debian package; never require a checkout.
+SITE=""
+if [[ -d "${PY_PREFIX}/lib" ]]; then
+  SITE="$(find "${PY_PREFIX}/lib" -type d -path '*/site-packages' 2>/dev/null | head -1 || true)"
+  if [[ -n "${SITE}" ]]; then
+    export PYTHONPATH="${SITE}${PYTHONPATH:+:${PYTHONPATH}}"
+  fi
+fi
+# Legacy source-tree layout fallback for cmake-only installs without wheels.
+if [[ -z "${SITE}" ]]; then
+  export PYTHONPATH="${PREFIX}/share/perceptshift/python/perceptshift_common/src:${PREFIX}/share/perceptshift/python/perceptshift_forge/src:${PREFIX}/share/perceptshift/python/perceptshift_cli/src:${PREFIX}/share/perceptshift/python/perceptshift_api/src:${PYTHONPATH:-}"
+fi
+exec python3 -c 'import sys; from perceptshift_cli.app import main; sys.argv[0]="perceptshift"; main()' "$@"

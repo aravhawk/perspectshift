@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "perceptshift-api"
+version = "0.1.0"
+description = "Local operational API for PerceptShift"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+authors = [{ name = "PerceptShift Contributors" }]
+dependencies = [
+  "perceptshift-common",
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.32.0",
+  "sqlalchemy>=2.0.36",
+  "alembic>=1.14.0",
+  "pydantic>=2.10.0",
+  "pydantic-settings>=2.6.0",
+  "python-multipart>=0.0.17",
+  "websockets>=14.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "httpx>=0.28.0",
+  "pytest>=8.3.0",
+  "pytest-asyncio>=0.24.0",
+]
+
+[project.scripts]
+perceptshift-api = "perceptshift_api.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/perceptshift_api"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src",
+  "/migrations",
+  "/alembic.ini",
+  "/README.md",
+  "/pyproject.toml",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.uv.sources]
+perceptshift-common = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "pytest-asyncio>=1.4.0",
+]

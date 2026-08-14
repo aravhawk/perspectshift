@@ -1,0 +1,65 @@
+Test project /Users/aravhawk/Code/perceptshift/build/default
+      Start  1: ResultTest.OkValue
+ 1/30 Test  #1: ResultTest.OkValue ............................................   Passed    0.01 sec
+      Start  2: ResultTest.ErrorPath
+ 2/30 Test  #2: ResultTest.ErrorPath ..........................................   Passed    0.01 sec
+      Start  3: ResultVoidTest.Success
+ 3/30 Test  #3: ResultVoidTest.Success ........................................   Passed    0.01 sec
+      Start  4: DigestTest.KnownVector
+ 4/30 Test  #4: DigestTest.KnownVector ........................................   Passed    0.01 sec
+      Start  5: DigestTest.HexRoundTrip
+ 5/30 Test  #5: DigestTest.HexRoundTrip .......................................   Passed    0.01 sec
+      Start  6: PreprocessorTest.ScalarRgbNchw
+ 6/30 Test  #6: PreprocessorTest.ScalarRgbNchw ................................   Passed    0.01 sec
+      Start  7: PreprocessorTest.BilinearMatchesIndependentReference
+ 7/30 Test  #7: PreprocessorTest.BilinearMatchesIndependentReference ..........   Passed    0.01 sec
+      Start  8: PreprocessorTest.OddDimensionsAndTinyImages
+ 8/30 Test  #8: PreprocessorTest.OddDimensionsAndTinyImages ...................   Passed    0.01 sec
+      Start  9: PreprocessorTest.SourceColorHandlingPreserveBgr
+ 9/30 Test  #9: PreprocessorTest.SourceColorHandlingPreserveBgr ...............   Passed    0.01 sec
+      Start 10: PreprocessorTest.RejectsUnsupportedFormat
+10/30 Test #10: PreprocessorTest.RejectsUnsupportedFormat .....................   Passed    0.01 sec
+      Start 11: PreprocessorTest.Uint8ToFloatNormalization
+11/30 Test #11: PreprocessorTest.Uint8ToFloatNormalization ....................   Passed    0.01 sec
+      Start 12: PreprocessorTest.NeonMatchesScalar
+12/30 Test #12: PreprocessorTest.NeonMatchesScalar ............................   Passed    0.01 sec
+      Start 13: PreprocessorTest.NeonMatchesScalarPropertyRandom
+13/30 Test #13: PreprocessorTest.NeonMatchesScalarPropertyRandom ..............   Passed    0.01 sec
+      Start 14: AdapterTest.RawTensor
+14/30 Test #14: AdapterTest.RawTensor .........................................   Passed    0.01 sec
+      Start 15: AdapterTest.ClassificationTopK
+15/30 Test #15: AdapterTest.ClassificationTopK ................................   Passed    0.01 sec
+      Start 16: AdapterTest.YoloV8FiltersByConfidence
+16/30 Test #16: AdapterTest.YoloV8FiltersByConfidence .........................   Passed    0.01 sec
+      Start 17: ControllerTest.SelectsOnStartupAndFailClosedWithoutProfiles
+17/30 Test #17: ControllerTest.SelectsOnStartupAndFailClosedWithoutProfiles ...   Passed    0.01 sec
+      Start 18: ControllerTest.SelectsHighestUtilityEligible
+18/30 Test #18: ControllerTest.SelectsHighestUtilityEligible ..................   Passed    0.01 sec
+      Start 19: ControllerTest.DemotesOnDeadlineRisk
+19/30 Test #19: ControllerTest.DemotesOnDeadlineRisk ..........................   Passed    0.01 sec
+      Start 20: ControllerTest.StaleInputFailClosed
+20/30 Test #20: ControllerTest.StaleInputFailClosed ...........................   Passed    0.01 sec
+      Start 21: LatestFrameQueueTest.OverwritesAndCountsDrops
+21/30 Test #21: LatestFrameQueueTest.OverwritesAndCountsDrops .................   Passed    0.01 sec
+      Start 22: BundleLoaderTest.RejectsPathTraversal
+22/30 Test #22: BundleLoaderTest.RejectsPathTraversal .........................   Passed    0.01 sec
+      Start 23: BundleLoaderTest.LoadsValidBundleWithoutSignature
+23/30 Test #23: BundleLoaderTest.LoadsValidBundleWithoutSignature .............   Passed    0.01 sec
+      Start 24: BundleLoaderTest.Ed25519RoundTrip
+24/30 Test #24: BundleLoaderTest.Ed25519RoundTrip .............................   Passed    0.01 sec
+      Start 25: RuntimeEngineTest.ConfigureRequiresBundlePath
+25/30 Test #25: RuntimeEngineTest.ConfigureRequiresBundlePath .................   Passed    0.01 sec
+      Start 26: PolicyLoaderTest.LoadsDeadlineOverride
+26/30 Test #26: PolicyLoaderTest.LoadsDeadlineOverride ........................   Passed    0.01 sec
+      Start 27: PolicyLoaderTest.RejectsNonObject
+27/30 Test #27: PolicyLoaderTest.RejectsNonObject .............................   Passed    0.01 sec
+      Start 28: RawImageValidation.AcceptsExactPackedRgb8
+28/30 Test #28: RawImageValidation.AcceptsExactPackedRgb8 .....................   Passed    0.01 sec
+      Start 29: RawImageValidation.RejectsPngBytesLabeledAsRgb8
+29/30 Test #29: RawImageValidation.RejectsPngBytesLabeledAsRgb8 ...............   Passed    0.01 sec
+      Start 30: RawImageValidation.RejectsTrailingPaddingBeyondStrideHeight
+30/30 Test #30: RawImageValidation.RejectsTrailingPaddingBeyondStrideHeight ...   Passed    0.01 sec
+
+100% tests passed out of 30
+
+Total Test time (real) =   0.24 sec

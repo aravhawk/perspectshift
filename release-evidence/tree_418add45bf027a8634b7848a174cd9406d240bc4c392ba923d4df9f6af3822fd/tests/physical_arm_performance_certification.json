@@ -1,0 +1,21 @@
+{
+  "tier": "physical_arm_performance_certification",
+  "classification": "external",
+  "status": "NOT_RUN_EXTERNAL_INPUT_REQUIRED",
+  "command": "n/a",
+  "exit_code": 0,
+  "start": "2026-08-14T01:35:04Z",
+  "end": "2026-08-14T01:35:04Z",
+  "duration_seconds": 0.0,
+  "host": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "context": "release-verify"
+  },
+  "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "log_path": null,
+  "log_sha256": null,
+  "artifact_paths": [],
+  "test_count": null,
+  "reason": "Requires physical Arm performance host; Colima/QEMU is software-correctness only"
+}

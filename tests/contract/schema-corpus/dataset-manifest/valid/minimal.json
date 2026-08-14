@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "document_type": "perceptshift.dataset_manifest",
+  "dataset_type": "image_classification_manifest",
+  "dataset_name": "t",
+  "root": "/tmp/data",
+  "license_reference": "user",
+  "split_name": "cal",
+  "preprocess_contract": {
+    "input_width": 224,
+    "input_height": 224,
+    "input_layout": "nchw",
+    "accepted_source_formats": ["rgb8"],
+    "source_color_handling": "convert_to_rgb",
+    "resize_mode": "stretch",
+    "resize_interpolation": "bilinear",
+    "scale": 0.00392156862745098,
+    "mean": [0.0, 0.0, 0.0],
+    "std": [1.0, 1.0, 1.0],
+    "swap_rb": false,
+    "letterbox_pad_value": null,
+    "output_dtype": "float32",
+    "backend": "neon_auto"
+  },
+  "items": [
+    {
+      "path": "a.jpg",
+      "class_id": 0
+    }
+  ]
+}

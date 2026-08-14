@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://perceptshift.dev/schemas/quality-attestation-v1.schema.json",
+  "title": "PerceptShift Quality Attestation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "document_type",
+    "created_at",
+    "dataset_hash",
+    "evaluator_version",
+    "adapter_name",
+    "adapter_config_hash",
+    "metric_name",
+    "metric_direction",
+    "baseline_value",
+    "candidate_value",
+    "sample_count",
+    "pass",
+    "threshold_contract"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "document_type": {
+      "const": "perceptshift.quality_attestation"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producer": {
+      "$ref": "#/$defs/Producer"
+    },
+    "dataset_hash": {
+      "type": "string"
+    },
+    "evaluator_version": {
+      "type": "string"
+    },
+    "adapter_name": {
+      "type": "string"
+    },
+    "adapter_config_hash": {
+      "type": "string"
+    },
+    "metric_name": {
+      "type": "string"
+    },
+    "metric_direction": {
+      "enum": [
+        "higher_is_better",
+        "lower_is_better"
+      ]
+    },
+    "baseline_value": {
+      "type": "number"
+    },
+    "candidate_value": {
+      "type": "number"
+    },
+    "absolute_delta": {
+      "type": "number"
+    },
+    "relative_delta": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "sample_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "class_breakdown": {
+      "type": "object"
+    },
+    "confidence_interval": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "exclusions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "pass": {
+      "type": "boolean"
+    },
+    "threshold_contract": {
+      "type": "object"
+    },
+    "output_equivalence": {
+      "type": "object"
+    },
+    "artifact_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "Producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product",
+        "version",
+        "git_commit"
+      ],
+      "properties": {
+        "product": {
+          "const": "perceptshift"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+"
+        },
+        "git_commit": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

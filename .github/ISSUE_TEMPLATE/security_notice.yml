@@ -1,0 +1,16 @@
+name: Security notice
+description: Non-sensitive security process question (do not disclose vulnerabilities here)
+labels: ["security"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Do not report vulnerabilities in public issues.**
+        Use private vulnerability reporting or the contact described in SECURITY.md.
+  - type: textarea
+    id: question
+    attributes:
+      label: Process question
+      description: Questions about supported versions, disclosure process, or deployment hardening.
+    validations:
+      required: true

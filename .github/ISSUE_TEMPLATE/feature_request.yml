@@ -1,0 +1,31 @@
+name: Feature request
+description: Propose an enhancement to PerceptShift
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What operator or engineering problem does this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Desired behavior, interfaces, and constraints.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Architecture boundaries
+      options:
+        - label: I have considered whether this belongs in cpp/, forge, ROS transport, API, or console.
+          required: true
+        - label: This request does not require bundling models, datasets, or fabricated benchmarks.
+          required: true

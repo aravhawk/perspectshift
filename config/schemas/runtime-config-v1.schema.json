@@ -1,0 +1,456 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://perceptshift.dev/schemas/runtime-config-v1.schema.json",
+  "title": "PerceptShift Runtime Config v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "document_type",
+    "bundle_path",
+    "startup",
+    "input",
+    "policy",
+    "resources",
+    "telemetry",
+    "logging",
+    "security"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "document_type": {
+      "const": "perceptshift.runtime_config"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producer": {
+      "$ref": "#/$defs/Producer"
+    },
+    "bundle_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "startup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verify_integrity",
+        "require_signature",
+        "preload_all_eligible_profiles",
+        "warmup_iterations",
+        "startup_timeout_ms",
+        "fail_on_unavailable_required_telemetry"
+      ],
+      "properties": {
+        "verify_integrity": {
+          "type": "boolean"
+        },
+        "require_signature": {
+          "type": "boolean"
+        },
+        "public_key_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "preload_all_eligible_profiles": {
+          "type": "boolean"
+        },
+        "warmup_iterations": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "startup_timeout_ms": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "fail_on_unavailable_required_telemetry": {
+          "type": "boolean"
+        }
+      }
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task",
+        "queue_policy",
+        "queue_capacity",
+        "maximum_source_age_ms",
+        "accepted_pixel_formats",
+        "reject_zero_timestamp"
+      ],
+      "properties": {
+        "task": {
+          "enum": [
+            "raw_tensor",
+            "image_classification",
+            "yolo_v8_detection"
+          ]
+        },
+        "queue_policy": {
+          "enum": [
+            "latest_only"
+          ]
+        },
+        "queue_capacity": {
+          "type": "integer",
+          "const": 1
+        },
+        "maximum_source_age_ms": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "accepted_pixel_formats": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "rgb8",
+              "bgr8",
+              "rgba8",
+              "bgra8",
+              "mono8"
+            ]
+          }
+        },
+        "reject_zero_timestamp": {
+          "type": "boolean"
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "deadline_ms",
+        "minimum_dwell_ms",
+        "promotion_confirmation_frames",
+        "demotion_confirmation_frames",
+        "deadline_miss_window_frames",
+        "deadline_miss_threshold",
+        "latency_window_samples",
+        "latency_quantile",
+        "latency_margin_ms",
+        "latency_mad_multiplier",
+        "offline_envelope_weight",
+        "minimum_quality_value",
+        "quality_metric_name",
+        "quality_direction",
+        "confidence_escalation_enabled",
+        "confidence_escalation_threshold",
+        "manual_pin_maximum_seconds",
+        "fail_closed_on_stale_input",
+        "fail_closed_on_no_eligible_profile",
+        "recover_confirmation_frames"
+      ],
+      "properties": {
+        "deadline_ms": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "minimum_dwell_ms": {
+          "type": "number",
+          "minimum": 0
+        },
+        "promotion_confirmation_frames": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "demotion_confirmation_frames": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "deadline_miss_window_frames": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "deadline_miss_threshold": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "latency_window_samples": {
+          "type": "integer",
+          "minimum": 8
+        },
+        "latency_quantile": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 0.9999
+        },
+        "latency_margin_ms": {
+          "type": "number",
+          "minimum": 0
+        },
+        "latency_mad_multiplier": {
+          "type": "number",
+          "minimum": 0
+        },
+        "offline_envelope_weight": {
+          "type": "number",
+          "minimum": 0
+        },
+        "minimum_quality_value": {
+          "type": "number"
+        },
+        "quality_metric_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "quality_direction": {
+          "enum": [
+            "higher_is_better",
+            "lower_is_better"
+          ]
+        },
+        "confidence_escalation_enabled": {
+          "type": "boolean"
+        },
+        "confidence_escalation_threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "manual_pin_maximum_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "fail_closed_on_stale_input": {
+          "type": "boolean"
+        },
+        "fail_closed_on_no_eligible_profile": {
+          "type": "boolean"
+        },
+        "recover_confirmation_frames": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "maximum_runtime_rss_mb",
+        "minimum_available_memory_mb",
+        "thread_affinity_mode",
+        "allowed_cpu_ids",
+        "attempt_realtime_priority"
+      ],
+      "properties": {
+        "maximum_runtime_rss_mb": {
+          "type": "integer",
+          "minimum": 64
+        },
+        "minimum_available_memory_mb": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "thread_affinity_mode": {
+          "enum": [
+            "none",
+            "explicit"
+          ]
+        },
+        "allowed_cpu_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "attempt_realtime_priority": {
+          "type": "boolean"
+        },
+        "realtime_priority": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 99
+        }
+      }
+    },
+    "telemetry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sample_period_ms",
+        "enable_linux_sysfs",
+        "enable_raspberry_pi_vcgencmd",
+        "enable_perf_counters",
+        "power_provider",
+        "retain_recent_events",
+        "include_input_content"
+      ],
+      "properties": {
+        "sample_period_ms": {
+          "type": "integer",
+          "minimum": 50
+        },
+        "enable_linux_sysfs": {
+          "type": "boolean"
+        },
+        "enable_raspberry_pi_vcgencmd": {
+          "type": "boolean"
+        },
+        "enable_perf_counters": {
+          "type": "boolean"
+        },
+        "power_provider": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "enum": [
+                "disabled",
+                "ina219_sysfs",
+                "external_command"
+              ]
+            },
+            "path": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "command": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "retain_recent_events": {
+          "type": "integer",
+          "minimum": 100
+        },
+        "include_input_content": {
+          "type": "boolean"
+        }
+      }
+    },
+    "logging": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "format",
+        "destination"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "trace",
+            "debug",
+            "info",
+            "warn",
+            "error"
+          ]
+        },
+        "format": {
+          "enum": [
+            "json",
+            "text"
+          ]
+        },
+        "destination": {
+          "enum": [
+            "stderr",
+            "stdout",
+            "file"
+          ]
+        },
+        "file_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allow_world_writable_model_files",
+        "allow_symlinked_model_files",
+        "allowed_model_roots",
+        "maximum_model_size_mb",
+        "require_bundle_owner_match"
+      ],
+      "properties": {
+        "allow_world_writable_model_files": {
+          "type": "boolean"
+        },
+        "allow_symlinked_model_files": {
+          "type": "boolean"
+        },
+        "allowed_model_roots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "maximum_model_size_mb": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "require_bundle_owner_match": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "UnavailableReason": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reason_code",
+        "message"
+      ],
+      "properties": {
+        "reason_code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product",
+        "version",
+        "git_commit"
+      ],
+      "properties": {
+        "product": {
+          "const": "perceptshift"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+"
+        },
+        "git_commit": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

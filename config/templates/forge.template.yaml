@@ -1,0 +1,90 @@
+schema_version: "1.0"
+document_type: perceptshift.forge_config
+project:
+  name: user-defined-name
+  output_root: /absolute/path/to/output
+  random_seed: 1729
+model:
+  baseline_path: /absolute/path/to/model.onnx
+  adapter: yolo_v8_detection
+  adapter_config: {}
+  expected_input:
+    shape: [1, 3, 640, 640]
+    layout: nchw
+  preprocess:
+    input_width: 640
+    input_height: 640
+    input_layout: nchw
+    accepted_source_formats: [rgb8, bgr8, rgba8, bgra8, mono8]
+    source_color_handling: convert_to_rgb
+    resize_mode: stretch
+    resize_interpolation: bilinear
+    scale: 0.00392156862745098
+    mean: [0.0, 0.0, 0.0]
+    std: [1.0, 1.0, 1.0]
+    swap_rb: false
+    letterbox_pad_value: null
+    output_dtype: float32
+    backend: scalar
+  allowed_model_roots: []
+datasets:
+  calibration_manifest: /absolute/path/to/calibration.json
+  evaluation_manifest: /absolute/path/to/evaluation.json
+  prohibit_cross_split_duplicates: true
+quantization:
+  enabled: true
+  methods: [minmax, entropy, percentile]
+  format: qdq
+  activation_type: qint8
+  weight_type: qint8
+  per_channel_options: [false, true]
+  nodes_to_exclude: []
+  calibration_sample_limit: null
+candidates:
+  include_baseline: true
+  user_model_variants: []
+  execution_providers:
+    - name: xnnpack_cpu_fallback
+      provider_order: [XNNPACKExecutionProvider, CPUExecutionProvider]
+  xnnpack_thread_counts: [1, 2, 3, 4]
+  ort_intra_op_thread_counts: [1]
+  ort_inter_op_thread_counts: [1]
+  allow_intra_op_spinning: [false]
+  graph_optimization_levels: [all]
+  preprocess_backends: [scalar, neon_auto]
+  input_variants: []
+benchmark:
+  warmup_iterations: 20
+  measured_iterations: 300
+  independent_trials: 5
+  randomize_candidate_order: true
+  cold_start_trials: 3
+  per_candidate_timeout_seconds: 900
+  maximum_worker_rss_mb: 6144
+  minimum_stabilization_seconds: 30
+  maximum_start_temperature_c: null
+  maximum_temperature_drift_c: null
+  require_no_throttling: true
+  collect_perf: false
+  collect_ros_trace: false
+  bootstrap_resamples: 10000
+quality:
+  metric_name: coco_map_50_95
+  direction: higher_is_better
+  minimum_absolute_value: 0.0
+  maximum_degradation_from_baseline: 0.01
+  confidence_level: 0.95
+certification:
+  deadline_ms: 75.0
+  maximum_peak_rss_mb: 2048
+  maximum_model_size_mb: 1024
+  require_xnnpack_assignment: false
+  maximum_cpu_fallback_fraction: null
+  require_valid_environment: true
+  require_output_equivalence: true
+  sign_bundle: false
+  signing_key_path: null
+report:
+  formats: [json, html, markdown]
+  include_raw_sample_links: true
+  include_environment: true

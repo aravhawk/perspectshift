@@ -1,0 +1,18 @@
+# Split packages preferred. Single-package fallback only if split packaging
+# creates disproportionate fragility on a given release train.
+set(CPACK_PACKAGE_NAME "perceptshift")
+set(CPACK_PACKAGE_VENDOR "PerceptShift")
+set(CPACK_PACKAGE_CONTACT "maintainers@perceptshift.local")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Deadline-aware adaptive ONNX inference for Arm64 ROS 2")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
+set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/README.md")
+file(READ "${CMAKE_SOURCE_DIR}/VERSION" PERCEPTSHIFT_VERSION_RAW)
+string(STRIP "${PERCEPTSHIFT_VERSION_RAW}" CPACK_PACKAGE_VERSION)
+set(CPACK_GENERATOR "DEB")
+set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
+set(CPACK_DEBIAN_PACKAGE_SECTION "science")
+set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+set(CPACK_DEBIAN_PACKAGE_GENERATE_SHLIBS ON)
+set(CPACK_COMPONENTS_ALL core cli ros api console)
+set(CPACK_DEB_COMPONENT_INSTALL ON)
+include(CPack)

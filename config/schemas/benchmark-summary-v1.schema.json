@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://perceptshift.dev/schemas/benchmark-summary-v1.schema.json",
+  "title": "PerceptShift Benchmark Summary v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "document_type",
+    "run_id",
+    "candidate_id",
+    "valid",
+    "sample_count",
+    "latency_ms"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "document_type": {
+      "const": "perceptshift.benchmark_summary"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producer": {
+      "$ref": "#/$defs/Producer"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "candidate_id": {
+      "type": "string"
+    },
+    "valid": {
+      "type": "boolean"
+    },
+    "invalidity_reason_codes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sample_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "latency_ms": {
+      "type": "object",
+      "properties": {
+        "p50": {
+          "type": "number"
+        },
+        "p90": {
+          "type": "number"
+        },
+        "p95": {
+          "type": "number"
+        },
+        "p99": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "mean": {
+          "type": "number"
+        },
+        "std": {
+          "type": "number"
+        },
+        "mad": {
+          "type": "number"
+        },
+        "ci_lower": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "ci_upper": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      }
+    },
+    "peak_rss_bytes": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "environment": {
+      "type": "object"
+    },
+    "quality": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "$defs": {
+    "Producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product",
+        "version",
+        "git_commit"
+      ],
+      "properties": {
+        "product": {
+          "const": "perceptshift"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+"
+        },
+        "git_commit": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

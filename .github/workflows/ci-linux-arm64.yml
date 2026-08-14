@@ -1,0 +1,57 @@
+name: CI Linux Arm64
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  native-arm64:
+    # Requires a native Linux Arm64 runner. Do not label QEMU jobs as native.
+    runs-on: [self-hosted, linux, arm64]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Assert native AArch64
+        run: |
+          uname -m | tee arch.txt
+          case "$(uname -m)" in
+            aarch64|arm64) echo "native arm confirmed" ;;
+            *) echo "NOT native aarch64"; exit 1 ;;
+          esac
+      - name: Verify repository
+        run: ./scripts/verify-repository.sh
+      - name: Bootstrap
+        run: ./scripts/bootstrap-ubuntu.sh --noninteractive --with-ros
+      - name: Build ONNX Runtime with XNNPACK
+        run: ENABLE_XNNPACK=1 ./scripts/build-onnxruntime.sh
+      - name: Build and test
+        run: |
+          set -euo pipefail
+          cmake --preset release-arm64 || cmake --preset dev-arm64
+          cmake --build --preset release-arm64 || cmake --build --preset dev-arm64
+          TEST_DIR=build/release-arm64
+          [[ -d build/dev-arm64 ]] && [[ ! -d build/release-arm64 ]] && TEST_DIR=build/dev-arm64
+          COUNT="$(ctest --test-dir "$TEST_DIR" -N | awk '/Total Tests:/ {print $3}')"
+          if [[ -z "$COUNT" || "$COUNT" -eq 0 ]]; then
+            echo "ERROR: zero tests discovered in $TEST_DIR" >&2
+            exit 1
+          fi
+          ctest --test-dir "$TEST_DIR" --output-on-failure
+          LABEL_COUNT="$(ctest --test-dir "$TEST_DIR" -N -L 'neon|xnnpack' | awk '/Total Tests:/ {print $3}')"
+          if [[ -z "$LABEL_COUNT" || "$LABEL_COUNT" -eq 0 ]]; then
+            echo "NOTE: neon|xnnpack labels not applicable (zero matching tests)"
+          else
+            ctest --test-dir "$TEST_DIR" --output-on-failure -L 'neon|xnnpack'
+          fi
+      - name: Package smoke
+        run: |
+          ./scripts/package-deb.sh
+          ./scripts/run-arm-acceptance.sh
+      - name: Upload acceptance summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-arm-acceptance
+          path: build/verification/native-arm/

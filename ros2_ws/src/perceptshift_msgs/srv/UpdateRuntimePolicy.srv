@@ -1,0 +1,18 @@
+# Safe runtime-mutable policy subset only.
+# Model paths, providers, tensors, and adapters are rejected.
+float64 deadline_ms
+float64 minimum_quality_value
+float64 confidence_escalation_threshold
+uint32 minimum_dwell_ms
+uint32 promotion_confirmation_frames
+uint32 demotion_confirmation_frames
+bool apply_deadline
+bool apply_minimum_quality
+bool apply_confidence_threshold
+bool apply_hysteresis
+---
+bool accepted
+string previous_policy_hash
+string effective_policy_hash
+string error_code
+string error_message

@@ -1,0 +1,31 @@
+name: Fuzz
+
+on:
+  pull_request:
+  schedule:
+    - cron: "30 4 * * *"
+  workflow_dispatch:
+    inputs:
+      fuzz_seconds:
+        description: Seconds per fuzz target
+        default: "120"
+        required: false
+
+jobs:
+  fuzz-smoke:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bootstrap
+        run: ./scripts/bootstrap-ubuntu.sh --noninteractive
+      - name: Fuzz smoke
+        env:
+          FUZZ_SECONDS: ${{ github.event.inputs.fuzz_seconds || '30' }}
+        run: ./scripts/run-fuzz.sh
+      - name: Upload crash artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fuzz-artifacts
+          path: build/fuzz/artifacts/
+          if-no-files-found: ignore

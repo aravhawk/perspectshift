@@ -1,0 +1,17 @@
+PerceptShift
+Copyright 2026 PerceptShift contributors
+
+This product includes software developed by the PerceptShift contributors.
+Licensed under the Apache License, Version 2.0. See the LICENSE file.
+
+Third-party software
+--------------------
+This distribution may include or link to third-party components. Their
+licenses and notices are recorded under packaging/licenses/ and any
+generated SBOM artifacts. Review those files before redistribution.
+
+Trademark neutrality
+--------------------
+Arm, Raspberry Pi, ROS, ONNX, ONNX Runtime, Microsoft, and other third-party
+names and marks are the property of their respective owners. Use of these
+names does not imply endorsement or certification by those owners.

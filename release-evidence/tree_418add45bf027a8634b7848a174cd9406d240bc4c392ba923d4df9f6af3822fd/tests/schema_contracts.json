@@ -1,0 +1,21 @@
+{
+  "tier": "schema_contracts",
+  "classification": "required",
+  "status": "PASS",
+  "command": "uv run pytest tests/contract -q --tb=line",
+  "exit_code": 0,
+  "start": "2026-08-14T01:04:48Z",
+  "end": "2026-08-14T01:04:49Z",
+  "duration_seconds": 1.0,
+  "host": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "context": "release-verify"
+  },
+  "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "log_path": "/Users/aravhawk/Code/perceptshift/build/verification/logs/schema_contracts.log",
+  "log_sha256": "700bc0322b00f8e8db3ce495047983b54ab27ab59ed1fedac05f3aeba47dae24",
+  "artifact_paths": [],
+  "test_count": null,
+  "reason": null
+}

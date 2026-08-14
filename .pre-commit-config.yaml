@@ -1,0 +1,46 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+        args: ["--maxkb=5120"]
+      - id: check-symlinks
+      - id: detect-private-key
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.4
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: clang-format
+        name: clang-format
+        entry: clang-format
+        language: system
+        types_or: [c, c++]
+        args: ["-i"]
+      - id: verify-repository
+        name: verify-repository policy
+        entry: ./scripts/verify-repository.sh
+        language: system
+        pass_filenames: false
+        always_run: false
+      - id: schema-json
+        name: validate JSON schemas
+        entry: python3
+        language: system
+        files: config/schemas/.*\.json$
+        pass_filenames: true
+        args:
+          - -c
+          - |
+            import json,sys
+            for p in sys.argv[1:]:
+              json.load(open(p, encoding="utf-8"))

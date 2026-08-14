@@ -1,0 +1,21 @@
+{
+  "tier": "coverage",
+  "classification": "required",
+  "status": "PASS",
+  "command": "bash \"/Users/aravhawk/Code/perceptshift/scripts/coverage-acceptance.sh\"",
+  "exit_code": 0,
+  "start": "2026-08-14T01:05:46Z",
+  "end": "2026-08-14T01:12:03Z",
+  "duration_seconds": 377.0,
+  "host": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "context": "release-verify"
+  },
+  "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "log_path": "/Users/aravhawk/Code/perceptshift/build/verification/logs/coverage.log",
+  "log_sha256": "f9acc543e5ac103bb3511d675a07565f64001ed22714e84812c3fed839c25b80",
+  "artifact_paths": [],
+  "test_count": null,
+  "reason": null
+}

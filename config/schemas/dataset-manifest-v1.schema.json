@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://perceptshift.dev/schemas/dataset-manifest-v1.schema.json",
+  "title": "PerceptShift Dataset Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "document_type",
+    "dataset_type",
+    "dataset_name",
+    "root",
+    "license_reference",
+    "split_name",
+    "preprocess_contract"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "document_type": {
+      "const": "perceptshift.dataset_manifest"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producer": {
+      "$ref": "#/$defs/Producer"
+    },
+    "dataset_type": {
+      "enum": [
+        "image_classification_manifest",
+        "coco_detection",
+        "yolo_v8_detection",
+        "raw_tensor"
+      ]
+    },
+    "dataset_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "license_reference": {
+      "type": "string",
+      "minLength": 1
+    },
+    "split_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "preprocess_contract": {
+      "$ref": "preprocess-contract-v1.schema.json"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "class_id"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "class_id": {
+            "type": "integer"
+          },
+          "class_name": {
+            "type": "string"
+          },
+          "item_id": {
+            "type": "string"
+          },
+          "group_id": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "annotation_path": {
+      "type": "string"
+    },
+    "category_allowlist": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "crowd_treatment": {
+      "enum": [
+        "include",
+        "exclude",
+        "ignore"
+      ]
+    },
+    "bag_path": {
+      "type": "string"
+    },
+    "image_topic": {
+      "type": "string"
+    },
+    "ground_truth_topic": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ground_truth_manifest": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "$defs": {
+    "Producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product",
+        "version",
+        "git_commit"
+      ],
+      "properties": {
+        "product": {
+          "const": "perceptshift"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+"
+        },
+        "git_commit": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

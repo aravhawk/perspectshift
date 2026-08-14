@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://perceptshift.dev/schemas/benchmark-sample-v1.schema.json",
+  "title": "PerceptShift Benchmark Sample v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "document_type",
+    "run_id",
+    "trial_id",
+    "candidate_id",
+    "sequence_number",
+    "is_warmup",
+    "is_cold_start",
+    "valid",
+    "timings_ns"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "document_type": {
+      "const": "perceptshift.benchmark_sample"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producer": {
+      "$ref": "#/$defs/Producer"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "trial_id": {
+      "type": "string"
+    },
+    "candidate_id": {
+      "type": "string"
+    },
+    "sequence_number": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "source_item_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "is_warmup": {
+      "type": "boolean"
+    },
+    "is_cold_start": {
+      "type": "boolean"
+    },
+    "valid": {
+      "type": "boolean"
+    },
+    "invalidity_reason_codes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "deadline_ms": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "deadline_miss": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "timings_ns": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_worker"
+      ],
+      "properties": {
+        "queue_age": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "preprocess": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "inference": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "postprocess": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "total_worker": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sensor_to_command_publication": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      }
+    },
+    "cpu_utilization_percent": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "cpu_frequency_khz": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "temperature_c": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "throttling": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "rss_bytes": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "peak_rss_bytes": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "power_watts": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "power_unavailable_reason": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "provider_assignment_summary_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "output_digest_sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "$defs": {
+    "Producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product",
+        "version",
+        "git_commit"
+      ],
+      "properties": {
+        "product": {
+          "const": "perceptshift"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+"
+        },
+        "git_commit": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

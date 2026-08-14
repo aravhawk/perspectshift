@@ -1,0 +1,11 @@
+<library path="perceptshift_ros_component">
+  <class
+    name="perceptshift_ros::RuntimeNode"
+    type="perceptshift_ros::RuntimeNode"
+    base_class_type="rclcpp_lifecycle::LifecycleNode">
+    <description>
+      PerceptShift deadline-aware inference lifecycle component.
+      Wraps libperceptshift_core; does not duplicate inference logic.
+    </description>
+  </class>
+</library>

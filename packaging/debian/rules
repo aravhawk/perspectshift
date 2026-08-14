@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+export DH_VERBOSE = 1
+
+%:
+	dh $@ --buildsystem=cmake
+
+override_dh_auto_configure:
+	dh_auto_configure -- -DCMAKE_BUILD_TYPE=Release
+
+override_dh_auto_test:
+	@echo "Package build skips full verify; run make verify in CI"
+
+override_dh_installsystemd:
+	dh_installsystemd --name=perceptshift-runtime --no-start || true
+	dh_installsystemd --name=perceptshift-api --no-start || true

@@ -1,0 +1,27 @@
+{
+  "include": [
+    "python/perceptshift_common/src",
+    "python/perceptshift_forge/src",
+    "python/perceptshift_cli/src",
+    "python/perceptshift_api/src"
+  ],
+  "exclude": [
+    "**/node_modules",
+    "**/__pycache__",
+    "build",
+    "ros2_ws",
+    ".venv",
+    "web"
+  ],
+  "extraPaths": [
+    "python/perceptshift_common/src",
+    "python/perceptshift_forge/src",
+    "python/perceptshift_cli/src",
+    "python/perceptshift_api/src"
+  ],
+  "pythonVersion": "3.12",
+  "typeCheckingMode": "basic",
+  "reportMissingImports": "warning",
+  "reportMissingModuleSource": "none",
+  "reportUnsupportedDunderAll": "none"
+}

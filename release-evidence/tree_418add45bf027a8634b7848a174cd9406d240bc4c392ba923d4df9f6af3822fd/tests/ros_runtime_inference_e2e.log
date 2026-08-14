@@ -1,0 +1,325 @@
+debconf: delaying package configuration, since apt-utils is not installed
+9.1.1 1.22.0
+-- Using the multi-header code from /src/build/ros-core/_deps/nlohmann_json-src/include/
+-- Build spdlog: 1.14.1
+-- Build type: Release
+CMake Deprecation Warning at build/ros-core/_deps/yaml-cpp-src/CMakeLists.txt:2 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- ONNX Runtime found: /cache/onnxruntime-linux-aarch64-1.28.0/lib/libonnxruntime.so
+-- ONNX Runtime version: 1.28.0 (pinned 1.28.0)
+-- PerceptShift linked ONNX Runtime version record: 1.28.0
+-- Fuzz targets: standalone driver (libFuzzer unavailable)
+-- Configuring done (0.8s)
+-- Generating done (0.5s)
+-- Build files have been written to: /src/build/ros-core
+[  7%] Built target spdlog
+[  7%] Built target CLI11
+[  9%] Built target gtest
+[ 10%] Built target gmock
+[ 12%] Built target gtest_main
+[ 40%] Built target yaml-cpp
+[ 42%] Built target gmock_main
+[ 75%] Built target perceptshift_core
+[ 76%] Built target perceptshift-bench-worker
+[ 77%] Built target perceptshift-runtime
+[ 79%] Built target perceptshift-inspect-worker
+[ 81%] Built target perceptshift-preprocess-worker
+[ 84%] Built target fuzz_signature_policy
+[ 86%] Built target fuzz_digest_hex
+[ 88%] Built target fuzz_runtime_policy_json
+[ 96%] Built target fuzz_path_security
+[100%] Built target perceptshift_core_tests
+-- Install configuration: "Release"
+-- Installing: /opt/perceptshift/lib/libperceptshift_core.a
+-- Installing: /opt/perceptshift/bin/perceptshift-runtime
+-- Set non-toolchain portion of runtime path of "/opt/perceptshift/bin/perceptshift-runtime" to "$ORIGIN/../lib/perceptshift"
+-- Installing: /opt/perceptshift/bin/perceptshift-bench-worker
+-- Set non-toolchain portion of runtime path of "/opt/perceptshift/bin/perceptshift-bench-worker" to "$ORIGIN/../lib/perceptshift"
+-- Installing: /opt/perceptshift/bin/perceptshift-inspect-worker
+-- Set non-toolchain portion of runtime path of "/opt/perceptshift/bin/perceptshift-inspect-worker" to "$ORIGIN/../lib/perceptshift"
+-- Installing: /opt/perceptshift/bin/perceptshift-preprocess-worker
+-- Set non-toolchain portion of runtime path of "/opt/perceptshift/bin/perceptshift-preprocess-worker" to "$ORIGIN/../lib/perceptshift"
+-- Installing: /opt/perceptshift/include/perceptshift
+-- Installing: /opt/perceptshift/include/perceptshift/version.hpp.in
+-- Installing: /opt/perceptshift/include/perceptshift/crypto
+-- Installing: /opt/perceptshift/include/perceptshift/crypto/digest.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/crypto/signature.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/crypto/verified_file.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/build_info.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host
+-- Installing: /opt/perceptshift/include/perceptshift/host/power_provider.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/telemetry_snapshot.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/thermal_provider.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/frequency_provider.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/cpu_features.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/cpu_topology.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/host_fingerprint.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/memory_provider.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/host/raspberry_pi_telemetry.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/util
+-- Installing: /opt/perceptshift/include/perceptshift/util/bounded_ring.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/util/thread_affinity.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/util/scope_exit.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/util/steady_clock.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/util/checked_math.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/util/file_security.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/config
+-- Installing: /opt/perceptshift/include/perceptshift/runtime
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/switch_decision.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/controller.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/health_machine.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/frame_request.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/latest_frame_queue.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/profile_executor.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/policy.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/runtime_state.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/policy_loader.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/eligibility.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/runtime_engine.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/frame_result.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/runtime/latency_estimator.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/bundle
+-- Installing: /opt/perceptshift/include/perceptshift/bundle/bundle_loader.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/result.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/image
+-- Installing: /opt/perceptshift/include/perceptshift/image/tensor_buffer.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/image/raw_image_validation.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/image/image_view.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/image/pixel_format.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/image/preprocess_config.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/image/preprocessor.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/error.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/adapters
+-- Installing: /opt/perceptshift/include/perceptshift/adapters/raw_tensor_adapter.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/adapters/classification_adapter.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/adapters/adapter.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/adapters/adapter_factory.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/adapters/yolo_v8_adapter.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/inference
+-- Installing: /opt/perceptshift/include/perceptshift/inference/inference_result.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/inference/tensor_spec.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/inference/session_pool.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/inference/session_factory.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/inference/onnx_session.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/inference/execution_provider_report.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/inference/inference_request.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/inference/model_metadata.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/telemetry
+-- Installing: /opt/perceptshift/include/perceptshift/profiles
+-- Installing: /opt/perceptshift/include/perceptshift/profiles/profile_registry.hpp
+-- Installing: /opt/perceptshift/include/perceptshift/profiles/profile.hpp
+-- Installing: /opt/perceptshift/lib/perceptshift/libonnxruntime.so
+-- Installing: /opt/perceptshift/lib/perceptshift/libonnxruntime.so.1
+-- Installing: /opt/perceptshift/lib/perceptshift/libonnxruntime.so.1.28.0
+-- Installing: /opt/perceptshift/lib/perceptshift/libonnxruntime_providers_shared.so
+-- Installing: /opt/perceptshift/share/doc/perceptshift
+-- Installing: /opt/perceptshift/share/doc/perceptshift/configuration-reference.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/supported-platforms.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/model-adapters.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/architecture.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/operations.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/threat-model.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/limitations.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/troubleshooting.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/performance-tuning.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/privacy.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/quickstart.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/release-process.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/testing.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/operator-workflow.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/decisions
+-- Installing: /opt/perceptshift/share/doc/perceptshift/decisions/0002-onnxruntime-sole-backend-v1.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/decisions/0001-split-debian-packages.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/decisions/0001-development-host-vs-runtime-platform.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/deployment.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/index.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/console.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/cli-reference.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/profile-bundle-format.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/runtime-policy.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/development.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/installation.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/quantization.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/benchmarking-methodology.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/dataset-formats.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/api-reference.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/security.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/ros2-integration.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/quality-certification.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/README.md
+-- Installing: /opt/perceptshift/share/doc/perceptshift/LICENSE
+-- Installing: /opt/perceptshift/share/doc/perceptshift/NOTICE
+-- Installing: /opt/perceptshift/share/doc/perceptshift/CHANGELOG.md
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/dataset-manifest-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/forge-config-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/profile-bundle-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/preprocess-contract-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/benchmark-summary-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/telemetry-event-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/host-fingerprint-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/runtime-config-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/quality-attestation-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/candidate-manifest-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/schemas/benchmark-sample-v1.schema.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/templates
+-- Installing: /opt/perceptshift/share/perceptshift/config/templates/classification-dataset.template.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/templates/forge.template.yaml
+-- Installing: /opt/perceptshift/share/perceptshift/config/templates/coco-dataset.template.json
+-- Installing: /opt/perceptshift/share/perceptshift/config/templates/runtime.template.yaml
+-- Installing: /opt/perceptshift/lib/systemd/system/perceptshift-runtime.service
+-- Installing: /opt/perceptshift/lib/systemd/system/perceptshift-api.service
+-- Installing: /opt/perceptshift/lib/sysusers.d/perceptshift.conf
+-- Installing: /opt/perceptshift/lib/tmpfiles.d/perceptshift.conf
+-- Installing: /opt/perceptshift/lib/perceptshift/bin/perceptshift-ros-runtime
+-- Installing: /opt/perceptshift/lib/perceptshift/bin/perceptshift-api-service
+-- Installing: /opt/perceptshift/bin/perceptshift-api
+-- Installing: /opt/perceptshift/bin/perceptshift
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/pyproject.toml
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/tests
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/tests/test_common.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/README.md
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/version.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/paths.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/path_security.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/reason_codes.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/producer.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/errors.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/hashing.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_common/src/perceptshift_common/schema.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/pyproject.toml
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/tests
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/tests/test_cli.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/README.md
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/app.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/forge.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/bundle.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/system.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/benchmark.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/runtime.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/model.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/dataset.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/inspect.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/run_cmd.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/evaluate.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/candidate.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/certify.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/commands/report.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/__main__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_cli/src/perceptshift_cli/output.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/migrations
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/migrations/script.py.mako
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/migrations/env.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/migrations/versions
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/migrations/versions/001_initial.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/alembic.ini
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/pyproject.toml
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/README.md
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/system.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/bundles.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/telemetry.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/runtime.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/runs.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/routers/profiles.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/auth.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/config.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/audit.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/models.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/paths.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/database.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/telemetry.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/schemas.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/app.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/errors.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/__main__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/middleware.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/dependencies.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_api/src/perceptshift_api/ros_bridge.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/pyproject.toml
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/README.md
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/statistics
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/statistics/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/candidates
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/candidates/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/bundle.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/reporting
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/reporting/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/preprocess.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/calibration
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/calibration/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/coco.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/raw_tensor.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/yolo_v8.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/stream.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/validate.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/datasets/image_classification_manifest.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/models
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/models/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/models/inspect.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/storage
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/storage/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/quantization
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/quantization/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/inspection
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/inspection/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/orchestration
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/orchestration/quantize_step.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/orchestration/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/orchestration/environment.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/orchestration/evaluate.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/evaluation
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/evaluation/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/evaluation/types.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/evaluation/equivalence.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/runs
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/runs/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/runs/storage.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/certification
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/certification/__init__.py
+-- Installing: /opt/perceptshift/share/perceptshift/python/perceptshift_forge/src/perceptshift_forge/certification/context.py
+Starting >>> perceptshift_msgs
+Finished <<< perceptshift_msgs [5.30s]
+Starting >>> perceptshift_ros
+Finished <<< perceptshift_ros [2.61s]
+Starting >>> perceptshift_bringup
+Finished <<< perceptshift_bringup [0.15s]
+
+Summary: 3 packages finished [8.24s]
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /tmp/ps-e2e-venv/bin/python
+cachedir: .pytest_cache
+rootdir: /dev
+configfile: null
+collecting ... collected 1 item
+
+../../dev::test_ros_native_inference_image_to_status <- ../src/tests/e2e/test_ros_native_inference.py PASSED [100%]
+
+============================== 1 passed in 3.05s ===============================

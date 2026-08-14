@@ -1,0 +1,21 @@
+{
+  "tier": "python_format_lint_typecheck",
+  "classification": "required",
+  "status": "PASS",
+  "command": "uv sync --all-packages && uv run ruff check python && uv run ruff format --check python && uv run pyright",
+  "exit_code": 0,
+  "start": "2026-08-14T01:04:50Z",
+  "end": "2026-08-14T01:04:54Z",
+  "duration_seconds": 4.0,
+  "host": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "context": "release-verify"
+  },
+  "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "log_path": "/Users/aravhawk/Code/perceptshift/build/verification/logs/python_format_lint_typecheck.log",
+  "log_sha256": "50c0709b99078ea5b35f93ac7e4a85be643cdd1ab14ac754c8e07e4022a8eab9",
+  "artifact_paths": [],
+  "test_count": null,
+  "reason": null
+}

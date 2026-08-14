@@ -1,0 +1,21 @@
+{
+  "tier": "browser_real_stack_inference_e2e",
+  "classification": "required",
+  "status": "PASS",
+  "command": "bash \"/Users/aravhawk/Code/perceptshift/scripts/browser-real-stack-acceptance.sh\"",
+  "exit_code": 0,
+  "start": "2026-08-14T01:26:36Z",
+  "end": "2026-08-14T01:28:14Z",
+  "duration_seconds": 98.0,
+  "host": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "context": "release-verify"
+  },
+  "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "log_path": "/Users/aravhawk/Code/perceptshift/build/verification/logs/browser_real_stack_inference_e2e.log",
+  "log_sha256": "b237e0f8aae7c96852a6f617c8f4ef972ddfb5648c33507ea2d1c62b8928b9f4",
+  "artifact_paths": [],
+  "test_count": null,
+  "reason": null
+}

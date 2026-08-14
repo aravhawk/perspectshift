@@ -1,0 +1,21 @@
+{
+  "tier": "web_unit_tests",
+  "classification": "required",
+  "status": "PASS",
+  "command": "cd web && pnpm install --frozen-lockfile && pnpm lint && pnpm test && pnpm build",
+  "exit_code": 0,
+  "start": "2026-08-14T01:05:13Z",
+  "end": "2026-08-14T01:05:24Z",
+  "duration_seconds": 11.0,
+  "host": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "context": "release-verify"
+  },
+  "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "log_path": "/Users/aravhawk/Code/perceptshift/build/verification/logs/web_unit_tests.log",
+  "log_sha256": "0a1910d91b19b28f72de5937a2402a1052c11b43ad59cf18f3864d70e2e58238",
+  "artifact_paths": [],
+  "test_count": null,
+  "reason": null
+}

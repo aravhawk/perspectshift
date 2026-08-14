@@ -1,0 +1,147 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 28,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default host RelWithDebInfo (ORT)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "PERCEPTSHIFT_BUILD_TESTS": "ON",
+        "PERCEPTSHIFT_WITH_ONNXRUNTIME": "ON"
+      }
+    },
+    {
+      "name": "debug",
+      "inherits": "default",
+      "displayName": "Host debug (ORT)",
+      "binaryDir": "${sourceDir}/build/debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release",
+      "inherits": "default",
+      "displayName": "Host release (ORT)",
+      "binaryDir": "${sourceDir}/build/release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "dev-arm64",
+      "inherits": "default",
+      "displayName": "Native Arm64 developer (ORT)",
+      "binaryDir": "${sourceDir}/build/dev-arm64"
+    },
+    {
+      "name": "dev-x64",
+      "inherits": "default",
+      "displayName": "x64 developer (ORT)",
+      "binaryDir": "${sourceDir}/build/dev-x64"
+    },
+    {
+      "name": "release-arm64",
+      "inherits": "release",
+      "displayName": "Native Arm64 release (ORT)",
+      "binaryDir": "${sourceDir}/build/release-arm64"
+    },
+    {
+      "name": "release-x64",
+      "inherits": "release",
+      "displayName": "x64 release (ORT)",
+      "binaryDir": "${sourceDir}/build/release-x64"
+    },
+    {
+      "name": "no-ort",
+      "inherits": "default",
+      "displayName": "Without ONNX Runtime (utility only)",
+      "binaryDir": "${sourceDir}/build/no-ort",
+      "cacheVariables": {
+        "PERCEPTSHIFT_WITH_ONNXRUNTIME": "OFF"
+      }
+    },
+    {
+      "name": "asan",
+      "inherits": "debug",
+      "displayName": "AddressSanitizer",
+      "binaryDir": "${sourceDir}/build/asan",
+      "cacheVariables": {
+        "PERCEPTSHIFT_ENABLE_ASAN": "ON"
+      }
+    },
+    {
+      "name": "ubsan",
+      "inherits": "debug",
+      "displayName": "UndefinedBehaviorSanitizer",
+      "binaryDir": "${sourceDir}/build/ubsan",
+      "cacheVariables": {
+        "PERCEPTSHIFT_ENABLE_UBSAN": "ON"
+      }
+    },
+    {
+      "name": "tsan",
+      "inherits": "debug",
+      "displayName": "ThreadSanitizer",
+      "binaryDir": "${sourceDir}/build/tsan",
+      "cacheVariables": {
+        "PERCEPTSHIFT_ENABLE_TSAN": "ON"
+      }
+    },
+    {
+      "name": "asan-ubsan-x64",
+      "inherits": "debug",
+      "displayName": "ASan+UBSan",
+      "binaryDir": "${sourceDir}/build/asan-ubsan",
+      "cacheVariables": {
+        "PERCEPTSHIFT_ENABLE_ASAN": "ON",
+        "PERCEPTSHIFT_ENABLE_UBSAN": "ON"
+      }
+    },
+    {
+      "name": "coverage",
+      "inherits": "debug",
+      "displayName": "Coverage",
+      "binaryDir": "${sourceDir}/build/coverage",
+      "cacheVariables": {
+        "CMAKE_CXX_FLAGS": "--coverage"
+      }
+    },
+    {
+      "name": "coverage-x64",
+      "inherits": "coverage",
+      "displayName": "Coverage x64 alias",
+      "binaryDir": "${sourceDir}/build/coverage-x64"
+    }
+  ],
+  "buildPresets": [
+    {"name": "default", "configurePreset": "default"},
+    {"name": "debug", "configurePreset": "debug"},
+    {"name": "release", "configurePreset": "release"},
+    {"name": "dev-arm64", "configurePreset": "dev-arm64"},
+    {"name": "dev-x64", "configurePreset": "dev-x64"},
+    {"name": "release-arm64", "configurePreset": "release-arm64"},
+    {"name": "release-x64", "configurePreset": "release-x64"},
+    {"name": "no-ort", "configurePreset": "no-ort"},
+    {"name": "asan", "configurePreset": "asan"},
+    {"name": "ubsan", "configurePreset": "ubsan"},
+    {"name": "tsan", "configurePreset": "tsan"},
+    {"name": "asan-ubsan-x64", "configurePreset": "asan-ubsan-x64"},
+    {"name": "coverage", "configurePreset": "coverage"},
+    {"name": "coverage-x64", "configurePreset": "coverage-x64"}
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default",
+      "output": {"outputOnFailure": true}
+    }
+  ]
+}

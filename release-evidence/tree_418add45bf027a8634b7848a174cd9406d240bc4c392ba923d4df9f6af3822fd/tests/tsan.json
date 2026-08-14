@@ -1,0 +1,21 @@
+{
+  "tier": "tsan",
+  "classification": "required",
+  "status": "PASS",
+  "command": "bash \"/Users/aravhawk/Code/perceptshift/scripts/tsan-acceptance.sh\"",
+  "exit_code": 0,
+  "start": "2026-08-14T01:21:49Z",
+  "end": "2026-08-14T01:21:56Z",
+  "duration_seconds": 7.0,
+  "host": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "context": "release-verify"
+  },
+  "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "log_path": "/Users/aravhawk/Code/perceptshift/build/verification/logs/tsan.log",
+  "log_sha256": "5e1b3cbf46549169fb383ac79b3588358f4d9d04dbe39367b757e0ec0dae58ab",
+  "artifact_paths": [],
+  "test_count": null,
+  "reason": null
+}

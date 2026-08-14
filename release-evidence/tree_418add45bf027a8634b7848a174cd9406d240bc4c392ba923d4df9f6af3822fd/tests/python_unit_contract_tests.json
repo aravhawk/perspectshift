@@ -1,0 +1,21 @@
+{
+  "tier": "python_unit_contract_tests",
+  "classification": "required",
+  "status": "PASS",
+  "command": "uv pip install pycocotools -p .venv >/dev/null && PATH=\"/Users/aravhawk/Code/perceptshift/build/default/cpp:$PATH\" uv run pytest python tests/contract -q",
+  "exit_code": 0,
+  "start": "2026-08-14T01:04:54Z",
+  "end": "2026-08-14T01:04:59Z",
+  "duration_seconds": 5.0,
+  "host": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "context": "release-verify"
+  },
+  "source_fingerprint": "tree:418add45bf027a8634b7848a174cd9406d240bc4c392ba923d4df9f6af3822fd",
+  "log_path": "/Users/aravhawk/Code/perceptshift/build/verification/logs/python_unit_contract_tests.log",
+  "log_sha256": "4b8e26f25b52b58c243cc1872ac62814666954c48e5097e7e0c56f7382127634",
+  "artifact_paths": [],
+  "test_count": null,
+  "reason": null
+}

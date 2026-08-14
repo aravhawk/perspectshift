@@ -1,0 +1,19 @@
+# Per-frame timing and stage trace. Durations use local steady-clock nanoseconds.
+std_msgs/Header header
+string trace_id
+uint64 sequence_id
+string profile_id
+builtin_interfaces/Time source_timestamp
+builtin_interfaces/Time receive_timestamp
+uint64 queue_age_ns
+uint64 preprocess_ns
+uint64 inference_ns
+uint64 postprocess_ns
+uint64 total_ns
+uint64 deadline_ns
+bool deadline_missed
+bool frame_dropped
+string drop_reason
+string input_backend
+string preprocess_backend
+string execution_provider_summary

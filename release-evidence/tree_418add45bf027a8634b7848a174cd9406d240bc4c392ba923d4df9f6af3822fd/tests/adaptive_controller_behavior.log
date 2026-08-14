@@ -1,0 +1,13 @@
+Test project /Users/aravhawk/Code/perceptshift/build/default
+    Start 17: ControllerTest.SelectsOnStartupAndFailClosedWithoutProfiles
+1/4 Test #17: ControllerTest.SelectsOnStartupAndFailClosedWithoutProfiles ...   Passed    0.01 sec
+    Start 18: ControllerTest.SelectsHighestUtilityEligible
+2/4 Test #18: ControllerTest.SelectsHighestUtilityEligible ..................   Passed    0.01 sec
+    Start 19: ControllerTest.DemotesOnDeadlineRisk
+3/4 Test #19: ControllerTest.DemotesOnDeadlineRisk ..........................   Passed    0.01 sec
+    Start 20: ControllerTest.StaleInputFailClosed
+4/4 Test #20: ControllerTest.StaleInputFailClosed ...........................   Passed    0.01 sec
+
+100% tests passed out of 4
+
+Total Test time (real) =   0.03 sec

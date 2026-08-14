@@ -1,0 +1,107 @@
+[project]
+name = "perceptshift-workspace"
+version = "0.1.0"
+description = "PerceptShift uv workspace root"
+requires-python = ">=3.12"
+dependencies = [
+  "perceptshift-common",
+  "perceptshift-forge",
+  "perceptshift-cli",
+  "perceptshift-api",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = [
+  "python/perceptshift_common",
+  "python/perceptshift_forge",
+  "python/perceptshift_cli",
+  "python/perceptshift_api",
+]
+
+[tool.uv.sources]
+perceptshift-common = { workspace = true }
+perceptshift-forge = { workspace = true }
+perceptshift-cli = { workspace = true }
+perceptshift-api = { workspace = true }
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3.0",
+  "pytest-asyncio>=0.24.0",
+  "pytest-cov>=6.0.0",
+  "ruff>=0.9.0",
+  "pyright>=1.1.400",
+  "mypy>=1.14.0",
+  "types-PyYAML>=6.0.12",
+  "types-jsonschema>=4.23.0",
+]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = [
+  "python/perceptshift_common/tests",
+  "python/perceptshift_forge/tests",
+  "python/perceptshift_cli/tests",
+  "python/perceptshift_api/tests",
+  "tests/contract",
+]
+pythonpath = [
+  "python/perceptshift_common/src",
+  "python/perceptshift_forge/src",
+  "python/perceptshift_cli/src",
+  "python/perceptshift_api/src",
+]
+addopts = "-q --strict-markers"
+filterwarnings = [
+  "error",
+  "ignore::DeprecationWarning",
+  "ignore::ResourceWarning",
+  # Message-based filter: StarletteDeprecationWarning is not present on all locked versions.
+  "ignore:Using `httpx` with `starlette.testclient` is deprecated.*",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = [
+  "python/perceptshift_common/src",
+  "python/perceptshift_forge/src",
+  "python/perceptshift_cli/src",
+  "python/perceptshift_api/src",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "RUF"]
+ignore = [
+  "B008",  # Typer Option/Argument defaults are intentional
+]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+packages = [
+  "perceptshift_common",
+  "perceptshift_forge",
+  "perceptshift_cli",
+  "perceptshift_api",
+]
+mypy_path = [
+  "python/perceptshift_common/src",
+  "python/perceptshift_forge/src",
+  "python/perceptshift_cli/src",
+  "python/perceptshift_api/src",
+]
+
+[[tool.mypy.overrides]]
+module = [
+  "onnx.*",
+  "onnxruntime.*",
+  "pycocotools.*",
+]
+ignore_missing_imports = true

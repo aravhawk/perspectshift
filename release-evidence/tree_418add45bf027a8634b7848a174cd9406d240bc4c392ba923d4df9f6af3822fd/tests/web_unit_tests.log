@@ -1,0 +1,45 @@
+Scope: all 2 workspace projects
+
+Done in 459ms
+
+   ╭───────────────────────────────────────────────────────────────────╮
+   │                                                                   │
+   │                Update available! 9.15.0 → 11.21.0.                │
+   │   Changelog: https://github.com/pnpm/pnpm/releases/tag/v11.21.0   │
+   │                 Run "pnpm add -g pnpm" to update.                 │
+   │                                                                   │
+   ╰───────────────────────────────────────────────────────────────────╯
+
+
+> perceptshift-console@0.1.0 lint /Users/aravhawk/Code/perceptshift/web
+> tsc -b --pretty false
+
+
+> perceptshift-console@0.1.0 test /Users/aravhawk/Code/perceptshift/web
+> vitest run
+
+
+ RUN  v3.2.7 /Users/aravhawk/Code/perceptshift/web
+
+ ✓ src/components/EmptyState.test.tsx (2 tests) 64ms
+ ✓ src/test/empty-states.test.tsx (1 test) 39ms
+ ✓ src/pages/OverviewPage.test.tsx (3 tests) 83ms
+
+ Test Files  3 passed (3)
+      Tests  6 passed (6)
+   Start at  20:05:19
+   Duration  1.24s (transform 210ms, setup 503ms, collect 436ms, tests 186ms, environment 1.26s, prepare 253ms)
+
+
+> perceptshift-console@0.1.0 build /Users/aravhawk/Code/perceptshift/web
+> tsc -p tsconfig.app.json --noEmit && vite build
+
+vite v6.4.3 building for production...
+transforming...
+✓ 108 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   1.15 kB │ gzip:  0.56 kB
+dist/assets/index-B-M4cHnm.css    5.13 kB │ gzip:  1.84 kB
+dist/assets/index-tqTYqd2u.js   292.68 kB │ gzip: 91.13 kB
+✓ built in 697ms

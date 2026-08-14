@@ -1,0 +1,7 @@
+string reason
+bool reload_bundle
+---
+bool accepted
+string error_code
+string error_message
+string resulting_health_reason
