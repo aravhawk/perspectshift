@@ -1012,22 +1012,46 @@ def launch_bench_worker(
     return result
 
 
+def _native_binary_roots() -> list[Path]:
+    roots: list[Path] = []
+    for env_name in ("PERCEPTSHIFT_ROOT", "GITHUB_WORKSPACE"):
+        value = os.environ.get(env_name)
+        if value:
+            roots.append(Path(value))
+    roots.append(Path.cwd())
+    # python/perceptshift_forge/src/perceptshift_forge/orchestration/__init__.py
+    roots.append(Path(__file__).resolve().parents[5])
+    unique: list[Path] = []
+    seen: set[Path] = set()
+    for root in roots:
+        resolved = root.resolve()
+        if resolved in seen:
+            continue
+        seen.add(resolved)
+        unique.append(resolved)
+    return unique
+
+
 def find_native_binary(name: str) -> Path | None:
     """Resolve canonical hyphenated native binaries from build tree or PATH."""
-    root = Path.cwd()
-    candidates = [
-        root / "build" / "default" / "cpp" / name,
-        root / "build" / "dev-arm64" / "cpp" / name,
-        root / "build" / "release-arm64" / "cpp" / name,
-        root / "build" / "dev-x64" / "cpp" / name,
-        root / "build" / "release-x64" / "cpp" / name,
-        root / "build" / "release" / "cpp" / name,
-        root / "build-clang" / "cpp" / name,
-        root / "build" / "cpp" / name,
-        root / "build" / "apps" / name,
-        root / "cpp" / "build" / "apps" / name,
-        Path(shutil.which(name) or ""),
+    rels = [
+        Path("build") / "default" / "cpp" / name,
+        Path("build") / "dev-arm64" / "cpp" / name,
+        Path("build") / "release-arm64" / "cpp" / name,
+        Path("build") / "dev-x64" / "cpp" / name,
+        Path("build") / "release-x64" / "cpp" / name,
+        Path("build") / "release" / "cpp" / name,
+        Path("build-clang") / "cpp" / name,
+        Path("build") / "cpp" / name,
+        Path("build") / "apps" / name,
+        Path("cpp") / "build" / "apps" / name,
     ]
+    candidates: list[Path] = []
+    for root in _native_binary_roots():
+        candidates.extend(root / rel for rel in rels)
+    which = shutil.which(name)
+    if which:
+        candidates.append(Path(which))
     for candidate in candidates:
         if candidate.is_file() and os.access(candidate, os.X_OK):
             return candidate

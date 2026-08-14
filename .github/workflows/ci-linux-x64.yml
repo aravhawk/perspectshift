@@ -89,6 +89,8 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@ae62891fec2bb8e7d6c99fc78c9fec3a63790f8d # v10.0.0
+        with:
+          version: "0.11.16"
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
@@ -103,13 +105,17 @@ jobs:
           set -euo pipefail
           cmake --preset release-x64
           cmake --build --preset release-x64 -j "$(nproc)"
-      - name: Lint and test
+      - name: Sync Python workspace
+        run: uv sync --locked --all-packages --group dev
+      - name: Ruff
+        run: uv run ruff check python
+      - name: Pyright
+        run: uv run pyright
+      - name: Pytest
         run: |
           set -euo pipefail
           export PATH="${GITHUB_WORKSPACE}/build/release-x64/cpp:${PATH}"
-          uv sync --locked --all-packages --group dev
-          uv run ruff check python
-          uv run pyright
+          export PERCEPTSHIFT_ROOT="${GITHUB_WORKSPACE}"
           uv run pytest
 
   web:
@@ -145,8 +151,8 @@ jobs:
       - name: Build ROS workspace
         run: |
           set -euo pipefail
-          if ! command -v ros2 >/dev/null; then
-            echo "ROS Jazzy not available after bootstrap; failing closed" >&2
+          if [[ ! -f /opt/ros/jazzy/setup.bash ]]; then
+            echo "ROS Jazzy setup.bash missing after bootstrap; failing closed" >&2
             exit 1
           fi
           export PERCEPTSHIFT_PREFIX="${HOME}/perceptshift-prefix"
@@ -155,7 +161,13 @@ jobs:
           set +u
           # shellcheck disable=SC1091
           source /opt/ros/jazzy/setup.bash
+          # shellcheck disable=SC1091
+          source "${GITHUB_WORKSPACE}/ros2_ws/install/setup.bash"
           set -u
+          if ! command -v ros2 >/dev/null; then
+            echo "ros2 still unavailable after sourcing Jazzy" >&2
+            exit 1
+          fi
           export CMAKE_PREFIX_PATH="${PERCEPTSHIFT_PREFIX}:${CMAKE_PREFIX_PATH:-}"
           export LD_LIBRARY_PATH="${PERCEPTSHIFT_PREFIX}/lib:${PERCEPTSHIFT_ORT_ROOT}/lib:${LD_LIBRARY_PATH:-}"
           cd ros2_ws
@@ -168,6 +180,8 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@ae62891fec2bb8e7d6c99fc78c9fec3a63790f8d # v10.0.0
+        with:
+          version: "0.11.16"
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
