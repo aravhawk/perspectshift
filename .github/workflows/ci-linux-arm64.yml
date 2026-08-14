@@ -6,12 +6,79 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  native-arm64:
-    # Requires a native Linux Arm64 runner. Do not label QEMU jobs as native.
+  arm64-software-correctness:
+    name: GitHub-hosted Arm64 software correctness (not physical-device performance)
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Record runner identity
+        run: |
+          set -euo pipefail
+          uname -m | tee arch.txt
+          case "$(uname -m)" in
+            aarch64|arm64) echo "GitHub-hosted aarch64 software-correctness runner" ;;
+            *) echo "expected aarch64 GitHub-hosted runner, got $(uname -m)" >&2; exit 1 ;;
+          esac
+          echo "This job is Arm64 software correctness on GitHub-hosted hardware."
+          echo "It is not a physical-device performance measurement and must not be labeled as such."
+      - name: Verify repository
+        run: ./scripts/verify-repository.sh
+      - name: Bootstrap
+        run: ./scripts/bootstrap-ubuntu.sh --noninteractive
+      - name: Setup ONNX Runtime
+        uses: ./.github/actions/setup-onnxruntime
+        with:
+          arch: aarch64
+      - name: Configure, build, and test
+        run: |
+          set -euo pipefail
+          cmake --preset release-arm64
+          cmake --build --preset release-arm64 -j "$(nproc)"
+          TEST_DIR=build/release-arm64
+          COUNT="$(ctest --test-dir "$TEST_DIR" -N | awk '/Total Tests:/ {print $3}')"
+          if [[ -z "$COUNT" || "$COUNT" -eq 0 ]]; then
+            echo "ERROR: zero tests discovered in $TEST_DIR" >&2
+            exit 1
+          fi
+          ctest --test-dir "$TEST_DIR" --output-on-failure
+          LABEL_COUNT="$(ctest --test-dir "$TEST_DIR" -N -L 'neon|xnnpack' | awk '/Total Tests:/ {print $3}')"
+          if [[ -z "$LABEL_COUNT" || "$LABEL_COUNT" -eq 0 ]]; then
+            echo "NOTE: neon|xnnpack labels not applicable (zero matching tests)"
+          else
+            ctest --test-dir "$TEST_DIR" --output-on-failure -L 'neon|xnnpack'
+          fi
+      - name: Write software-correctness summary
+        run: |
+          mkdir -p build/verification/hosted-arm64
+          python3 - <<'PY'
+          import json, platform, pathlib
+          pathlib.Path("build/verification/hosted-arm64/summary.json").write_text(json.dumps({
+              "workflow": "ci-linux-arm64",
+              "job": "arm64-software-correctness",
+              "machine": platform.machine(),
+              "label": "GitHub-hosted Arm64 software correctness",
+              "physical_device_performance": False,
+          }, indent=2) + "\n", encoding="utf-8")
+          PY
+      - name: Upload acceptance summary
+        uses: actions/upload-artifact@v7
+        with:
+          name: hosted-arm64-software-correctness
+          path: build/verification/hosted-arm64/
+
+  native-arm64-hardware:
+    name: Optional native Arm64 hardware (dispatch only)
+    if: github.event_name == 'workflow_dispatch' && vars.PERCEPTSHIFT_NATIVE_ARM_RUNNER == 'true'
     runs-on: [self-hosted, linux, arm64]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Assert native AArch64
@@ -30,28 +97,21 @@ jobs:
       - name: Build and test
         run: |
           set -euo pipefail
-          cmake --preset release-arm64 || cmake --preset dev-arm64
-          cmake --build --preset release-arm64 || cmake --build --preset dev-arm64
+          cmake --preset release-arm64
+          cmake --build --preset release-arm64 -j "$(nproc)"
           TEST_DIR=build/release-arm64
-          [[ -d build/dev-arm64 ]] && [[ ! -d build/release-arm64 ]] && TEST_DIR=build/dev-arm64
           COUNT="$(ctest --test-dir "$TEST_DIR" -N | awk '/Total Tests:/ {print $3}')"
           if [[ -z "$COUNT" || "$COUNT" -eq 0 ]]; then
             echo "ERROR: zero tests discovered in $TEST_DIR" >&2
             exit 1
           fi
           ctest --test-dir "$TEST_DIR" --output-on-failure
-          LABEL_COUNT="$(ctest --test-dir "$TEST_DIR" -N -L 'neon|xnnpack' | awk '/Total Tests:/ {print $3}')"
-          if [[ -z "$LABEL_COUNT" || "$LABEL_COUNT" -eq 0 ]]; then
-            echo "NOTE: neon|xnnpack labels not applicable (zero matching tests)"
-          else
-            ctest --test-dir "$TEST_DIR" --output-on-failure -L 'neon|xnnpack'
-          fi
       - name: Package smoke
         run: |
           ./scripts/package-deb.sh
           ./scripts/run-arm-acceptance.sh
       - name: Upload acceptance summary
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: native-arm-acceptance
           path: build/verification/native-arm/

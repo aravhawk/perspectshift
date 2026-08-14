@@ -1,0 +1,44 @@
+name: Setup ONNX Runtime 1.28.0
+description: Cache and install the official onnxruntime 1.28.0 Linux SDK
+inputs:
+  arch:
+    description: Target architecture (host, x64, or aarch64)
+    required: false
+    default: host
+runs:
+  using: composite
+  steps:
+    - name: Cache ONNX Runtime SDK
+      uses: actions/cache@v5
+      with:
+        path: .cache/onnxruntime-linux-*
+        key: ort-1.28.0-${{ inputs.arch }}-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('scripts/ci/install-onnxruntime.sh') }}
+    - name: Install ONNX Runtime 1.28.0
+      shell: bash
+      run: |
+        set -euo pipefail
+        chmod +x scripts/ci/install-onnxruntime.sh
+        ./scripts/ci/install-onnxruntime.sh --arch "${{ inputs.arch }}"
+    - name: Prove ONNX Runtime headers and library
+      shell: bash
+      run: |
+        set -euo pipefail
+        ARCH_ARG="${{ inputs.arch }}"
+        HOST="$(uname -m)"
+        case "$ARCH_ARG" in
+          host|"")
+            case "$HOST" in
+              x86_64|amd64) ORT_ARCH=x64 ;;
+              aarch64|arm64) ORT_ARCH=aarch64 ;;
+              *) echo "unsupported host arch $HOST" >&2; exit 1 ;;
+            esac
+            ;;
+          x64|X64|x86_64|amd64) ORT_ARCH=x64 ;;
+          aarch64|arm64|ARM64) ORT_ARCH=aarch64 ;;
+          *) echo "unsupported arch $ARCH_ARG" >&2; exit 1 ;;
+        esac
+        PREFIX=".cache/onnxruntime-linux-${ORT_ARCH}-1.28.0"
+        test -f "$PREFIX/include/onnxruntime_cxx_api.h"
+        test -e "$PREFIX/lib/libonnxruntime.so" || test -e "$PREFIX/lib/libonnxruntime.so.1"
+        test "$(tr -d '[:space:]' <"$PREFIX/VERSION.txt")" = "1.28.0"
+        echo "ORT proved at $PREFIX"

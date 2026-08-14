@@ -44,6 +44,12 @@ if [[ "$NONINTERACTIVE" -eq 1 ]]; then
   export DEBIAN_FRONTEND=noninteractive
 fi
 
+if [[ "$(id -u)" -eq 0 ]]; then
+  APT=(apt-get)
+else
+  APT=(sudo apt-get)
+fi
+
 APT_PACKAGES=(
   build-essential
   cmake
@@ -64,29 +70,58 @@ APT_PACKAGES=(
   libopencv-dev
   jq
   ripgrep
+  gnupg
+  lsb-release
 )
 
-if [[ "$WITH_ROS" -eq 1 ]]; then
-  APT_PACKAGES+=(
-    ros-jazzy-ros-base
-    ros-jazzy-rclcpp
-    ros-jazzy-rclcpp-lifecycle
-    ros-jazzy-rclcpp-components
-    ros-jazzy-sensor-msgs
-    ros-jazzy-diagnostic-msgs
-    ros-jazzy-diagnostic-updater
-    ros-jazzy-launch-ros
-    ros-jazzy-nav2-lifecycle-manager
-    python3-colcon-common-extensions
-  )
-fi
+ROS_PACKAGES=(
+  ros-jazzy-ros-base
+  ros-jazzy-rclcpp
+  ros-jazzy-rclcpp-lifecycle
+  ros-jazzy-rclcpp-components
+  ros-jazzy-sensor-msgs
+  ros-jazzy-std-msgs
+  ros-jazzy-lifecycle-msgs
+  ros-jazzy-diagnostic-msgs
+  ros-jazzy-diagnostic-updater
+  ros-jazzy-launch-ros
+  ros-jazzy-image-transport
+  ros-jazzy-ament-cmake-gtest
+  ros-jazzy-nav2-lifecycle-manager
+  python3-colcon-common-extensions
+  nlohmann-json3-dev
+)
 
 if command -v apt-get >/dev/null 2>&1; then
-  run sudo apt-get update
-  run sudo apt-get install -y "${APT_PACKAGES[@]}"
+  run "${APT[@]}" update
+  run "${APT[@]}" install -y "${APT_PACKAGES[@]}"
+  if [[ "$WITH_ROS" -eq 1 ]]; then
+    ROS_APT_SOURCE_VERSION="${ROS_APT_SOURCE_VERSION:-1.2.0}"
+    . /etc/os-release
+    CODENAME="${UBUNTU_CODENAME:-${VERSION_CODENAME:-}}"
+    if [[ "$CODENAME" != "noble" ]]; then
+      echo "ROS 2 Jazzy bootstrap requires Ubuntu 24.04 noble; got ${CODENAME:-unknown}" >&2
+      exit 1
+    fi
+    ROS_DEB="ros2-apt-source_${ROS_APT_SOURCE_VERSION}.${CODENAME}_all.deb"
+    ROS_URL="https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/${ROS_DEB}"
+    echo "Installing ROS apt source ${ROS_APT_SOURCE_VERSION} for ${CODENAME}"
+    curl -fsSL "$ROS_URL" -o "/tmp/${ROS_DEB}"
+    run "${APT[@]}" install -y "/tmp/${ROS_DEB}"
+    run "${APT[@]}" update
+    run "${APT[@]}" install -y "${ROS_PACKAGES[@]}"
+  fi
 else
   echo "apt-get not available; print required packages and continue"
   printf '  %s\n' "${APT_PACKAGES[@]}"
+  if [[ "$WITH_ROS" -eq 1 ]]; then
+    printf '  %s\n' "${ROS_PACKAGES[@]}"
+  fi
+fi
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+if [[ "$(uname -s)" == "Linux" && -x "$ROOT/scripts/ci/ensure-cmake.sh" ]]; then
+  run "$ROOT/scripts/ci/ensure-cmake.sh"
 fi
 
 if ! command -v uv >/dev/null 2>&1; then

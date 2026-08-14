@@ -11,20 +11,34 @@ on:
         default: "120"
         required: false
 
+permissions:
+  contents: read
+
 jobs:
   fuzz-smoke:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Bootstrap
         run: ./scripts/bootstrap-ubuntu.sh --noninteractive
+      - name: Setup ONNX Runtime
+        uses: ./.github/actions/setup-onnxruntime
+        with:
+          arch: x64
+      - name: Build fuzz targets
+        run: |
+          set -euo pipefail
+          cmake --preset release-x64
+          cmake --build --preset release-x64 -j "$(nproc)"
       - name: Fuzz smoke
         env:
           FUZZ_SECONDS: ${{ github.event.inputs.fuzz_seconds || '30' }}
+          FUZZ_DURATION_SECONDS: ${{ github.event.inputs.fuzz_seconds || '30' }}
+          FUZZ_BUILD_DIR: build/release-x64
         run: ./scripts/run-fuzz.sh
       - name: Upload crash artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: fuzz-artifacts
           path: build/fuzz/artifacts/

@@ -13,19 +13,40 @@ jobs:
     permissions:
       security-events: write
       contents: read
+      actions: read
+      packages: read
     strategy:
       fail-fast: false
       matrix:
-        language: [cpp, python, javascript-typescript]
+        include:
+          - language: c-cpp
+            build-mode: manual
+          - language: python
+            build-mode: none
+          - language: javascript-typescript
+            build-mode: none
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@v4
         with:
           languages: ${{ matrix.language }}
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v3
+          build-mode: ${{ matrix.build-mode }}
+      - name: Bootstrap C++ dependencies
+        if: matrix.build-mode == 'manual'
+        run: ./scripts/bootstrap-ubuntu.sh --noninteractive
+      - name: Setup ONNX Runtime
+        if: matrix.build-mode == 'manual'
+        uses: ./.github/actions/setup-onnxruntime
+        with:
+          arch: x64
+      - name: Build C++ with CodeQL tracing
+        if: matrix.build-mode == 'manual'
+        run: |
+          set -euo pipefail
+          cmake --preset release-x64
+          cmake --build --preset release-x64 -j "$(nproc)"
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+        uses: github/codeql-action/analyze@v4
         with:
           category: "/language:${{ matrix.language }}"

@@ -6,23 +6,34 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   package-x64-core-dev:
     runs-on: ubuntu-24.04
     container: ubuntu:24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install build deps
         run: |
+          set -euo pipefail
+          export DEBIAN_FRONTEND=noninteractive
           apt-get update
-          apt-get install -y build-essential cmake ninja-build git curl ca-certificates python3
+          apt-get install -y --no-install-recommends \
+            build-essential cmake ninja-build git curl ca-certificates python3 \
+            pkg-config libssl-dev zlib1g-dev dpkg-dev file
+      - name: Ensure CMake >= 3.28
+        run: ./scripts/ci/ensure-cmake.sh
       - name: Build non-release core-dev package
         run: |
+          set -euo pipefail
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DPERCEPTSHIFT_BUILD_TESTS=OFF -DPERCEPTSHIFT_WITH_ONNXRUNTIME=OFF
           cmake --build build -j "$(nproc)"
           ./scripts/package-core-dev.sh
       - name: Name check
         run: |
+          set -euo pipefail
           ls dist/*core-dev*.deb
           echo "This artifact is a core developer package, not the supported release .deb"
 
@@ -30,11 +41,16 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 360
     steps:
-      - uses: actions/checkout@v4
-      - uses: docker/setup-qemu-action@v3
-      - uses: docker/setup-buildx-action@v3
+      - uses: actions/checkout@v7
+      - uses: docker/setup-qemu-action@96fe6ef7f33517b61c61be40b68a1882f3264fb8 # v4.2.0
+      - uses: docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c # v4.2.0
+      - name: Setup ONNX Runtime (linux/aarch64 artifact for emulated package build)
+        uses: ./.github/actions/setup-onnxruntime
+        with:
+          arch: aarch64
       - name: Arm64 functional package acceptance
         run: |
           set -euo pipefail
-          chmod +x scripts/*.sh
+          chmod +x scripts/*.sh scripts/ci/*.sh
+          test -d .cache/onnxruntime-linux-aarch64-1.28.0/lib
           ./scripts/debian-acceptance.sh

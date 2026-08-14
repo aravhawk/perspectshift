@@ -9,11 +9,14 @@ concurrency:
   group: ci-x64-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   verify-policy:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Verify repository policy
@@ -23,20 +26,24 @@ jobs:
     needs: verify-policy
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Bootstrap
         run: ./scripts/bootstrap-ubuntu.sh --noninteractive
+      - name: Setup ONNX Runtime
+        uses: ./.github/actions/setup-onnxruntime
+        with:
+          arch: x64
       - name: Configure and build (GCC)
         run: |
-          cmake --preset release-x64 || cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-          cmake --build build -j "$(nproc)" || cmake --build --preset release-x64
+          set -euo pipefail
+          cmake --preset release-x64
+          cmake --build --preset release-x64 -j "$(nproc)"
       - name: C++ tests
         run: |
           set -euo pipefail
           TEST_DIR=build/release-x64
-          [[ -d build ]] && [[ ! -d "$TEST_DIR" ]] && TEST_DIR=build
           COUNT="$(ctest --test-dir "$TEST_DIR" -N | awk '/Total Tests:/ {print $3}')"
           if [[ -z "$COUNT" || "$COUNT" -eq 0 ]]; then
             echo "ERROR: zero tests discovered in $TEST_DIR" >&2
@@ -48,37 +55,69 @@ jobs:
     needs: verify-policy
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Bootstrap
         run: ./scripts/bootstrap-ubuntu.sh --noninteractive
+      - name: Setup ONNX Runtime
+        uses: ./.github/actions/setup-onnxruntime
+        with:
+          arch: x64
       - name: Configure and build (Clang)
         run: |
-          cmake -S . -B build-clang -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+          set -euo pipefail
+          cmake -S . -B build-clang -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_C_COMPILER=clang \
+            -DCMAKE_CXX_COMPILER=clang++ \
+            -DPERCEPTSHIFT_WITH_ONNXRUNTIME=ON \
+            -DPERCEPTSHIFT_ORT_ROOT="${PERCEPTSHIFT_ORT_ROOT}"
           cmake --build build-clang -j "$(nproc)"
+      - name: C++ tests
+        run: |
+          set -euo pipefail
+          TEST_DIR=build-clang
+          COUNT="$(ctest --test-dir "$TEST_DIR" -N | awk '/Total Tests:/ {print $3}')"
+          if [[ -z "$COUNT" || "$COUNT" -eq 0 ]]; then
+            echo "ERROR: zero tests discovered in $TEST_DIR" >&2
+            exit 1
+          fi
+          ctest --test-dir "$TEST_DIR" --output-on-failure
 
   python:
     needs: verify-policy
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v4
-        with:
-          version: "0.5.14"
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@ae62891fec2bb8e7d6c99fc78c9fec3a63790f8d # v10.0.0
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
+      - name: Bootstrap
+        run: ./scripts/bootstrap-ubuntu.sh --noninteractive
+      - name: Setup ONNX Runtime
+        uses: ./.github/actions/setup-onnxruntime
+        with:
+          arch: x64
+      - name: Build native workers
+        run: |
+          set -euo pipefail
+          cmake --preset release-x64
+          cmake --build --preset release-x64 -j "$(nproc)"
       - name: Lint and test
         run: |
-          uv sync --all-packages
+          set -euo pipefail
+          export PATH="${GITHUB_WORKSPACE}/build/release-x64/cpp:${PATH}"
+          uv sync --locked --all-packages --group dev
           uv run ruff check python
-          uv run pytest python -q
+          uv run pyright
+          uv run pytest
 
   web:
     needs: verify-policy
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: "24"
       - name: Enable pnpm
@@ -86,6 +125,7 @@ jobs:
       - name: Install and test
         working-directory: web
         run: |
+          set -euo pipefail
           pnpm install --frozen-lockfile
           pnpm lint
           pnpm test
@@ -95,17 +135,30 @@ jobs:
     needs: verify-policy
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Bootstrap with ROS
         run: ./scripts/bootstrap-ubuntu.sh --noninteractive --with-ros
+      - name: Setup ONNX Runtime
+        uses: ./.github/actions/setup-onnxruntime
+        with:
+          arch: x64
       - name: Build ROS workspace
         run: |
+          set -euo pipefail
           if ! command -v ros2 >/dev/null; then
             echo "ROS Jazzy not available after bootstrap; failing closed" >&2
             exit 1
           fi
+          export PERCEPTSHIFT_PREFIX="${HOME}/perceptshift-prefix"
+          export PERCEPTSHIFT_CORE_BUILD="${GITHUB_WORKSPACE}/build/ros-core"
+          ./scripts/build-ros-with-core.sh
+          set +u
+          # shellcheck disable=SC1091
           source /opt/ros/jazzy/setup.bash
-          cd ros2_ws && colcon build --symlink-install
+          set -u
+          export CMAKE_PREFIX_PATH="${PERCEPTSHIFT_PREFIX}:${CMAKE_PREFIX_PATH:-}"
+          export LD_LIBRARY_PATH="${PERCEPTSHIFT_PREFIX}/lib:${PERCEPTSHIFT_ORT_ROOT}/lib:${LD_LIBRARY_PATH:-}"
+          cd ros2_ws
           colcon test --event-handlers console_direct+
           colcon test-result --verbose
 
@@ -113,9 +166,28 @@ jobs:
     needs: [cpp-gcc, python, web]
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@ae62891fec2bb8e7d6c99fc78c9fec3a63790f8d # v10.0.0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Bootstrap
+        run: ./scripts/bootstrap-ubuntu.sh --noninteractive
+      - name: Setup ONNX Runtime
+        uses: ./.github/actions/setup-onnxruntime
+        with:
+          arch: x64
+      - name: Build native runtime
+        run: |
+          set -euo pipefail
+          cmake --preset release-x64
+          cmake --build --preset release-x64 -j "$(nproc)"
+      - name: Python workspace
+        run: uv sync --locked --all-packages --group dev
       - name: E2E and docs check
         run: |
+          set -euo pipefail
+          export PATH="${GITHUB_WORKSPACE}/build/release-x64/cpp:${PATH}"
           ./scripts/run-e2e.sh
           make docs-check
       - name: Summary

@@ -71,6 +71,8 @@ else()
       "${PERCEPTSHIFT_REPO_ROOT}/build/dev-arm64/cpp"
       "${PERCEPTSHIFT_REPO_ROOT}/build/dev-x64/cpp"
       "${PERCEPTSHIFT_REPO_ROOT}/build/release-arm64/cpp"
+      "${PERCEPTSHIFT_REPO_ROOT}/build/release-x64/cpp"
+      "$ENV{PERCEPTSHIFT_PREFIX}/lib"
       "${PERCEPTSHIFT_REPO_ROOT}/build"
   )
   find_path(PERCEPTSHIFT_CORE_INCLUDE
@@ -87,6 +89,8 @@ else()
       "${PERCEPTSHIFT_REPO_ROOT}/build/deb-release/_deps/nlohmann_json-src/include"
       "${PERCEPTSHIFT_REPO_ROOT}/build/deb-release/_deps/nlohmann_json-src/single_include"
       "${PERCEPTSHIFT_REPO_ROOT}/build/ros-core/_deps/nlohmann_json-src/include"
+      "${PERCEPTSHIFT_REPO_ROOT}/build/ros-core/_deps/nlohmann_json-src/single_include"
+      "${PERCEPTSHIFT_REPO_ROOT}/build/release-x64/_deps/nlohmann_json-src/include"
       "${PERCEPTSHIFT_REPO_ROOT}/build/noble-arm64/_deps/nlohmann_json-src/include"
       "${PERCEPTSHIFT_REPO_ROOT}/build/default/_deps/nlohmann_json-src/include"
       "${PERCEPTSHIFT_REPO_ROOT}/build/clean/_deps/nlohmann_json-src/include"
@@ -107,6 +111,7 @@ find_library(PERCEPTSHIFT_ONNXRUNTIME_LIB
     /opt/perceptshift/lib
     "$ENV{PERCEPTSHIFT_ORT_ROOT}/lib"
     "${PERCEPTSHIFT_REPO_ROOT}/.cache/onnxruntime-linux-aarch64-1.28.0/lib"
+    "${PERCEPTSHIFT_REPO_ROOT}/.cache/onnxruntime-linux-x64-1.28.0/lib"
     "${PERCEPTSHIFT_REPO_ROOT}/.cache/onnxruntime/lib"
 )
 

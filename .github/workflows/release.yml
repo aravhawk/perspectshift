@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 1440
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Read version
@@ -28,12 +28,12 @@ jobs:
         run: |
           V=$(tr -d '[:space:]' < VERSION)
           echo "version=$V" >> "$GITHUB_OUTPUT"
-      - uses: docker/setup-qemu-action@v3
-      - uses: docker/setup-buildx-action@v3
+      - uses: docker/setup-qemu-action@96fe6ef7f33517b61c61be40b68a1882f3264fb8 # v4.2.0
+      - uses: docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c # v4.2.0
       - name: Canonical release verification
         run: |
           set -euo pipefail
-          chmod +x scripts/*.sh tests/*.sh
+          chmod +x scripts/*.sh scripts/ci/*.sh tests/*.sh
           ./scripts/release-verify.sh
       - name: Assert matching-fingerprint artifacts
         run: |
@@ -70,7 +70,7 @@ jobs:
           (cd dist && ls -1 | grep -q . && sha256sum * > SHA256SUMS)
           (cd release-artifacts && sha256sum perceptshift-source-*.tar.gz > SHA256SUMS)
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3.0.2
         with:
           generate_release_notes: true
           files: |

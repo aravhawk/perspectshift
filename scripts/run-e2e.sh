@@ -36,21 +36,30 @@ RUNTIME_BIN=""
 for cand in \
   "$ROOT/build/default/cpp/perceptshift-runtime" \
   "$ROOT/build/dev-arm64/cpp/perceptshift-runtime" \
-  "$ROOT/build/release-arm64/cpp/perceptshift-runtime"
+  "$ROOT/build/release-arm64/cpp/perceptshift-runtime" \
+  "$ROOT/build/dev-x64/cpp/perceptshift-runtime" \
+  "$ROOT/build/release-x64/cpp/perceptshift-runtime" \
+  "$ROOT/build-clang/cpp/perceptshift-runtime"
 do
   if [[ -x "$cand" ]]; then RUNTIME_BIN="$cand"; break; fi
 done
 BENCH_BIN=""
 for cand in \
   "$ROOT/build/default/cpp/perceptshift-bench-worker" \
-  "$ROOT/build/dev-arm64/cpp/perceptshift-bench-worker"
+  "$ROOT/build/dev-arm64/cpp/perceptshift-bench-worker" \
+  "$ROOT/build/dev-x64/cpp/perceptshift-bench-worker" \
+  "$ROOT/build/release-x64/cpp/perceptshift-bench-worker" \
+  "$ROOT/build/release-arm64/cpp/perceptshift-bench-worker"
 do
   if [[ -x "$cand" ]]; then BENCH_BIN="$cand"; break; fi
 done
 INSPECT_BIN=""
 for cand in \
   "$ROOT/build/default/cpp/perceptshift-inspect-worker" \
-  "$ROOT/build/dev-arm64/cpp/perceptshift-inspect-worker"
+  "$ROOT/build/dev-arm64/cpp/perceptshift-inspect-worker" \
+  "$ROOT/build/dev-x64/cpp/perceptshift-inspect-worker" \
+  "$ROOT/build/release-x64/cpp/perceptshift-inspect-worker" \
+  "$ROOT/build/release-arm64/cpp/perceptshift-inspect-worker"
 do
   if [[ -x "$cand" ]]; then INSPECT_BIN="$cand"; break; fi
 done

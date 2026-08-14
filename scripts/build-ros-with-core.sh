@@ -54,6 +54,6 @@ export LD_LIBRARY_PATH="$PREFIX/lib:${LD_LIBRARY_PATH:-}"
 cd "$ROOT/ros2_ws"
 colcon build \
   --packages-select perceptshift_msgs perceptshift_ros perceptshift_bringup \
-  --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo "-DCMAKE_CXX_FLAGS=-I${PREFIX}/include"
+  --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=ON "-DCMAKE_CXX_FLAGS=-I${PREFIX}/include"
 
 echo "ROS workspace built against ORT-enabled core at $PREFIX"

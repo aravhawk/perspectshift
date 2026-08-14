@@ -7,13 +7,20 @@ on:
   schedule:
     - cron: "0 6 * * 1"
 
+permissions:
+  contents: read
+
 jobs:
   asan-ubsan:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Bootstrap
         run: ./scripts/bootstrap-ubuntu.sh --noninteractive
+      - name: Setup ONNX Runtime
+        uses: ./.github/actions/setup-onnxruntime
+        with:
+          arch: x64
       - name: Configure ASan+UBSan
         run: |
           set -euo pipefail
@@ -35,9 +42,13 @@ jobs:
   tsan:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Bootstrap
         run: ./scripts/bootstrap-ubuntu.sh --noninteractive
+      - name: Setup ONNX Runtime
+        uses: ./.github/actions/setup-onnxruntime
+        with:
+          arch: x64
       - name: Configure TSan (project concurrency tests)
         run: |
           set -euo pipefail
