@@ -142,11 +142,10 @@ jobs:
           set -e
           cat pytest-out.txt
           if [[ "$rc" -ne 0 ]]; then
-            python3 -c 'from pathlib import Path
-text = Path("pytest-out.txt").read_text(errors="replace")
-lines = [ln.rstrip() for ln in text.splitlines() if ln.strip()][-50:]
-for ln in lines:
-    print("::error::pytest: " + ln.replace("%", "%25")[:240])'
+            tail -n 50 pytest-out.txt | while IFS= read -r ln; do
+              [[ -z "$ln" ]] && continue
+              echo "::error::pytest: ${ln:0:240}"
+            done
           fi
           exit "$rc"
 
