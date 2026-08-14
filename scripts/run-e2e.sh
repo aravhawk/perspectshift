@@ -169,6 +169,8 @@ result = run_forge(cfg_path, maximum_candidates=8)
 assert result["status"] == "completed", result
 bundle = Path(result["root"]) / "bundle" / "profile-bundle"
 assert (bundle / "manifest.json").is_file()
+policy_path = tmp / "runtime-policy.json"
+policy_path.write_text(json.dumps({"deadline_ms": 500.0}), encoding="utf-8")
 # Corrupt copy must fail integrity.
 corrupt = tmp / "corrupt-bundle"
 shutil.copytree(bundle, corrupt)
@@ -176,7 +178,10 @@ shutil.copytree(bundle, corrupt)
 RUNTIME_BIN = os.environ["PERCEPTSHIFT_RUNTIME_BIN"]
 proc = subprocess.run([RUNTIME_BIN, "--bundle", str(corrupt), "--json", "--input", "zeros"], capture_output=True, text=True)
 assert proc.returncode != 0, "corrupt bundle must fail"
-proc = subprocess.run([RUNTIME_BIN, "--bundle", str(bundle), "--json", "--input", "zeros"], capture_output=True, text=True)
+proc = subprocess.run(
+    [RUNTIME_BIN, "--bundle", str(bundle), "--policy", str(policy_path), "--json", "--input", "zeros"],
+    capture_output=True, text=True,
+)
 print(proc.stdout)
 print(proc.stderr, file=sys.stderr)
 assert proc.returncode == 0, proc.stderr

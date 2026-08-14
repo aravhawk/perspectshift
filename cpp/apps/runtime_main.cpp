@@ -200,6 +200,8 @@ int main(int argc, char** argv) {
         {"inference_ms", fr.value().inference_ms},
         {"total_ms", fr.value().total_ms},
         {"control_hold", fr.value().control_hold},
+        {"control_hold_reason", fr.value().control_hold_reason},
+        {"health_state", perceptshift::runtime::to_string(fr.value().health_state)},
         {"active_profile_id", fr.value().active_profile_id},
         {"active_provider_summary", fr.value().active_provider_summary},
     };
