@@ -116,7 +116,11 @@ if(PERCEPTSHIFT_HAS_ONNXRUNTIME AND PERCEPTSHIFT_ORT_ROOT)
                   perceptshift-preprocess-worker)
     set_target_properties(${_ps_bin} PROPERTIES
       INSTALL_RPATH "\$ORIGIN/../lib/perceptshift"
+      BUILD_RPATH "${PERCEPTSHIFT_ORT_ROOT}/lib"
       BUILD_WITH_INSTALL_RPATH OFF
     )
+    if(UNIX AND NOT APPLE)
+      target_link_options(${_ps_bin} PRIVATE "-Wl,-rpath,${PERCEPTSHIFT_ORT_ROOT}/lib")
+    endif()
   endforeach()
 endif()

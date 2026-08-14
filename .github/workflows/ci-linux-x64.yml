@@ -111,15 +111,44 @@ jobs:
         run: uv run ruff check python
       - name: Pyright
         run: uv run pyright
+      - name: Prove native workers
+        env:
+          PERCEPTSHIFT_ORT_ROOT: ${{ github.workspace }}/.cache/onnxruntime-linux-x64-1.28.0
+        run: |
+          set -euo pipefail
+          BIN_DIR="${GITHUB_WORKSPACE}/build/release-x64/cpp"
+          ls -la "${BIN_DIR}"
+          for bin in perceptshift-bench-worker perceptshift-preprocess-worker perceptshift-inspect-worker; do
+            test -x "${BIN_DIR}/${bin}"
+            if env -u LD_LIBRARY_PATH ldd "${BIN_DIR}/${bin}" | grep -q "not found"; then
+              echo "::error::${bin} has unresolved shared libraries without LD_LIBRARY_PATH"
+              env -u LD_LIBRARY_PATH ldd "${BIN_DIR}/${bin}"
+              exit 1
+            fi
+            # Product binaries must start from the build tree via BUILD_RPATH.
+            env -u LD_LIBRARY_PATH "${BIN_DIR}/${bin}" --version
+          done
       - name: Pytest
         env:
           PERCEPTSHIFT_ROOT: ${{ github.workspace }}
+          PERCEPTSHIFT_ORT_ROOT: ${{ github.workspace }}/.cache/onnxruntime-linux-x64-1.28.0
+          LD_LIBRARY_PATH: ${{ github.workspace }}/.cache/onnxruntime-linux-x64-1.28.0/lib
         run: |
           set -euo pipefail
           export PATH="${GITHUB_WORKSPACE}/build/release-x64/cpp:${PATH}"
-          test -x "${GITHUB_WORKSPACE}/build/release-x64/cpp/perceptshift-bench-worker"
-          test -x "${GITHUB_WORKSPACE}/build/release-x64/cpp/perceptshift-preprocess-worker"
-          uv run pytest
+          set +e
+          uv run pytest --tb=short > pytest-out.txt 2>&1
+          rc=$?
+          set -e
+          cat pytest-out.txt
+          if [[ "$rc" -ne 0 ]]; then
+            python3 -c 'from pathlib import Path
+text = Path("pytest-out.txt").read_text(errors="replace")
+lines = [ln.rstrip() for ln in text.splitlines() if ln.strip()][-50:]
+for ln in lines:
+    print("::error::pytest: " + ln.replace("%", "%25")[:240])'
+          fi
+          exit "$rc"
 
   web:
     needs: verify-policy
@@ -202,6 +231,10 @@ jobs:
       - name: Python workspace
         run: uv sync --locked --all-packages --group dev
       - name: E2E and docs check
+        env:
+          PERCEPTSHIFT_ROOT: ${{ github.workspace }}
+          PERCEPTSHIFT_ORT_ROOT: ${{ github.workspace }}/.cache/onnxruntime-linux-x64-1.28.0
+          LD_LIBRARY_PATH: ${{ github.workspace }}/.cache/onnxruntime-linux-x64-1.28.0/lib
         run: |
           set -euo pipefail
           export PATH="${GITHUB_WORKSPACE}/build/release-x64/cpp:${PATH}"

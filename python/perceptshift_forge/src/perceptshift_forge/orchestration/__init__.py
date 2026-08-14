@@ -928,6 +928,7 @@ def launch_bench_worker(
         "PATH": os.environ.get("PATH", ""),
         "HOME": os.environ.get("HOME", ""),
         "LANG": os.environ.get("LANG", "C.UTF-8"),
+        "LC_ALL": os.environ.get("LC_ALL", os.environ.get("LANG", "C.UTF-8")),
         "PERCEPTSHIFT_GIT_COMMIT": os.environ.get("PERCEPTSHIFT_GIT_COMMIT", ""),
     }
     # Library/root paths are required to load the ORT-linked native worker.
@@ -938,10 +939,20 @@ def launch_bench_worker(
         "PERCEPTSHIFT_ORT_ROOT",
         "ORT_PREFIX",
         "PERCEPTSHIFT_ROOT",
+        "TMPDIR",
+        "TMP",
+        "TEMP",
     ):
         value = os.environ.get(key)
         if value:
             clean_env[key] = value
+    ort_root = clean_env.get("PERCEPTSHIFT_ORT_ROOT") or clean_env.get("ORT_PREFIX")
+    if ort_root:
+        ort_lib = str(Path(ort_root) / "lib")
+        current = clean_env.get("LD_LIBRARY_PATH", "")
+        parts = [part for part in current.split(":") if part]
+        if ort_lib not in parts:
+            clean_env["LD_LIBRARY_PATH"] = ":".join([ort_lib, *parts]) if parts else ort_lib
     if env:
         clean_env.update(env)
 
@@ -1016,9 +1027,20 @@ def launch_bench_worker(
     if stderr_path is None:
         result["stderr"] = (stderr or b"").decode("utf-8", errors="replace")
     if proc.returncode != 0:
+        stderr_text = str(result.get("stderr") or "")
+        if not stderr_text and stderr_path is not None and stderr_path.is_file():
+            try:
+                stderr_text = stderr_path.read_text(encoding="utf-8", errors="replace")
+                result["stderr"] = stderr_text[-8000:]
+            except OSError:
+                stderr_text = ""
+        snippet = " ".join(stderr_text.split())[-800:]
         raise PerceptShiftError(
             code=ErrorCode.BENCHMARK_WORKER_CRASHED,
-            message=f"Bench worker exited with code {proc.returncode}",
+            message=(
+                f"Bench worker exited with code {proc.returncode}"
+                + (f": {snippet}" if snippet else "")
+            ),
             details=result,
         )
     return result
@@ -1032,7 +1054,9 @@ def _native_binary_roots() -> list[Path]:
             roots.append(Path(value))
     roots.append(Path.cwd())
     # python/perceptshift_forge/src/perceptshift_forge/orchestration/__init__.py
-    roots.append(Path(__file__).resolve().parents[5])
+    source_file = Path(__file__).resolve()
+    if len(source_file.parents) > 5:
+        roots.append(source_file.parents[5])
     unique: list[Path] = []
     seen: set[Path] = set()
     for root in roots:
@@ -1067,4 +1091,8 @@ def find_native_binary(name: str) -> Path | None:
     for candidate in candidates:
         if candidate.is_file() and os.access(candidate, os.X_OK):
             return candidate
+    for root in _native_binary_roots():
+        for match in sorted(root.glob(f"build/**/{name}")):
+            if match.is_file() and os.access(match, os.X_OK):
+                return match
     return None

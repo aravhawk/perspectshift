@@ -61,6 +61,8 @@ filterwarnings = [
   "error",
   "ignore::DeprecationWarning",
   "ignore::ResourceWarning",
+  "ignore::UserWarning:onnxruntime",
+  "ignore::UserWarning:onnx",
   # Message-based filter: StarletteDeprecationWarning is not present on all locked versions.
   "ignore:Using `httpx` with `starlette.testclient` is deprecated.*",
 ]
