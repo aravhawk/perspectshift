@@ -38,6 +38,9 @@ resolve_fixed_or_concrete_shape(const std::vector<std::int64_t>& model_shape,
     }
   }
   if (dynamic_idxs.empty()) {
+    if (allow_zeros_fill_dynamic) {
+      return shape;
+    }
     if (element_count != known) {
       return Error::make(ErrorCode::ModelTensorMismatch,
                          "tensor element count " + std::to_string(element_count) +

@@ -243,7 +243,11 @@ jobs:
           set -e
           cat e2e-out.txt
           if [[ "$rc" -ne 0 ]]; then
-            tail -n 40 e2e-out.txt | while IFS= read -r ln; do
+            grep -E 'control_hold_reason|AssertionError|Error:|native_e2e|zeros smoke|ModelTensorMismatch' e2e-out.txt | tail -n 30 | while IFS= read -r ln; do
+              [[ -z "$ln" ]] && continue
+              echo "::error::e2e: ${ln:0:240}"
+            done
+            tail -n 20 e2e-out.txt | while IFS= read -r ln; do
               [[ -z "$ln" ]] && continue
               echo "::error::e2e: ${ln:0:240}"
             done
