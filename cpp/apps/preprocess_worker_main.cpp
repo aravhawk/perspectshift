@@ -36,18 +36,27 @@ int main(int argc, char** argv) {
   std::size_t stride_bytes = 0;
   bool version = false;
   app.add_flag("--version", version, "Print version");
-  app.add_option("--image", image_path, "Raw pixel file")->required();
-  app.add_option("--contract", contract_path, "Preprocess contract JSON")->required();
-  app.add_option("--output", output_path, "Output float32 tensor file")->required();
+  app.add_option("--image", image_path, "Raw pixel file");
+  app.add_option("--contract", contract_path, "Preprocess contract JSON");
+  app.add_option("--output", output_path, "Output float32 tensor file");
   app.add_option("--pixel-format", pixel_format, "Source pixel format");
-  app.add_option("--width", width, "Source width")->required();
-  app.add_option("--height", height, "Source height")->required();
+  app.add_option("--width", width, "Source width");
+  app.add_option("--height", height, "Source height");
   app.add_option("--stride-bytes", stride_bytes, "Source stride (0 = tightly packed)");
   CLI11_PARSE(app, argc, argv);
 
   if (version) {
     std::cout << perceptshift::kVersionString << "\n";
     return 0;
+  }
+  if (image_path.empty() || contract_path.empty() || output_path.empty() || width == 0 ||
+      height == 0) {
+    std::cerr << nlohmann::json(
+                     {{"status", "error"},
+                      {"code", "CONFIG_INVALID"},
+                      {"message", "missing --image/--contract/--output/--width/--height"}})
+              << "\n";
+    return 2;
   }
 
   try {
