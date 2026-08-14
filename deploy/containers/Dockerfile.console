@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.7
 # Static operational console with security headers. No development server.
-FROM node:24-bookworm AS build
+FROM node:26-bookworm AS build
 WORKDIR /src
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY web /src/web
