@@ -63,6 +63,9 @@ filterwarnings = [
   "ignore::ResourceWarning",
   "ignore::UserWarning:onnxruntime",
   "ignore::UserWarning:onnx",
+  "ignore:Mean of empty slice:RuntimeWarning",
+  "ignore:invalid value encountered:RuntimeWarning",
+  "ignore:divide by zero encountered:RuntimeWarning",
   # Message-based filter: StarletteDeprecationWarning is not present on all locked versions.
   "ignore:Using `httpx` with `starlette.testclient` is deprecated.*",
 ]

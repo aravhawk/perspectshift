@@ -106,7 +106,7 @@ jobs:
           cmake --preset release-x64
           cmake --build --preset release-x64 -j "$(nproc)"
       - name: Sync Python workspace
-        run: uv sync --locked --all-packages --group dev
+        run: uv sync --locked --all-packages --all-extras --group dev
       - name: Ruff
         run: uv run ruff check python
       - name: Pyright
@@ -142,7 +142,7 @@ jobs:
           set -e
           cat pytest-out.txt
           if [[ "$rc" -ne 0 ]]; then
-            tail -n 50 pytest-out.txt | while IFS= read -r ln; do
+            grep -E '^E |^FAILED |PerceptShiftError|Error:' pytest-out.txt | tail -n 40 | while IFS= read -r ln; do
               [[ -z "$ln" ]] && continue
               echo "::error::pytest: ${ln:0:240}"
             done
@@ -228,7 +228,7 @@ jobs:
           cmake --preset release-x64
           cmake --build --preset release-x64 -j "$(nproc)"
       - name: Python workspace
-        run: uv sync --locked --all-packages --group dev
+        run: uv sync --locked --all-packages --all-extras --group dev
       - name: E2E and docs check
         env:
           PERCEPTSHIFT_ROOT: ${{ github.workspace }}
