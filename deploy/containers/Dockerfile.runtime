@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.7
 # Production runtime image. Bundle and config are mounted read-only at run time.
-FROM ubuntu:24.04 AS build
+FROM ubuntu:26.04 AS build
 ENV DEBIAN_FRONTEND=noninteractive
 ARG ORT_VERSION=1.28.0
 ARG TARGETARCH
@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && mkdir -p /opt/perceptshift/lib \
     && cp -a /opt/onnxruntime/lib/. /opt/perceptshift/lib/
 
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
       libssl3 ca-certificates \
