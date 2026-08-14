@@ -237,7 +237,18 @@ jobs:
         run: |
           set -euo pipefail
           export PATH="${GITHUB_WORKSPACE}/build/release-x64/cpp:${PATH}"
-          ./scripts/run-e2e.sh
+          set +e
+          ./scripts/run-e2e.sh > e2e-out.txt 2>&1
+          rc=$?
+          set -e
+          cat e2e-out.txt
+          if [[ "$rc" -ne 0 ]]; then
+            tail -n 40 e2e-out.txt | while IFS= read -r ln; do
+              [[ -z "$ln" ]] && continue
+              echo "::error::e2e: ${ln:0:240}"
+            done
+            exit "$rc"
+          fi
           make docs-check
       - name: Summary
         run: |

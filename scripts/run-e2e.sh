@@ -92,12 +92,23 @@ spec.loader.exec_module(helpers)
 
 model = helpers.make_tiny_onnx(tmp / "model.onnx")
 cal_root = tmp / "cal"; ev_root = tmp / "ev"
-helpers.write_rgb_image(cal_root / "a.png", (1, 2, 3))
-helpers.write_rgb_image(ev_root / "b.png", (4, 5, 6))
-cal = helpers.write_json(tmp / "cal.json", helpers.classification_manifest(cal_root, [{"path": "a.png", "class_id": 0}]))
-ev_doc = helpers.classification_manifest(ev_root, [{"path": "b.png", "class_id": 1}])
+helpers.write_float_tensor(cal_root / "a.npy", (1, 3, 4, 4))
+import numpy as np
+ev_root.mkdir(parents=True, exist_ok=True)
+np.save(str(ev_root / "b.npy"), np.ones((1, 3, 4, 4), dtype=np.float32))
+cal = helpers.write_json(tmp / "cal.json", helpers.raw_tensor_manifest(cal_root, [{"path": "a.npy", "item_id": "a", "label": 0}]))
+ev_doc = helpers.raw_tensor_manifest(ev_root, [{"path": "b.npy", "item_id": "b", "label": 1}])
 ev_doc["split_name"] = "evaluation"
 ev = helpers.write_json(tmp / "ev.json", ev_doc)
+
+preprocess = {
+  "input_width": 4, "input_height": 4, "input_layout": "nchw",
+  "accepted_source_formats": ["rgb8", "bgr8", "rgba8", "bgra8", "mono8"],
+  "source_color_handling": "convert_to_rgb", "resize_mode": "stretch",
+  "resize_interpolation": "bilinear", "scale": 1.0 / 255.0,
+  "mean": [0.0, 0.0, 0.0], "std": [1.0, 1.0, 1.0], "swap_rb": False,
+  "letterbox_pad_value": None, "output_dtype": "float32", "backend": "scalar",
+}
 
 cfg = {
   "schema_version": "1.0",
@@ -107,7 +118,8 @@ cfg = {
     "baseline_path": str(model.resolve()),
     "adapter": "raw_tensor",
     "adapter_config": {},
-    "expected_input": {},
+    "expected_input": {"shape": [1, 3, 4, 4], "layout": "nchw"},
+    "preprocess": preprocess,
     "allowed_model_roots": [str(tmp.resolve())],
   },
   "datasets": {
@@ -131,8 +143,8 @@ cfg = {
     "warmup_iterations": 1, "measured_iterations": 2, "independent_trials": 1,
     "randomize_candidate_order": False, "cold_start_trials": 0,
     "per_candidate_timeout_seconds": 60, "maximum_worker_rss_mb": 1024,
-    "minimum_stabilization_seconds": 0, "maximum_start_temperature_c": 99.0,
-    "maximum_temperature_drift_c": 50.0, "require_no_throttling": False,
+    "minimum_stabilization_seconds": 0, "maximum_start_temperature_c": None,
+    "maximum_temperature_drift_c": None, "require_no_throttling": False,
     "collect_perf": False, "collect_ros_trace": False, "bootstrap_resamples": 100,
   },
   "quality": {
