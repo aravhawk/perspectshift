@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.7
 # Local operational API in artifact-store mode.
 # This image does not contain ROS 2 Jazzy or perceptshift_msgs; it is not ROS-connected.
-FROM python:3.12-slim-bookworm AS build
+FROM python:3.14-slim-bookworm AS build
 WORKDIR /src
 COPY python /src/python
 COPY config /src/config
@@ -11,7 +11,7 @@ RUN pip install --no-cache-dir build \
        /src/python/perceptshift_api \
     && test -n "$(ls -A /wheels/*.whl 2>/dev/null)"
 
-FROM python:3.12-slim-bookworm
+FROM python:3.14-slim-bookworm
 RUN useradd --system --create-home --uid 10002 --shell /usr/sbin/nologin perceptshift-api \
     && mkdir -p /var/lib/perceptshift/state /var/lib/perceptshift/data /etc/perceptshift \
     && chown -R perceptshift-api:perceptshift-api /var/lib/perceptshift
